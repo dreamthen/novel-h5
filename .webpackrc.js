@@ -34,7 +34,7 @@ const novelH5_webpack = {
     "/novel_h5/": {
       target: "http://public.1jtec.com/",
       secure: false,
-      pathRewrite: {"/novel_h5/": ""},
+      pathRewrite: {"/novel_h5/": "/novel_h5/"},
       changeOrigin: true
     }
   }

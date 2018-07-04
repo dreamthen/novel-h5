@@ -11,6 +11,7 @@ import "react-weui/build/packages/react-weui.css";
 let app = dva({
   history: createBrowserHistory()
 });
+window.app = app;
 
 //配置所有页面功能model
 stores(app);
@@ -19,8 +20,10 @@ stores(app);
 app.router(({history}) => {
   return (
     <Router history={history}>
+    {/* 布局路由组件 */}
       <RouteComponent>
         <Switch>
+          {/* 具体页面路由组件 */}
           {route}
         </Switch>
       </RouteComponent>
@@ -30,7 +33,6 @@ app.router(({history}) => {
 
 //将组件配置到视图上面
 app.start("#root");
-
 export default app;
 
 
