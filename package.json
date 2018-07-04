@@ -1,15 +1,22 @@
 {
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "dva": "^2.3.1",
+    "history": "^4.7.2",
+    "path": "^0.12.7",
+    "prop-types": "^15.6.2",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-responsive-carousel": "^3.1.41",
+    "react-weui": "^1.1.3",
+    "weui": "^1.1.3"
   },
   "devDependencies": {
     "roadhog": "^2.0.0"
   },
   "scripts": {
-    "start": "roadhog server",
+    "start": "cross-env PORT=9666 roadhog dev",
     "build": "roadhog build"
   }
 }

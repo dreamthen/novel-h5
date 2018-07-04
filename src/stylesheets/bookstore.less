@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+.bookstore {
+  width: 100%;
+  &-header {
+    &-nav {
+      background-color: #efeff4;
+      margin-top: 10px;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+      &-search {
+        width: 80%;
+        padding: 6px 10px;
+        border-radius: 4px;
+        box-shadow: none;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        outline: none;
+      }
+      &-button {
+        margin: 0 0 0 8px;
+        padding: 3px 12px 4px 12px;
+        box-shadow: none;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        word-spacing: 2px;
+        background-color: #f9cc46;
+      }
+    }
+    &-categories {
+      background-color: #fbf9fe;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: normal;
+      &-item {
+        margin: 8px 0;
+        *zoom: 1;
+        dfn {
+          font-style: normal;
+          float: left;
+          margin-right: 12px;
+        }
+        &-aside {
+          display: table-cell;
+          width: 2000px;
+          *display: inline-block;
+          *width: auto;
+          span {
+            position: relative;
+            display: inline-block;
+            padding: 4px 10px;
+            margin: 0 16px 4px 0;
+            bottom: 4px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all .3s linear 0s;
+          }
+          &-selected {
+            background-color: #f9cc46 !important;
+          }
+        }
+      }
+      &-item:last-child {
+        margin: 0;
+      }
+    }
+  }
+}
