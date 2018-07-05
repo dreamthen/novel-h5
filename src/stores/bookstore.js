@@ -18,7 +18,8 @@ let bookstore = (app) => {
        * @param call
        * @param put
        * @returns {IterableIterator<*>}
-       */* classifications({payload}, {call, put}) {
+       */
+      * classifications({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["classifications"], payload);
         let body = response.body;
         let all = {id: 0, title: '全部'};

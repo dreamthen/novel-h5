@@ -3,9 +3,20 @@ import {connect} from "dva";
 import {Link, withRouter} from "dva/router";
 import routeConfig from "../../configs/route";
 import styles from "../../stylesheets";
+import 'weui';
 
+// 布局路由
 const Route = ({route, dispatch}) => {
   return {
+    handleTestDialogVisible(visible) {
+      const { dispatch } = this.props;
+      dispatch({
+        type: 'route/save',
+        payload: {
+          codeDialog: !!visible
+        }
+      });
+    },
     render() {
       return (
         <main>
@@ -31,6 +42,7 @@ const Route = ({route, dispatch}) => {
             </section>
           </header>
           <section>
+            {/* 这里的childrn对接符合路由条件的路由组件Route */}
             {this.props.children}
           </section>
         </main>

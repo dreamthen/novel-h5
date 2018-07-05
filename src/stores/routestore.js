@@ -5,7 +5,6 @@ let routestore = (app) => {
       codeDialog: false
     },
     effects: {
-
     },
     reducers: {
       save(state, { payload }) {

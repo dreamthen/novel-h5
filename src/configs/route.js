@@ -1,4 +1,3 @@
-import React from "react";
 import HomeComponent from "../containers/home";
 import BookStoreComponent from "../containers/bookstore";
 
