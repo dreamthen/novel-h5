@@ -20,7 +20,8 @@ let homestore = (app) => {
        * @param call
        * @param put
        * @returns {IterableIterator<*>}
-       */* indexfictions({payload}, {call, put}) {
+       */
+      * indexfictions({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["indexfictions"], payload);
         let body = response.body;
         yield put({type: 'getIndexFictionsData', payload: body});

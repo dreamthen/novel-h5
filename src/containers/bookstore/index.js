@@ -108,6 +108,11 @@ class BookStore extends Component {
     e.nativeEvent.stopImmediatePropagation();
   }
 
+  onFictionClick = ficId => {
+    const { history } = this.props;
+    history.push(`/synopsis?ficId=${ficId}`);
+  };
+
   /**
    * 搜索关键字内容改变监听
    */
@@ -178,7 +183,7 @@ class BookStore extends Component {
           {
             fictions.length > 0 && fictions.map((fictionItem, fictionIndex) => {
               return (
-                <section className={styles["bookstore"]["bookstore-main-module"]} key={fictionIndex}>
+                <section className={styles["bookstore"]["bookstore-main-module"]} key={fictionIndex} onClick={this.onFictionClick.bind(null, fictionItem.id)}>
                   <img src={fictionItem["avatar"]} alt={fictionItem["title"]}/>
                   <aside className={styles["bookstore"]["bookstore-main-module-aside"]}>
                     <h3 className={styles["bookstore"]["bookstore-main-module-aside-title"]}>{fictionItem["title"]}</h3>
