@@ -6,11 +6,12 @@ let api = {};
 const isMock = false;
 
 if (!isMock) {
-  //拉取首页小说资源列表接口地址
   api = {
+    //拉取首页小说资源列表接口地址
     indexfictions: `${novel_h5_modelPath}/indexfictions`,
     classifications: `${novel_h5_modelPath}/classifications`,
-    fictions: `${novel_h5_modelPath}/fictions`
+    fictions: `${novel_h5_modelPath}/fictions`,
+    chargeproducts: `${novel_h5_modelPath}/chargeproducts`
   };
 
 } else {

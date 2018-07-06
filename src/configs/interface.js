@@ -43,8 +43,23 @@ let fictions = async (params) => {
   })
 };
 
+/**
+ * 搜索充值产品列表
+ * @param params
+ * @returns {Promise<*>}
+ */
+let chargeproducts = async (params) => {
+  return axios({
+    url: api.chargeproducts,
+    method: "GET",
+    params,
+    headers: {}
+  })
+};
+
 export default {
   indexfictions,
   classifications,
-  fictions
+  fictions,
+  chargeproducts
 }
