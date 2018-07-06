@@ -29,7 +29,22 @@ let classifications = async (params) => {
   })
 };
 
+/**
+ * 小说查询
+ * @param params
+ * @returns {Promise<void>}
+ */
+let fictions = async (params) => {
+  return axios({
+    url: api.fictions,
+    method: "GET",
+    params,
+    headers: {}
+  })
+};
+
 export default {
   indexfictions,
-  classifications
+  classifications,
+  fictions
 }

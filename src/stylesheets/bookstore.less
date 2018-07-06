@@ -69,4 +69,49 @@
       }
     }
   }
+  &-main {
+    background-color: #fff;
+    margin-top: 10px;
+    &-module {
+      padding: 16px 0;
+      border-bottom: 1px solid #eee;
+      *zoom: 1;
+      img {
+        float: left;
+        width: 30%;
+        height: auto;
+        padding: 0 6px;
+        margin-right: 18px;
+      }
+      &-aside {
+        display: table-cell;
+        width: 2000px;
+        *display: inline-block;
+        *width: auto;
+        padding: 0 6px 0 0;
+        &-title {
+          font-weight: normal;
+        }
+        &-paragraph {
+          margin: 10px 0 0 0;
+          font-size: 14px;
+          font-weight: lighter;
+          display: -webkit-box;
+          /* autoprefixer: off */
+          -webkit-box-orient: vertical;
+          /* autoprefixer: on */
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 3;
+        }
+      }
+      &:after {
+        content: ".";
+        clear: both;
+        display: block;
+        visibility: hidden;
+        height: 0;
+      }
+    }
+  }
 }
