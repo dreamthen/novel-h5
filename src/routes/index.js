@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Redirect} from "dva/router";
+import {Route} from "dva/router";
 import routeConfig from "../configs/route";
 
 /**

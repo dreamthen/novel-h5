@@ -139,25 +139,25 @@
       border-bottom: 1px solid #eee;
     }
     &-main {
-      *zoom: 1;
       color: #000;
+      width: 100%;
       &-item {
-        padding: 32px 0;
+        width: 100%;
+        padding: 16px 0;
         border-bottom: 1px solid #eee;
         margin: 0 4px;
+        display: flex;
+        flex-direction: row;
         img {
-          float: left;
-          width: 30%;
-          height: auto;
-          padding: 0 6px;
-          margin-right: 18px;
+          max-width: 23%;
+          max-height: 120px;
+          padding: 0 16px;
+          box-sizing: content-box;
         }
         &-aside {
-          display: table-cell;
-          width: 2000px;
-          *display: inline-block;
-          *width: auto;
-          padding: 0 6px 0 0;
+          width: 70%;
+          display: flex;
+          flex-direction: column;
           &-title {
             font-weight: normal;
           }
@@ -192,6 +192,7 @@
         color: #000;
         font-size: 16px;
         font-weight: lighter;
+        padding: 0 16px;
       }
     }
   }

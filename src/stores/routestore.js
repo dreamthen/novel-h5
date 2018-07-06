@@ -1,14 +1,19 @@
-import app from "../index";
+let routestore = (app) => {
+  app.model({
+    namespace: "route",
+    state: {
+    },
+    effects: {
+    },
+    reducers: {
+      save(state, { payload }) {
+        return {
+          ...state,
+          ...payload
+        };
+      }
+    }
+  });
+}
 
-app.model({
-  name: "route",
-  state: {
-
-  },
-  effects: {
-
-  },
-  reducers: {
-
-  }
-});
+export default routestore;
