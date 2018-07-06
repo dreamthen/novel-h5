@@ -5,7 +5,6 @@ import {createBrowserHistory as createBrowserHistory} from "history";
 import RouteComponent from "./containers/route";
 import route from "./routes";
 import stores from "./stores";
-import "react-weui/build/packages/react-weui.css";
 
 //初始化dva
 let app = dva({

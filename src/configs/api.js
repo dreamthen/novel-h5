@@ -9,8 +9,7 @@ if (!isMock) {
   //拉取首页小说资源列表接口地址
   api = {
     indexfictions: `${novel_h5_modelPath}/indexfictions`,
-    classifications: `${novel_h5_modelPath}/classifications`,
-    newsessions: `${novel_h5_modelPath}/sessions/new`
+    classifications: `${novel_h5_modelPath}/classifications`
   };
 
 } else {
