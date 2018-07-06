@@ -2,7 +2,6 @@ let routestore = (app) => {
   app.model({
     namespace: "route",
     state: {
-      codeDialog: false
     },
     effects: {
     },
