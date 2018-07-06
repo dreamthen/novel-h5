@@ -8,12 +8,15 @@ import styles from "../../stylesheets";
 const Route = ({route, dispatch}) => {
   return {
     render() {
+      const navRoute = routeConfig["route"].filter(val => {
+        return val.isNav;
+      });
       return (
         <main>
           <header className={styles["route"]["novel-header"]}>
             <nav>
               <ul>
-                {routeConfig["route"].map((routeItem, routeIndex) => {
+                {navRoute.map((routeItem, routeIndex) => {
                   return <li key={routeIndex} className={styles["route"]["novel-header-link"]}>
                     <Link to={routeItem["path"]}>
                       {routeItem["text"]}
