@@ -14,6 +14,6 @@ let routestore = (app) => {
       }
     }
   });
-}
+};
 
 export default routestore;

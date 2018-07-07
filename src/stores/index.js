@@ -1,5 +1,6 @@
 import homestore from "./homestore";
 import bookstore from "./bookstore";
+import rechargestore from "./rechargestore";
 import routestore from "./routestore";
 import synopsisstore from "./synopsisstore";
 import chapterstore from "./chapterstore";
@@ -10,6 +11,7 @@ import chapterstore from "./chapterstore";
 let stores = (app) => {
   homestore(app);
   bookstore(app);
+  rechargestore(app);
   routestore(app);
   synopsisstore(app); 
   chapterstore(app);
