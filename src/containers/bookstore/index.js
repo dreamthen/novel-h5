@@ -113,7 +113,9 @@ class BookStoreComponent extends Component {
    */
   componentWillUnmount() {
     const {reset} = this.props;
+    const {scrollBookStore} = this;
     reset.bind(this)();
+    window.removeEventListener("scroll", scrollBookStore.bind(this));
   }
 
   /**
@@ -132,23 +134,29 @@ class BookStoreComponent extends Component {
   }
 
   /**
-   * 滚动条分页
+   * 添加书库滚动条分页
    */
   scrollPagination() {
+    const {scrollBookStore} = this;
+    window.addEventListener("scroll", scrollBookStore.bind(this));
+  }
+
+  /**
+   * 滚动条分页系统
+   */
+  scrollBookStore() {
     const {searchFictionsWithFilter} = this;
-    window.addEventListener("scroll", () => {
-      const {bookstore, changeEnd} = this.props;
-      let {pageNum, isEnd} = bookstore;
-      let scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
-        document_height = document.body.offsetHeight,
-        window_height = window.innerHeight;
-      if (document_height - (window_height + scrollTop) < 0) {
-        if (!isEnd) {
-          changeEnd.bind(this)(true);
-          searchFictionsWithFilter.bind(this)(++pageNum);
-        }
+    const {bookstore, changeEnd} = this.props;
+    let {pageNum, isEnd} = bookstore;
+    let scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
+      document_height = document.body.offsetHeight,
+      window_height = window.innerHeight;
+    if (document_height - (window_height + scrollTop) < 0) {
+      if (!isEnd) {
+        changeEnd.bind(this)(true);
+        searchFictionsWithFilter.bind(this)(++pageNum);
       }
-    });
+    }
   }
 
   /**
@@ -195,7 +203,7 @@ class BookStoreComponent extends Component {
   }
 
   onFictionClick = ficId => {
-    const { history } = this.props;
+    const {history} = this.props;
     history.push(`/synopsis?ficId=${ficId}`);
   };
 
@@ -269,7 +277,8 @@ class BookStoreComponent extends Component {
           {
             fictions.length > 0 && fictions.map((fictionItem, fictionIndex) => {
               return (
-                <section className={styles["bookstore"]["bookstore-main-module"]} key={fictionIndex} onClick={this.onFictionClick.bind(null, fictionItem["id"])}>
+                <section className={styles["bookstore"]["bookstore-main-module"]} key={fictionIndex}
+                         onClick={this.onFictionClick.bind(null, fictionItem["id"])}>
                   <img src={fictionItem["avatar"]} alt={fictionItem["title"]}/>
                   <aside className={styles["bookstore"]["bookstore-main-module-aside"]}>
                     <h3 className={styles["bookstore"]["bookstore-main-module-aside-title"]}>{fictionItem["title"]}</h3>

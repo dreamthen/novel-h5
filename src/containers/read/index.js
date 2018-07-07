@@ -4,7 +4,6 @@ import styles from '../../stylesheets';
 import menuImg from '../../assets/menu.png';
 import qs from 'qs';
 import { ActionSheet, Modal, Slider, WingBlank } from 'antd-mobile';
-import {Redirect} from 'react-router-dom';
 
 const keyBy = (arr, key) => {
   if (!Array.isArray(arr)) {
@@ -15,7 +14,7 @@ const keyBy = (arr, key) => {
     result[val[key]] = val;
   });
   return result;
-}
+};
 
 const readMode2BgColor = readMode => {
   const modeMap = keyBy(readModes, 'mode');
@@ -122,7 +121,7 @@ class Read extends Component {
   nextChapter = () => {
     const { read: {ficId, serial}, history} = this.props;
     window.location.href = `/read?ficId=${ficId}&serial=${serial + 1}`;
-  }
+  };
 
   lastChapter = () => {
     const { read: {ficId, serial}, history} = this.props;
@@ -130,7 +129,7 @@ class Read extends Component {
       return;
     }
     window.location.href = `/read?ficId=${ficId}&serial=${serial - 1}`;
-  }
+  };
 
   componentDidMount() {
     // 加载小说
@@ -151,7 +150,7 @@ class Read extends Component {
     } else if(1 === btnIndex) {
       handleReadModaModalVisible(true);
     }
-  }
+  };
 
   onWrapTouchStart = e => {
     // fix touch to scroll background page on iOS
@@ -162,7 +161,7 @@ class Read extends Component {
     if (!pNode) {
       e.preventDefault();
     }
-  }
+  };
 
   showActionSheet = () => {
     const buttons = ['字体大小', '背景颜色', '返回目录', '返回首页'];
@@ -176,7 +175,7 @@ class Read extends Component {
     buttonIndex => {
       this.onCtrlClick(buttonIndex);
     });
-  }
+  };
 
   render() {
     const { read: {serial, content, fontSize, readMode, ctrlVisible, fontModalVisible, bgModalVisible, readModeModalVisible},
@@ -199,7 +198,7 @@ class Read extends Component {
         <div className={styles['read']['footer-icon-btn']} onClick={this.showActionSheet}>
           <img alt="loading" src={menuImg} className={styles['read']['footer-icon-btn-icon']}/>
         </div>
-        <div 
+        <div
           style={{color: `${readMode2FontColor(readMode)}`}}
           className={styles['read']['footer-text-btn']}
           onClick={this.nextChapter.bind(null)}
