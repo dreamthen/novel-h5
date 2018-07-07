@@ -1,0 +1,39 @@
+@import "./util.less";
+
+.main {
+  background-color: white;
+  min-height: 100vh;
+}
+
+.head-title {
+  text-align: center;
+  font-size: 24px;
+  color: @vice-color;
+  padding: 20px 0;
+}
+
+.chapter {
+  margin-top: 20px;
+  border-top: .75px solid #eee;
+  border-bottom: .75px solid #eee;
+  padding-left: 10px;
+  color: #888888;
+  font-weight: lighter;
+
+  &-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: .75px solid #eee;
+    padding: 10px;
+    &:last-child {
+      border-bottom: none;
+    }
+    &-icon {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+
