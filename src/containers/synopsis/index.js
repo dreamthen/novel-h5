@@ -31,6 +31,11 @@ class Synopsis extends Component {
     });
   }
 
+  onAllChapterClick = ficId => {
+    const { history, synopsis: {fiction: {title}}} = this.props;
+    history.push(`/chapter?ficId=${ficId}&title=${title}`);
+  }
+
   render() {
     const { synopsis: {chapters, fiction}} = this.props;
     return (<main style={{backgroundColor: 'white', minHeight: '100vh'}}>
@@ -73,7 +78,7 @@ class Synopsis extends Component {
             })
           }
         </div>
-        <div className={styles['synopsis']['catalog-all-btn']}><a href="">全部章节</a></div>
+        <div className={styles['synopsis']['catalog-all-btn']} onClick={this.onAllChapterClick.bind(null, fiction.id)}><a href="">全部章节</a></div>
       </section>
     </main>);
   }
