@@ -31,12 +31,17 @@ class Synopsis extends Component {
     });
   }
 
+  onAllChapterClick = ficId => {
+    const { history, synopsis: {fiction: {title}}} = this.props;
+    history.push(`/chapter?ficId=${ficId}&title=${title}`);
+  }
+
   render() {
     const { synopsis: {chapters, fiction}} = this.props;
     return (<main style={{backgroundColor: 'white', minHeight: '100vh'}}>
       <header className={styles['synopsis']['head']}>
         <div className={styles['synopsis']['head-avatar']}>
-          <img className={styles['synopsis']['head-avatar-img']} src={fiction.avatar}/>
+          <img alt='loading' className={styles['synopsis']['head-avatar-img']} src={fiction.avatar}/>
         </div>
         <div className={styles['synopsis']['head-info']}>
           <div className={styles['synopsis']['head-info-title']}>{fiction.title}</div>
@@ -46,7 +51,7 @@ class Synopsis extends Component {
       </header>
       <section className={styles['synopsis']['desc']}>
         <div className={styles['synopsis']['desc-title']}>
-          <img className={styles['synopsis']['desc-title-icon']} src={descImg}/>
+          <img alt='loading' className={styles['synopsis']['desc-title-icon']} src={descImg}/>
           <span>简介</span>
         </div>
         <div className={styles['synopsis']['desc-content']}>
@@ -58,7 +63,7 @@ class Synopsis extends Component {
       </section>
       <section className={styles['synopsis']['catalog']}>
         <div className={styles['synopsis']['catalog-title']}>
-          <img className={styles['synopsis']['catalog-title-icon']} src={bookImg}/>
+          <img alt='loading' className={styles['synopsis']['catalog-title-icon']} src={bookImg}/>
           <span>章节</span>
         </div>
         <div className={styles['synopsis']['catalog-chapter']}>
@@ -67,13 +72,13 @@ class Synopsis extends Component {
               return <div key={val.id} className={styles['synopsis']['catalog-chapter-item']}>
                 <div>{`${val.title}`}</div>
                 {
-                  val.costBalance > 0 ? <img className={styles['synopsis']['catalog-chapter-item-icon']} src={costImg}/> : null
+                  val.costBalance > 0 ? <img alt='loading' className={styles['synopsis']['catalog-chapter-item-icon']} src={costImg}/> : null
                 }
               </div>;
             })
           }
         </div>
-        <div className={styles['synopsis']['catalog-all-btn']}><a href="">全部章节</a></div>
+        <div className={styles['synopsis']['catalog-all-btn']} onClick={this.onAllChapterClick.bind(null, fiction.id)}><a href="">全部章节</a></div>
       </section>
     </main>);
   }

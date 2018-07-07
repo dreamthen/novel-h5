@@ -1,9 +1,10 @@
-import axios from "../configs/axios-config";
+import novel_h5_interface from "../configs/interface";
 const synopsisstore = app => {
   app.model({
     namespace: 'synopsis',
     state: {
       fiction: {
+        id: null,
         avatar: '',
         goingStatus: '',
         artist: '',
@@ -16,16 +17,15 @@ const synopsisstore = app => {
     },
     effects: {
       *fetchFiction({ payload }, { call, put }) {
-        const response = yield call(axios, {
-          url: `/novel_h5/fictions/${payload.ficId}`,
-          method: 'GET',
-          headers: {}
+        const response = yield call(novel_h5_interface['fiction'], {
+          id: payload.ficId
         });
         const { body } = response;
         yield put({
           type: 'save',
           payload: {
             fiction: {
+              id: body.id,
               artist: body.artist,
               avatar: body.avatar,
               clsTitle: body.cls_title,
@@ -38,14 +38,10 @@ const synopsisstore = app => {
         });
       },
       *fetchChapters({ payload }, { call, put }) {
-        const response = yield call(axios, {
-          url: '/novel_h5/chapters',
-          method: 'GET',
-          params: {
-            fic_id: payload.ficId,
-            page_num: 1,
-            page_size: 5
-          }
+        const response = yield call(novel_h5_interface['chapters'], {
+          fic_id: payload.ficId,
+          page_num: 1,
+          page_size: 5
         });
         yield put({
           type: 'save',

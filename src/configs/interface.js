@@ -1,6 +1,23 @@
 import api from "./api";
 import axios from "./axios-config";
 
+const fiction = async params => {
+  return axios({
+    url: `${api.fictions}/${params.id}`,
+    method: "GET",
+    headers: {}
+  });
+}
+
+const chapters = async params => {
+  return axios({
+    url: api.chapters,
+    method: "GET",
+    params,
+    headers: {}
+  });
+};
+
 /**
  * 拉取首页小说资源列表
  * @param params
@@ -61,5 +78,7 @@ export default {
   indexfictions,
   classifications,
   fictions,
-  chargeproducts
+  chargeproducts,
+  chapters,
+  fiction
 }
