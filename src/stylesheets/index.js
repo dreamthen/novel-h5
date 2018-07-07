@@ -4,6 +4,7 @@ import bookstore from "./bookstore.less";
 import recharge from "./recharge.less";
 import synopsis from "./synopsis.less";
 import chapter from "./chapter.less";
+import read from "./read.less";
 
 export default {
   route,
@@ -11,6 +12,7 @@ export default {
   bookstore,
   recharge,
   synopsis,
-  chapter
+  chapter,
+  read
 };
 

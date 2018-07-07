@@ -1,6 +1,15 @@
 import api from "./api";
 import axios from "./axios-config";
 
+const content = async params => {
+  return axios({
+    url: `${api.content}`,
+    method: "GET",
+    params,
+    headers: {}
+  });
+}
+
 const fiction = async params => {
   return axios({
     url: `${api.fictions}/${params.id}`,
@@ -80,5 +89,6 @@ export default {
   fictions,
   chargeproducts,
   chapters,
-  fiction
+  fiction,
+  content
 }

@@ -37,7 +37,10 @@ const novelH5_webpack = {
       pathRewrite: {"/novel_h5/": "/novel_h5/"},
       changeOrigin: true
     }
-  }
+  },
+  extraBabelPlugins: [
+    ["import", {libraryName : "antd-mobile", style : true }]
+  ],
 };
 
 export default novelH5_webpack;
