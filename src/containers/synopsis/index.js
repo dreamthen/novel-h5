@@ -31,6 +31,16 @@ class Synopsis extends Component {
     });
   }
 
+  onRead = () => {
+    const { history, synopsis: {fiction}} = this.props;
+    history.push(`/read?ficId=${fiction.id}&serial=1`);
+  }
+
+  onClickChapter = serial => {
+    const { history, synopsis: {fiction}} = this.props;
+    history.push(`/read?ficId=${fiction.id}&serial=${serial}`);
+  }
+
   onAllChapterClick = ficId => {
     const { history, synopsis: {fiction: {title}}} = this.props;
     history.push(`/chapter?ficId=${ficId}&title=${title}`);
@@ -59,7 +69,7 @@ class Synopsis extends Component {
             fiction.description
           }
         </div>
-        <div className={styles['synopsis']['desc-read-btn']}>开始阅读</div>
+        <div className={styles['synopsis']['desc-read-btn']} onClick={this.onRead}>开始阅读</div>
       </section>
       <section className={styles['synopsis']['catalog']}>
         <div className={styles['synopsis']['catalog-title']}>
@@ -69,7 +79,7 @@ class Synopsis extends Component {
         <div className={styles['synopsis']['catalog-chapter']}>
           {
             chapters.map(val => {
-              return <div key={val.id} className={styles['synopsis']['catalog-chapter-item']}>
+              return <div key={val.id} className={styles['synopsis']['catalog-chapter-item']} onClick={this.onClickChapter.bind(null, val.serial)}>
                 <div>{`${val.title}`}</div>
                 {
                   val.costBalance > 0 ? <img alt='loading' className={styles['synopsis']['catalog-chapter-item-icon']} src={costImg}/> : null

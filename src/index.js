@@ -1,7 +1,7 @@
 import dva from "dva";
 import {Router, Switch} from "dva/router";
 import React from "react";
-import {createBrowserHistory as createBrowserHistory} from "history";
+import {createBrowserHistory } from "history";
 import RouteComponent from "./containers/route";
 import route from "./routes";
 import stores from "./stores";

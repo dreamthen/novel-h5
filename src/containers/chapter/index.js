@@ -12,6 +12,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    reset() {
+      dispatch({
+        type: 'chapter/reset'
+      });
+    },
     changeEnd: isEnd => {
       dispatch({
         type: 'chapter/save',
@@ -34,8 +39,13 @@ class Chapter extends Component {
 
   componentDidMount() {
     this.scrollPagination();
-    const { fetchChapters, location} = this.props;
-    fetchChapters({page_num: 1, fic_id: qs.parse(location.search.substr(1)).ficId});
+    const { fetchChapters, location, chapter: {pageSize}} = this.props;
+    fetchChapters({page_num: 1, page_size: pageSize,fic_id: qs.parse(location.search.substr(1)).ficId});
+  }
+
+  componentWillUnmount() {
+    const { reset } = this.props;
+    reset();
   }
 
    /**
@@ -67,12 +77,18 @@ class Chapter extends Component {
           // 加载新目录页
           fetchChapters({
             page_num: pageNum + 1,
+            page_size: pageSize,
             fic_id: qs.parse(location.search.substr(1)).ficId
           });
         }
       }
     });
   }
+
+  onClickChapter = (ficId, serial) => {
+    const { history } = this.props;
+    history.push(`/read?ficId=${ficId}&serial=${serial}`);
+  };
 
   render() {
     const { chapter: {chapters}, location } = this.props;
@@ -82,8 +98,8 @@ class Chapter extends Component {
         <section className={styles['chapter']['head-title']}>{title}</section>
         <section className={styles['chapter']['chapter']}>
           {
-            chapters.length > 0 && chapters.map((val, index) => {
-              return <div key={val.id} className={styles['chapter']['chapter-item']}>
+            chapters.length > 0 && chapters.map(val => {
+              return <div key={val.id} className={styles['chapter']['chapter-item']} onClick={this.onClickChapter.bind(null, val.fic_id, val.serial)}>
                 <div>{val.title}</div>
                 {
                   val.cost_balance > 0 ? <img className={styles['chapter']['chapter-item-icon']} alt='loading' src={costImg}/> : null
