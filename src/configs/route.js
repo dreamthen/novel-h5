@@ -10,7 +10,7 @@ import SynopsisComponent from "../containers/synopsis";
 const route = [
   {path: "/", component: HomeComponent, text: "首页", exact: true, isNav: true},
   {path: "/bookstore", component: BookStoreComponent, text: "书库", isNav: true},
-  {path: "/recharge", component: RechargeComponent, text: "充值"},
+  {path: "/recharge", component: RechargeComponent, text: "充值", isNav: true},
   {path: "/synopsis", component: SynopsisComponent, isNav: false}
 ];
 

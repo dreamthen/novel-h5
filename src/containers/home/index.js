@@ -6,16 +6,33 @@ import "react-responsive-carousel/lib/styles/main.min.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styles from "../../stylesheets";
 
+@connect(function mapStateToProps(state) {
+  return {
+    home: state.home
+  }
+}, function mapDispatchToProps(dispatch) {
+  return {
+    /**
+     * 拉取首页小说资源列表
+     */
+    getIndexfictions() {
+      dispatch({
+        type: 'home/indexfictions',
+        payload: {}
+      });
+    }
+  }
+})
 
-class Home extends Component {
+class HomePage extends Component {
   static propTypes = {
     home: PropTypes.object
   };
 
   onFictionClick = ficId => {
-    const { history } = this.props;
+    const {history} = this.props;
     history.push(`/synopsis?ficId=${ficId}`);
-  }
+  };
 
   /**
    * 首页组件装载完毕之后,拉取首页小说资源
@@ -45,7 +62,8 @@ class Home extends Component {
             {
               banner_fictions.map((fictionItem, fictionIndex) => {
                 return (
-                  <div style={{height: '100%'}} key={fictionIndex} onClick={this.onFictionClick.bind(null, fictionItem.id)}>
+                  <div style={{height: '100%'}} key={fictionIndex}
+                       onClick={this.onFictionClick.bind(null, fictionItem["id"])}>
                     <img src={fictionItem["avatar"]} alt={fictionItem["title"]}/>
                     <aside className="home-aside">
                       <h3 className="home-aside-title">{fictionItem["title"]}</h3>
@@ -64,7 +82,8 @@ class Home extends Component {
               recommend_fictions.length > 0 &&
               recommend_fictions.slice(0, 3).map((recommendItem, recommendIndex) => {
                 return (
-                  <div key={recommendIndex} className={styles["home"]["home-hot-recommend-main-item"]} onClick={this.onFictionClick.bind(null, recommendItem.id)}>
+                  <div key={recommendIndex} className={styles["home"]["home-hot-recommend-main-item"]}
+                       onClick={this.onFictionClick.bind(null, recommendItem["id"])}>
                     <img src={recommendItem["avatar"]} alt={recommendItem["title"]}/>
                     <p className={styles["home"]["home-hot-recommend-main-item-paragraph"]}>{recommendItem["title"]}</p>
                   </div>
@@ -77,7 +96,8 @@ class Home extends Component {
               recommend_fictions.length > 0 &&
               recommend_fictions.slice(3).map((recommendItem, recommendIndex) => {
                 return (
-                  <div key={recommendIndex} className={styles["home"]["home-hot-recommend-aside-other"]} onClick={this.onFictionClick.bind(null, recommendItem.id)}>
+                  <div key={recommendIndex} className={styles["home"]["home-hot-recommend-aside-other"]}
+                       onClick={this.onFictionClick.bind(null, recommendItem["id"])}>
                     <p>{recommendItem["title"]}</p>
                   </div>
                 )
@@ -92,7 +112,8 @@ class Home extends Component {
               fantasy_fictions.length > 0 &&
               fantasy_fictions.slice(0, 1).map((fantasyItem, fantasyIndex) => {
                 return (
-                  <div key={fantasyIndex} className={styles["home"]["home-hot-other-main-item"]} onClick={this.onFictionClick.bind(null, fantasyItem.id)}>
+                  <div key={fantasyIndex} className={styles["home"]["home-hot-other-main-item"]}
+                       onClick={this.onFictionClick.bind(null, fantasyItem["id"])}>
                     <img src={fantasyItem["avatar"]} alt={fantasyItem["title"]}/>
                     <aside className={styles["home"]["home-hot-other-main-item-aside"]}>
                       <h3 className={styles["home"]["home-hot-other-main-item-aside-title"]}>{fantasyItem["title"]}</h3>
@@ -111,7 +132,8 @@ class Home extends Component {
               fantasy_fictions.length > 0 &&
               fantasy_fictions.slice(1).map((fantasyItem, fantasyIndex) => {
                 return (
-                  <div key={fantasyIndex} className={styles["home"]["home-hot-other-aside-other"]} onClick={this.onFictionClick.bind(null, fantasyItem.id)}>
+                  <div key={fantasyIndex} className={styles["home"]["home-hot-other-aside-other"]}
+                       onClick={this.onFictionClick.bind(null, fantasyItem["id"])}>
                     <p>{fantasyItem["title"]}</p>
                   </div>
                 )
@@ -126,7 +148,8 @@ class Home extends Component {
               girl_fictions.length > 0 &&
               girl_fictions.slice(0, 1).map((girlItem, girlIndex) => {
                 return (
-                  <div key={girlIndex} className={styles["home"]["home-hot-other-main-item"]} onClick={this.onFictionClick.bind(null, girlItem.id)}>
+                  <div key={girlIndex} className={styles["home"]["home-hot-other-main-item"]}
+                       onClick={this.onFictionClick.bind(null, girlItem["id"])}>
                     <img src={girlItem["avatar"]} alt={girlItem["title"]}/>
                     <aside className={styles["home"]["home-hot-other-main-item-aside"]}>
                       <h3 className={styles["home"]["home-hot-other-main-item-aside-title"]}>{girlItem["title"]}</h3>
@@ -145,7 +168,8 @@ class Home extends Component {
               girl_fictions.length > 0 &&
               girl_fictions.slice(1).map((girlItem, girlIndex) => {
                 return (
-                  <div key={girlIndex} className={styles["home"]["home-hot-other-aside-other"]} onClick={this.onFictionClick.bind(null, girlItem.id)}>
+                  <div key={girlIndex} className={styles["home"]["home-hot-other-aside-other"]}
+                       onClick={this.onFictionClick.bind(null, girlItem["id"])}>
                     <p>{girlItem["title"]}</p>
                   </div>
                 )
@@ -160,7 +184,8 @@ class Home extends Component {
               love_fictions.length > 0 &&
               love_fictions.slice(0, 1).map((loveItem, loveIndex) => {
                 return (
-                  <div key={loveIndex} className={styles["home"]["home-hot-other-main-item"]} onClick={this.onFictionClick.bind(null, loveItem.id)}>
+                  <div key={loveIndex} className={styles["home"]["home-hot-other-main-item"]}
+                       onClick={this.onFictionClick.bind(null, loveItem["id"])}>
                     <img src={loveItem["avatar"]} alt={loveItem["title"]}/>
                     <aside className={styles["home"]["home-hot-other-main-item-aside"]}>
                       <h3 className={styles["home"]["home-hot-other-main-item-aside-title"]}>{loveItem["title"]}</h3>
@@ -179,7 +204,8 @@ class Home extends Component {
               love_fictions.length > 0 &&
               love_fictions.slice(1).map((loveItem, loveIndex) => {
                 return (
-                  <div key={loveIndex} className={styles["home"]["home-hot-other-aside-other"]} onClick={this.onFictionClick.bind(null, loveItem.id)}>
+                  <div key={loveIndex} className={styles["home"]["home-hot-other-aside-other"]}
+                       onClick={this.onFictionClick.bind(null, loveItem["id"])}>
                     <p>{loveItem["title"]}</p>
                   </div>
                 )
@@ -191,23 +217,5 @@ class Home extends Component {
     )
   }
 }
-
-const HomePage = connect(function mapStateToProps(state) {
-  return {
-    home: state.home
-  }
-}, function mapDispatchToProps(dispatch) {
-  return {
-    /**
-     * 拉取首页小说资源列表
-     */
-    getIndexfictions() {
-      dispatch({
-        type: 'home/indexfictions',
-        payload: {}
-      });
-    }
-  }
-})(Home);
 
 export default HomePage;
