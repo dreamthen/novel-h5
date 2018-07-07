@@ -4,7 +4,93 @@ import PropTypes from "prop-types";
 import code from "../../static/code";
 import styles from "../../stylesheets";
 
-class BookStore extends Component {
+@connect(function mapStateToProps(state) {
+  return {
+    bookstore: state.bookstore
+  }
+}, function mapDispatchToProps(dispatch) {
+  return {
+    /**
+     * 拉取所有小说分类列表
+     */
+    getClassifications() {
+      return new Promise((resolve, reject) => {
+        dispatch({
+          type: 'bookstore/classifications',
+          payload: {}
+        });
+        resolve();
+      });
+    },
+
+    /**
+     * 分类改变样式监听
+     * @param payload
+     */
+    changeCategories(payload) {
+      dispatch({
+        type: 'bookstore/categoriesChangeAction',
+        payload
+      });
+    },
+    /**
+     * 更新改变数据id
+     * @param updateString
+     */
+    changeUpdate(updateString) {
+      return new Promise((resolve) => {
+        dispatch({
+          type: 'bookstore/changeUpdate',
+          payload: updateString
+        });
+        resolve();
+      });
+    },
+    /**
+     * 分类改变数据id
+     * @params categoriesId
+     */
+    changeCategoriesId(categoriesId) {
+      return new Promise((resolve) => {
+        dispatch({
+          type: 'bookstore/changeCategoriesId',
+          payload: categoriesId
+        });
+        resolve();
+      });
+    },
+    /**
+     * 查询书库小说列表
+     * @params
+     */
+    getFictions(params) {
+      dispatch({
+        type: 'bookstore/fictions',
+        payload: params
+      });
+    },
+    /**
+     * 改变书库小说列表分页是否到底部状态
+     * @param isEnd
+     */
+    changeEnd(isEnd) {
+      dispatch({
+        type: 'bookstore/changeEndAction',
+        payload: isEnd
+      })
+    },
+    /**
+     * 重置页面至初始化状态
+     */
+    reset() {
+      dispatch({
+        type: 'bookstore/reset'
+      })
+    }
+  }
+})
+
+class BookStoreComponent extends Component {
   static propTypes = {
     bookstore: PropTypes.object
   };
@@ -183,7 +269,7 @@ class BookStore extends Component {
           {
             fictions.length > 0 && fictions.map((fictionItem, fictionIndex) => {
               return (
-                <section className={styles["bookstore"]["bookstore-main-module"]} key={fictionIndex} onClick={this.onFictionClick.bind(null, fictionItem.id)}>
+                <section className={styles["bookstore"]["bookstore-main-module"]} key={fictionIndex} onClick={this.onFictionClick.bind(null, fictionItem["id"])}>
                   <img src={fictionItem["avatar"]} alt={fictionItem["title"]}/>
                   <aside className={styles["bookstore"]["bookstore-main-module-aside"]}>
                     <h3 className={styles["bookstore"]["bookstore-main-module-aside-title"]}>{fictionItem["title"]}</h3>
@@ -199,91 +285,5 @@ class BookStore extends Component {
     )
   }
 }
-
-const BookStoreComponent = connect(function mapStateToProps(state) {
-  return {
-    bookstore: state.bookstore
-  }
-}, function mapDispatchToProps(dispatch) {
-  return {
-    /**
-     * 拉取所有小说分类列表
-     */
-    getClassifications() {
-      return new Promise((resolve, reject) => {
-        dispatch({
-          type: 'bookstore/classifications',
-          payload: {}
-        });
-        resolve();
-      });
-    },
-
-    /**
-     * 分类改变样式监听
-     * @param payload
-     */
-    changeCategories(payload) {
-      dispatch({
-        type: 'bookstore/categoriesChangeAction',
-        payload
-      });
-    },
-    /**
-     * 更新改变数据id
-     * @param updateString
-     */
-    changeUpdate(updateString) {
-      return new Promise((resolve) => {
-        dispatch({
-          type: 'bookstore/changeUpdate',
-          payload: updateString
-        });
-        resolve();
-      });
-    },
-    /**
-     * 分类改变数据id
-     * @params categoriesId
-     */
-    changeCategoriesId(categoriesId) {
-      return new Promise((resolve) => {
-        dispatch({
-          type: 'bookstore/changeCategoriesId',
-          payload: categoriesId
-        });
-        resolve();
-      });
-    },
-    /**
-     * 查询书库小说列表
-     * @params
-     */
-    getFictions(params) {
-      dispatch({
-        type: 'bookstore/fictions',
-        payload: params
-      });
-    },
-    /**
-     * 改变书库小说列表分页是否到底部状态
-     * @param isEnd
-     */
-    changeEnd(isEnd) {
-      dispatch({
-        type: 'bookstore/changeEndAction',
-        payload: isEnd
-      })
-    },
-    /**
-     * 重置页面至初始化状态
-     */
-    reset() {
-      dispatch({
-        type: 'bookstore/reset'
-      })
-    }
-  }
-})(BookStore);
 
 export default BookStoreComponent;

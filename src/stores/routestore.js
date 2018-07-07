@@ -6,12 +6,6 @@ let routestore = (app) => {
     effects: {
     },
     reducers: {
-      save(state, { payload }) {
-        return {
-          ...state,
-          ...payload
-        };
-      }
     }
   });
 };

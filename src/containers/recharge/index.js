@@ -2,7 +2,22 @@ import React, {Component} from "react";
 import {connect} from "dva";
 import PropTypes from "prop-types";
 
-class Recharge extends Component {
+@connect(function mapStateToProps(state) {
+  return {
+    recharge: state.recharge
+  }
+}, function mapDispatchToProps(dispatch) {
+  return {
+    rechargeproductsDispatch() {
+      dispatch({
+        type: 'recharge/rechargeproducts',
+        payload: {}
+      });
+    }
+  }
+})
+
+class RechargeComponent extends Component {
   static propTypes = {
     recharge: PropTypes.object
   };
@@ -21,20 +36,5 @@ class Recharge extends Component {
     return null;
   }
 }
-
-const RechargeComponent = connect(function mapStateToProps(state) {
-  return {
-    recharge: state.recharge
-  }
-}, function mapDispatchToProps(dispatch) {
-  return {
-    rechargeproductsDispatch() {
-      dispatch({
-        type: 'recharge/rechargeproducts',
-        payload: {}
-      });
-    }
-  }
-})(Recharge);
 
 export default RechargeComponent;
