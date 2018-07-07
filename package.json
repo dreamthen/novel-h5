@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "antd-mobile": "^2.2.1",
     "axios": "^0.18.0",
     "dva": "^2.3.1",
     "history": "^4.7.2",
@@ -12,6 +13,7 @@
     "react-responsive-carousel": "^3.1.41"
   },
   "devDependencies": {
+    "babel-plugin-import": "^1.8.0",
     "roadhog": "^2.0.0"
   },
   "scripts": {

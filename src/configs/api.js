@@ -12,7 +12,8 @@ if (!isMock) {
     classifications: `${novel_h5_modelPath}/classifications`,
     fictions: `${novel_h5_modelPath}/fictions`,
     chargeproducts: `${novel_h5_modelPath}/chargeproducts`,
-    chapters: `${novel_h5_modelPath}/chapters`
+    chapters: `${novel_h5_modelPath}/chapters`,
+    content: `${novel_h5_modelPath}/contents`
   };
 
 } else {

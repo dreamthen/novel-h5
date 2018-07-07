@@ -1,12 +1,15 @@
 import novel_h5_interface from '../configs/interface';
+let defaultState = {
+  isEnd: false,
+  pageNum: 1,
+  pageSize: 20,
+  chapters: []
+};
 const chapterstore = app => {
   app.model({
     namespace: 'chapter',
     state: {
-      isEnd: false,
-      pageNum: 1,
-      pageSize: 10,
-      chapters: []
+      ...defaultState
     },
     effects: {
       *fetchChapters({ payload }, { call, put, select }) {
@@ -27,6 +30,11 @@ const chapterstore = app => {
       }
     },
     reducers: {
+      reset() {
+        return {
+          ...defaultState
+        };
+      },
       save(state, { payload }) {
         return {
           ...state,
