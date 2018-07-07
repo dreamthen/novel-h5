@@ -3,8 +3,14 @@ import {connect} from 'dva';
 import styles from '../../stylesheets';
 import menuImg from '../../assets/menu.png';
 import qs from 'qs';
-import { ActionSheet, Modal, Slider, WingBlank } from 'antd-mobile';
+import {ActionSheet, Modal, Slider, WingBlank} from 'antd-mobile';
 
+/**
+ * 将阅读模式样式数组转化为对象,分别对应属性白天(day)和属性夜晚(night)
+ * @param arr
+ * @param key
+ * @returns {*}
+ */
 const keyBy = (arr, key) => {
   if (!Array.isArray(arr)) {
     return arr;
@@ -16,16 +22,32 @@ const keyBy = (arr, key) => {
   return result;
 };
 
+/**
+ * 获取白天或者夜晚模式的背景颜色
+ * @param readMode
+ * @returns {string|string}
+ */
 const readMode2BgColor = readMode => {
+  //{day: {mode: 'day', bgColor: '#fbf9fe', fontColor: '#2c2c2c'}, night: {mode: 'night', bgColor: '#0e1031', fontColor: 'rgb(70,70,70)'}}
   const modeMap = keyBy(readModes, 'mode');
   return modeMap[readMode].bgColor || '#fbf9fe';
 };
 
+/**
+ * 获取白天或者夜晚模式的文字颜色
+ * @param readMode
+ * @returns {string}
+ */
 const readMode2FontColor = readMode => {
+  //{day: {mode: 'day', bgColor: '#fbf9fe', fontColor: '#2c2c2c'}, night: {mode: 'night', bgColor: '#0e1031', fontColor: 'rgb(70,70,70)'}}
   const modeMap = keyBy(readModes, 'mode');
   return modeMap[readMode].fontColor || '#2c2c2c';
 };
 
+/**
+ * 阅读模式样式分为白天和夜间模式
+ * @type {*[]}
+ */
 const readModes = [{
   mode: 'day',
   bgColor: '#fbf9fe',
@@ -119,12 +141,12 @@ class Read extends Component {
   };
 
   nextChapter = () => {
-    const { read: {ficId, serial}, history} = this.props;
+    const {read: {ficId, serial}, history} = this.props;
     window.location.href = `/read?ficId=${ficId}&serial=${serial + 1}`;
   };
 
   lastChapter = () => {
-    const { read: {ficId, serial}, history} = this.props;
+    const {read: {ficId, serial}, history} = this.props;
     if (1 === serial) {
       return;
     }
@@ -133,7 +155,7 @@ class Read extends Component {
 
   componentDidMount() {
     // 加载小说
-    const { location } = this.props;
+    const {location} = this.props;
     const params = qs.parse(location.search.substr(1));
     this.props.fetchContent(params.ficId, params.serial);
     // 从localStorage加载阅读设置
@@ -144,10 +166,10 @@ class Read extends Component {
   }
 
   onCtrlClick = btnIndex => {
-    const { handleReadModaModalVisible, handleFontModalVisible} = this.props;
+    const {handleReadModaModalVisible, handleFontModalVisible} = this.props;
     if (0 === btnIndex) {
       handleFontModalVisible(true);
-    } else if(1 === btnIndex) {
+    } else if (1 === btnIndex) {
       handleReadModaModalVisible(true);
     }
   };
@@ -166,54 +188,63 @@ class Read extends Component {
   showActionSheet = () => {
     const buttons = ['字体大小', '背景颜色', '返回目录', '返回首页'];
     ActionSheet.showActionSheetWithOptions({
-      options: buttons,
-      cancelButtonIndex: buttons.length - 1,
-      maskClosable: true,
-      'data-seed': 'logId',
-      wrapProps,
-    },
-    buttonIndex => {
-      this.onCtrlClick(buttonIndex);
-    });
+        options: buttons,
+        cancelButtonIndex: buttons.length - 1,
+        maskClosable: true,
+        'data-seed': 'logId',
+        wrapProps,
+      },
+      buttonIndex => {
+        this.onCtrlClick(buttonIndex);
+      });
   };
 
   render() {
-    const { read: {serial, content, fontSize, readMode, ctrlVisible, fontModalVisible, bgModalVisible, readModeModalVisible},
-      handleReadModaModalVisible, handleFontModalVisible, setFontSize, setReadMode} = this.props;
-    return (<main className={styles['read']['main']} style={{backgroundColor: `${readMode2BgColor(readMode)}`}}>
-      <section style={{color: `${readMode2FontColor(readMode)}`}} className={styles['read']['head-title']}>{'农家甜宠美娇娘'}</section>
-      <article className={styles['read']['main-content']} style={{fontSize: fontSize, color: `${readMode2FontColor(readMode)}`}} onClick={this.showActionSheet}>
-        {
-          content
-        }
-      </article>
-      <section className={styles['read']['footer']}>
-        <div
-          style={{visibility: `${serial === 1 ? 'hidden': 'visible'}`, color: `${readMode2FontColor(readMode)}`}}
-          className={styles['read']['footer-text-btn']}
-          onClick={this.lastChapter.bind(null)}
-        >
-          上一章
-        </div>
-        <div className={styles['read']['footer-icon-btn']} onClick={this.showActionSheet}>
-          <img alt="loading" src={menuImg} className={styles['read']['footer-icon-btn-icon']}/>
-        </div>
-        <div
-          style={{color: `${readMode2FontColor(readMode)}`}}
-          className={styles['read']['footer-text-btn']}
-          onClick={this.nextChapter.bind(null)}
-        >
-          下一章
-        </div>
-      </section>
-      <Modal
+    const {
+      read: {serial, content, fontSize, readMode, fontModalVisible, readModeModalVisible},
+      handleReadModaModalVisible, handleFontModalVisible, setFontSize, setReadMode
+    } = this.props;
+    return (
+      <main className={styles['read']['main']} style={{backgroundColor: `${readMode2BgColor(readMode)}`}}>
+        <section style={{color: `${readMode2FontColor(readMode)}`}}
+                 className={styles['read']['head-title']}>{'农家甜宠美娇娘'}</section>
+        <article className={styles['read']['main-content']}
+                 style={{fontSize: fontSize, color: `${readMode2FontColor(readMode)}`}} onClick={this.showActionSheet}>
+          {
+            content
+          }
+        </article>
+        <section className={styles['read']['footer']}>
+          <div
+            style={{visibility: `${serial === 1 ? 'hidden' : 'visible'}`, color: `${readMode2FontColor(readMode)}`}}
+            className={styles['read']['footer-text-btn']}
+            onClick={this.lastChapter.bind(null)}
+          >
+            上一章
+          </div>
+          <div className={styles['read']['footer-icon-btn']} onClick={this.showActionSheet}>
+            <img alt="loading" src={menuImg} className={styles['read']['footer-icon-btn-icon']}/>
+          </div>
+          <div
+            style={{color: `${readMode2FontColor(readMode)}`}}
+            className={styles['read']['footer-text-btn']}
+            onClick={this.nextChapter.bind(null)}
+          >
+            下一章
+          </div>
+        </section>
+        <Modal
           visible={fontModalVisible}
           transparent
           maskClosable={false}
           onClose={handleFontModalVisible.bind(null, false)}
           title="字体大小"
-          footer={[{ text: '确定', onPress: () => { handleFontModalVisible(false); } }]}
-          wrapProps={{ onTouchStart: this.onWrapTouchStart }}
+          footer={[{
+            text: '确定', onPress: () => {
+              handleFontModalVisible(false);
+            }
+          }]}
+          wrapProps={{onTouchStart: this.onWrapTouchStart}}
         >
           <div className={styles['read']['font']}>
             <span style={{fontSize: '14px'}}>A</span>
@@ -234,8 +265,12 @@ class Read extends Component {
           title="背景颜色"
           maskClosable={false}
           onClose={handleReadModaModalVisible.bind(null, false)}
-          footer={[{ text: '确定', onPress: () => { handleReadModaModalVisible(false); } }]}
-          wrapProps={{ onTouchStart: this.onWrapTouchStart }}
+          footer={[{
+            text: '确定', onPress: () => {
+              handleReadModaModalVisible(false);
+            }
+          }]}
+          wrapProps={{onTouchStart: this.onWrapTouchStart}}
         >
           <div className={styles['read']['read-mode']}>
             {
@@ -250,7 +285,8 @@ class Read extends Component {
             }
           </div>
         </Modal>
-    </main>);
+      </main>);
   }
 }
+
 export default Read;
