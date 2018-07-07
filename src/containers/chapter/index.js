@@ -55,19 +55,21 @@ class Chapter extends Component {
 
   scrollPagination() {
     window.addEventListener('scroll', () => {
-      const { changeEnd, fetchChapters, chapter: {pageNum}, location } = this.props;
+      const {changeEnd, fetchChapters, chapter: {pageNum, pageSize, total}, location} = this.props;
       const scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
         documentHeight = document.body.offsetHeight,
         windowHeight = window.innerHeight;
-
+      let max_num = Math.ceil(total / pageSize);
       if (documentHeight - (windowHeight + scrollTop) < 1) {
         // 触发加载保护
         changeEnd(true);
-        // 加载新目录页
-        fetchChapters({
-          page_num: pageNum + 1,
-          fic_id: qs.parse(location.search.substr(1)).ficId
-        });
+        if (pageNum < max_num) {
+          // 加载新目录页
+          fetchChapters({
+            page_num: pageNum + 1,
+            fic_id: qs.parse(location.search.substr(1)).ficId
+          });
+        }
       }
     });
   }

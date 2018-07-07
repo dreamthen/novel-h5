@@ -6,6 +6,7 @@ const chapterstore = app => {
       isEnd: false,
       pageNum: 1,
       pageSize: 10,
+      total: 0,
       chapters: []
     },
     effects: {
@@ -20,7 +21,8 @@ const chapterstore = app => {
         yield put({
           type: 'save',
           payload: {
-            chapters: chapters.concat(body.rows),
+            chapters: chapters.concat(body["rows"]),
+            total: body["count"],
             pageNum: payload.page_num
           }
         });
