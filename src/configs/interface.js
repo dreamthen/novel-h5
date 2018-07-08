@@ -7,7 +7,7 @@ const deleteHistory = async params => {
     method: 'DELETE',
     headers: {}
   });
-}
+};
 
 const histories = async params => {
   return axios({
@@ -25,7 +25,7 @@ const content = async params => {
     params,
     headers: {}
   });
-}
+};
 
 const fiction = async params => {
   return axios({
@@ -33,7 +33,7 @@ const fiction = async params => {
     method: "GET",
     headers: {}
   });
-}
+};
 
 const chapters = async params => {
   return axios({
@@ -100,6 +100,20 @@ let chargeproducts = async (params) => {
   })
 };
 
+/**
+ * 充值
+ * @param params
+ * @returns {Promise<void>}
+ */
+let payorders = async (params) => {
+  return axios({
+    url: api.payorders,
+    method: "POST",
+    params,
+    headers: {}
+  })
+};
+
 export default {
   indexfictions,
   classifications,
@@ -109,5 +123,6 @@ export default {
   fiction,
   content,
   histories,
-  deleteHistory
+  deleteHistory,
+  payorders
 }

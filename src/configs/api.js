@@ -14,7 +14,9 @@ if (!isMock) {
     chargeproducts: `${novel_h5_modelPath}/chargeproducts`,
     chapters: `${novel_h5_modelPath}/chapters`,
     content: `${novel_h5_modelPath}/contents`,
-    histories: `${novel_h5_modelPath}/readhistories`
+    histories: `${novel_h5_modelPath}/readhistories`,
+    //充值接口地址
+    payorders: `${novel_h5_modelPath}/payorders`
   };
 
 } else {

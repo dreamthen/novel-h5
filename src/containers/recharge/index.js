@@ -22,12 +22,25 @@ import styles from "../../stylesheets";
     /**
      * 改变充值产品类型
      * @param rechargeSelect
+     * @param charge_type_id
      */
-    rechargeSelectChange({rechargeSelect}) {
+    rechargeSelectChange({rechargeSelect, charge_type_id}) {
       dispatch({
         type: 'recharge/rechargeSelectChange',
-        payload: {rechargeSelect}
+        payload: {rechargeSelect, charge_type_id}
       });
+    },
+    /**
+     * 充值
+     * @param charge_type_id
+     */
+    payorders(charge_type_id) {
+      dispatch({
+        type: 'recharge/payorders',
+        payload: {
+          charge_type_id
+        }
+      })
     }
   }
 })
@@ -50,17 +63,28 @@ class RechargeComponent extends Component {
   /**
    * 改变充值产品类型
    * @param rechargeSelect
+   * @param id
    * @param e
    */
-  changeRechargeSelect(rechargeSelect, e){
+  changeRechargeSelect(rechargeSelect, id, e) {
     const {rechargeSelectChange} = this.props;
-    rechargeSelectChange.bind(this)({rechargeSelect});
+    rechargeSelectChange.bind(this)({rechargeSelect, charge_type_id: id});
     //取消冒泡事件
     e.nativeEvent.stopImmediatePropagation();
   }
 
+  /**
+   * 确认充值
+   * @param e
+   */
+  payordersHandler(e) {
+    const {payorders, recharge} = this.props;
+    const {charge_type_id} = recharge;
+    payorders.bind(this)(charge_type_id);
+  }
+
   render() {
-    const {changeRechargeSelect} = this;
+    const {changeRechargeSelect, payordersHandler} = this;
     const {recharge} = this.props;
     const {rechargeproductsList, rechargeSelect} = recharge;
     return (
@@ -81,7 +105,7 @@ class RechargeComponent extends Component {
                 return (
                   <section key={rechargeproductIndex}
                            className={rechargeSelect === rechargeproductIndex ? `${styles["recharge"]["recharge-main-container-categories"]} ${styles["recharge"]["recharge-main-container-categories-select"]}` : styles["recharge"]["recharge-main-container-categories"]}
-                           onClick={changeRechargeSelect.bind(this, rechargeproductIndex)}
+                           onClick={changeRechargeSelect.bind(this, rechargeproductIndex, rechargeproductItem["id"])}
                   >
                     <h4
                       className={styles["recharge"]["recharge-main-container-categories-price"]}>
@@ -112,7 +136,9 @@ class RechargeComponent extends Component {
           </section>
         </main>
         <footer className={styles["recharge"]["recharge-footer"]}>
-          <button className={styles["recharge"]["recharge-footer-forSurePrice"]}>
+          <button className={styles["recharge"]["recharge-footer-forSurePrice"]}
+                  onClick={payordersHandler.bind(this)}
+          >
             确认充值
           </button>
           <p className={styles["recharge"]["recharge-footer-attention"]}>
