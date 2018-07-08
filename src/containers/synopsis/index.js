@@ -34,17 +34,17 @@ class Synopsis extends Component {
   onRead = () => {
     const { history, synopsis: {fiction}} = this.props;
     history.push(`/read?ficId=${fiction.id}&serial=1`);
-  }
+  };
 
   onClickChapter = serial => {
     const { history, synopsis: {fiction}} = this.props;
     history.push(`/read?ficId=${fiction.id}&serial=${serial}`);
-  }
+  };
 
   onAllChapterClick = ficId => {
     const { history, synopsis: {fiction: {title}}} = this.props;
     history.push(`/chapter?ficId=${ficId}&title=${title}`);
-  }
+  };
 
   render() {
     const { synopsis: {chapters, fiction}} = this.props;

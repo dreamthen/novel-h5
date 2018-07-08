@@ -5,6 +5,7 @@ let defaultState = {
   pageSize: 20,
   chapters: []
 };
+
 const chapterstore = app => {
   app.model({
     namespace: 'chapter',
@@ -23,7 +24,8 @@ const chapterstore = app => {
         yield put({
           type: 'save',
           payload: {
-            chapters: chapters.concat(body.rows),
+            chapters: chapters.concat(body["rows"]),
+            total: body["count"],
             pageNum: payload.page_num
           }
         });

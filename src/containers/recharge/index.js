@@ -41,6 +41,9 @@ class RechargeComponent extends Component {
         <header className={styles["recharge"]["recharge-header"]}>
           <h2 className={styles["recharge"]["recharge-header-title"]}>充值</h2>
         </header>
+        <main className={styles["recharge"]["recharge-main"]}>
+
+        </main>
       </section>
     )
   }
