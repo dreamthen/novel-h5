@@ -5,6 +5,7 @@ import recharge from "./recharge.less";
 import synopsis from "./synopsis.less";
 import chapter from "./chapter.less";
 import read from "./read.less";
+import history from "./history.less";
 
 export default {
   route,
@@ -13,6 +14,7 @@ export default {
   recharge,
   synopsis,
   chapter,
-  read
+  read,
+  history
 };
 
