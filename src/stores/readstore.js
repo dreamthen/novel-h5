@@ -1,4 +1,5 @@
 import novel_h5_interface from "../configs/interface";
+import { routerRedux } from 'dva/router';
 
 const readsotre = app => {
   app.model({
@@ -19,6 +20,10 @@ const readsotre = app => {
         const response = yield call(novel_h5_interface['content'], {
           ...payload
         });
+        // 当前章是最后一章
+        if (506 === response.errno) {
+          yield put(routerRedux.push('/result'));
+        }
         const { body } = response;
         yield put({
           type: 'save',
