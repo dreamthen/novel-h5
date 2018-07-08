@@ -11,18 +11,23 @@ import styles from "../../stylesheets";
   }
 }, function mapDispatchToProps(dispatch) {
   return {
-
   }
 })
 
 // 布局路由
 class RouteComponent extends Component {
+  componentDidMount() {
+
+  }
+
   render() {
+    const {route} = this.props;
+    const {innerHeight, bgColor} = route;
     const navRoute = routeConfig["route"].filter(val => {
       return val.isNav;
     });
     return (
-      <main>
+      <main style={{height: innerHeight, backgroundColor: bgColor}}>
         <header className={styles["route"]["novel-header"]}>
           <nav>
             <ul>
