@@ -4,7 +4,6 @@ import styles from '../../stylesheets';
 import menuImg from '../../assets/menu.png';
 import qs from 'qs';
 import { ActionSheet, Modal, Slider, WingBlank } from 'antd-mobile';
-import {Redirect} from 'react-router-dom';
 
 const keyBy = (arr, key) => {
   if (!Array.isArray(arr)) {
@@ -71,7 +70,7 @@ const mapDispatchToProps = dispatch => {
       });
     },
     setFontSize: size => {
-      const fontSize = parseInt(size) + 10;
+      const fontSize = parseInt(size, 10) + 10;
       localStorage.setItem('fontSize', size);
       dispatch({
         type: 'read/save',
@@ -120,12 +119,12 @@ class Read extends Component {
   };
 
   nextChapter = () => {
-    const { read: {ficId, serial}, history} = this.props;
+    const { read: {ficId, serial}} = this.props;
     window.location.href = `/read?ficId=${ficId}&serial=${serial + 1}`;
   }
 
   lastChapter = () => {
-    const { read: {ficId, serial}, history} = this.props;
+    const { read: {ficId, serial}} = this.props;
     if (1 === serial) {
       return;
     }
@@ -179,7 +178,7 @@ class Read extends Component {
   }
 
   render() {
-    const { read: {serial, content, fontSize, readMode, ctrlVisible, fontModalVisible, bgModalVisible, readModeModalVisible},
+    const { read: {serial, content, fontSize, readMode, fontModalVisible, readModeModalVisible},
       handleReadModaModalVisible, handleFontModalVisible, setFontSize, setReadMode} = this.props;
     return (<main className={styles['read']['main']} style={{backgroundColor: `${readMode2BgColor(readMode)}`}}>
       <section style={{color: `${readMode2FontColor(readMode)}`}} className={styles['read']['head-title']}>{'农家甜宠美娇娘'}</section>

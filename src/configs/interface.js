@@ -1,6 +1,23 @@
 import api from "./api";
 import axios from "./axios-config";
 
+const deleteHistory = async params => {
+  return axios({
+    url: `${api.histories}/${params.id}`,
+    method: 'DELETE',
+    headers: {}
+  });
+}
+
+const histories = async params => {
+  return axios({
+    url: `${api.histories}`,
+    method: 'GET',
+    params,
+    headers: {}
+  });
+};
+
 const content = async params => {
   return axios({
     url: `${api.content}`,
@@ -90,5 +107,7 @@ export default {
   chargeproducts,
   chapters,
   fiction,
-  content
+  content,
+  histories,
+  deleteHistory
 }

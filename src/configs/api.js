@@ -13,7 +13,8 @@ if (!isMock) {
     fictions: `${novel_h5_modelPath}/fictions`,
     chargeproducts: `${novel_h5_modelPath}/chargeproducts`,
     chapters: `${novel_h5_modelPath}/chapters`,
-    content: `${novel_h5_modelPath}/contents`
+    content: `${novel_h5_modelPath}/contents`,
+    histories: `${novel_h5_modelPath}/readhistories`
   };
 
 } else {

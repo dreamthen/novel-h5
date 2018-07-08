@@ -3,7 +3,6 @@ import {Component} from 'react';
 import styles from '../../stylesheets';
 import qs from 'qs';
 import costImg from '../../assets/cost.png';
-import { disposeEmitNodes } from 'typescript';
 
 const mapStateToProps = state => {
   return {
@@ -54,7 +53,7 @@ class Chapter extends Component {
    * @param nextProps
    * @param nextState
    */
-  componentWillReceiveProps(nextProps, nextState) {
+  componentDidUpdate(nextProps, nextState) {
     let chapters = this.props.chapter.chapters,
       nextChapters = nextProps.chapter.chapters,
       nextIsEnd = nextProps.chapter.isEnd;
