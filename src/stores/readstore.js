@@ -11,7 +11,9 @@ const readsotre = app => {
       readModeModalVisible: false,
       chapId: null,
       content: '',
-      title: '',
+      chapTitle: '',
+      ficTitle: '',
+      avatar: '',
       serial: null,
       ficId: null
     },
@@ -32,6 +34,9 @@ const readsotre = app => {
             ficId: body.fic_id,
             chapId: body.chap_id,
             serial: body.serial,
+            ficTitle: body.fic_title,
+            chapTitle: body.chap_title,
+            avatar: body.avatar
           }
         });
       }
