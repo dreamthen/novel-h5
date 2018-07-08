@@ -200,10 +200,15 @@ class Read extends Component {
   };
 
   render() {
-    const { read: {serial, content, fontSize, readMode, fontModalVisible, readModeModalVisible},
+    const { read: {chapTitle, ficTitle, avatar, serial, content, fontSize, readMode, fontModalVisible,
+      readModeModalVisible},
       handleReadModaModalVisible, handleFontModalVisible, setFontSize, setReadMode} = this.props;
     return (<main className={styles['read']['main']} style={{backgroundColor: `${readMode2BgColor(readMode)}`}}>
-      <section style={{color: `${readMode2FontColor(readMode)}`}} className={styles['read']['head-title']}>{'农家甜宠美娇娘'}</section>
+      <section style={{color: `${readMode2FontColor(readMode)}`}} className={styles['read']['head-title']}>{chapTitle}</section>
+      <section className={styles['read']['sub-title']}>
+        <img alt='loading' src={avatar} className={styles['read']['sub-title-avatar']}/>
+        <span>{ficTitle}</span>
+      </section>
       <article className={styles['read']['main-content']} style={{fontSize: fontSize, color: `${readMode2FontColor(readMode)}`}} onClick={this.showActionSheet}>
         {
           content

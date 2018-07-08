@@ -6,6 +6,7 @@ import synopsis from "./synopsis.less";
 import chapter from "./chapter.less";
 import read from "./read.less";
 import history from "./history.less";
+import result from "./result.less";
 
 export default {
   route,
@@ -15,6 +16,7 @@ export default {
   synopsis,
   chapter,
   read,
-  history
+  history,
+  result
 };
 

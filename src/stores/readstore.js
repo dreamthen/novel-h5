@@ -1,4 +1,5 @@
 import novel_h5_interface from "../configs/interface";
+import { routerRedux } from 'dva/router';
 
 const readsotre = app => {
   app.model({
@@ -10,7 +11,9 @@ const readsotre = app => {
       readModeModalVisible: false,
       chapId: null,
       content: '',
-      title: '',
+      chapTitle: '',
+      ficTitle: '',
+      avatar: '',
       serial: null,
       ficId: null
     },
@@ -19,6 +22,10 @@ const readsotre = app => {
         const response = yield call(novel_h5_interface['content'], {
           ...payload
         });
+        // 当前章是最后一章
+        if (506 === response.errno) {
+          yield put(routerRedux.push('/result'));
+        }
         const { body } = response;
         yield put({
           type: 'save',
@@ -27,6 +34,9 @@ const readsotre = app => {
             ficId: body.fic_id,
             chapId: body.chap_id,
             serial: body.serial,
+            ficTitle: body.fic_title,
+            chapTitle: body.chap_title,
+            avatar: body.avatar
           }
         });
       }
