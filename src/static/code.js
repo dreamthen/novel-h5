@@ -1,9 +1,9 @@
 /**
  * 请求成功的状态码
- * @type {{success: string}}
+ * @type {{success: number}}
  */
 const code = {
-  success: "0"
+  success: 0
 };
 
 /**
