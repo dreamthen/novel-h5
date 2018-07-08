@@ -7,7 +7,99 @@
       font-size: 24px;
       font-weight: normal;
       padding: 8px 0;
-      color: #f29136;
+      color: #ff8c00;
+    }
+  }
+  &-main {
+    padding: 0 10px;
+    &-balance {
+      font-size: 18px;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      color: rgb(85, 85, 85);
+      &-price {
+        color: #cf745d;
+      }
+    }
+    &-description {
+      font-size: 18px;
+      padding: 12px 0;
+      color: rgb(85, 85, 85);
+      &-change {
+        color: orangered;
+      }
+    }
+    &-container {
+      &-categories {
+        width: 48%;
+        float: left;
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 18px;
+        margin: 1%;
+        background-color: #fff;
+        border: 1px solid #eee;
+        padding: 8px 0;
+        border-radius: 4px;
+        &-select{
+          color: #ff8c00;
+          border: 1px solid #ff8c00;
+          .recharge-main-container-categories-aside,
+          .recharge-main-container-categories-description {
+            color: #ff8c00;
+          }
+        }
+        &-aside,
+        &-description {
+          font-size: 14px;
+          font-style: normal;
+          color: rgb(85, 85, 85);
+          &-balance,
+          &-bonusPrice,
+          &-description {
+            margin: 4px 0 0 0;
+          }
+          &-bonusPrice,
+          &-description {
+            font-style: normal;
+            display: inline-block;
+          }
+        }
+        &-description {
+          display: inline-block;
+          margin: 4px 0 0 0;
+        }
+      }
+      &:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        height: 0;
+      }
+    }
+  }
+  &-footer {
+    padding: 0 10px 16px 10px;
+    &-forSurePrice {
+      display: block;
+      width: 96%;
+      font-size: 18px;
+      padding: 10px 14px;
+      border-radius: 4px;
+      margin: 16px auto;
+      background-color: #f9cc46;
+      border: 1px solid #eee;
+    }
+    &-attention {
+      color: rgb(85, 85, 85);
+      line-height: 1.5;
+      padding: 6px 8px 0 8px;
+      &-symbol {
+        color: #f9cc46;
+        margin-right: 6px;
+      }
     }
   }
 }

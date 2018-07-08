@@ -21,9 +21,16 @@ const categories_update = [{
   title: '完结'
 }];
 
-
+/**
+ * 模拟充值页面年卡或者月卡
+ * @type {{}}
+ */
+const recharge_static = {
+  empty_balance: [-1, -2]
+};
 
 export default {
   code,
-  categories_update
+  categories_update,
+  recharge_static
 };

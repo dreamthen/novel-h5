@@ -5,7 +5,9 @@ const recharge = (app) => {
     namespace: "recharge",
     state: {
       //充值产品列表
-      rechargeproductsList: []
+      rechargeproductsList: [],
+      //充值产品列表选择item
+      rechargeSelect: 0
     },
     effects: {
       /**
@@ -32,6 +34,18 @@ const recharge = (app) => {
         return {
           ...state,
           rechargeproductsList: payload
+        }
+      },
+      /**
+       * 改变充值产品类型
+       * @param state
+       * @param payload
+       * @returns {{}}
+       */
+      rechargeSelectChange(state, {payload}) {
+        return {
+          ...state,
+          ...payload
         }
       }
     }
