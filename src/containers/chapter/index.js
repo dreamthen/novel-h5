@@ -55,7 +55,7 @@ class Chapter extends Component {
    * @param nextProps
    * @param nextState
    */
-  componentWillReceiveProps(nextProps, nextState) {
+  componentDidUpdate(nextProps, nextState) {
     let chapters = this.props.chapter.chapters,
       nextChapters = nextProps.chapter.chapters,
       nextIsEnd = nextProps.chapter.isEnd;

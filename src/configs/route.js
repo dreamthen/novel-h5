@@ -4,6 +4,7 @@ import RechargeComponent from "../containers/recharge";
 import SynopsisComponent from "../containers/synopsis";
 import ChapterComponent from "../containers/chapter";
 import ReadComonent from "../containers/read";
+import HistoryComponent from "../containers/history";
 /**
  * nav路由静态配置
  * @type {*[]}
@@ -14,7 +15,8 @@ const route = [
   {path: "/recharge", component: RechargeComponent, text: "充值", isNav: true},
   {path: "/synopsis", component: SynopsisComponent, isNav: false},
   {path: "/chapter", component: ChapterComponent, isNav: false},
-  {path: "/read", component: ReadComonent, isNav: false}
+  {path: "/read", component: ReadComonent, isNav: false},
+  {path: "/history", component: HistoryComponent, isNav: true, text: "阅读历史"}
 ];
 
 export default {

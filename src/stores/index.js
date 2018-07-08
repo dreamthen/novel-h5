@@ -4,8 +4,8 @@ import rechargestore from "./rechargestore";
 import routestore from "./routestore";
 import synopsisstore from "./synopsisstore";
 import chapterstore from "./chapterstore";
-import readstore from "./readstore";
 import readsotre from "./readstore";
+import historystore from "./historystore";
 /**
  * 规整的页面所有功能的store
  * @param app
@@ -18,6 +18,7 @@ let stores = (app) => {
   synopsisstore(app); 
   chapterstore(app);
   readsotre(app);
+  historystore(app);
 };
 
 export default stores;

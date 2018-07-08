@@ -3,7 +3,7 @@ import {connect} from 'dva';
 import styles from '../../stylesheets';
 import menuImg from '../../assets/menu.png';
 import qs from 'qs';
-import {ActionSheet, Modal, Slider, WingBlank} from 'antd-mobile';
+import { ActionSheet, Modal, Slider, WingBlank } from 'antd-mobile';
 
 /**
  * 将阅读模式样式数组转化为对象,分别对应属性白天(day)和属性夜晚(night)
@@ -92,7 +92,7 @@ const mapDispatchToProps = dispatch => {
       });
     },
     setFontSize: size => {
-      const fontSize = parseInt(size) + 10;
+      const fontSize = parseInt(size, 10) + 10;
       localStorage.setItem('fontSize', size);
       dispatch({
         type: 'read/save',
@@ -141,12 +141,12 @@ class Read extends Component {
   };
 
   nextChapter = () => {
-    const {read: {ficId, serial}, history} = this.props;
+    const { read: {ficId, serial}} = this.props;
     window.location.href = `/read?ficId=${ficId}&serial=${serial + 1}`;
   };
 
   lastChapter = () => {
-    const {read: {ficId, serial}, history} = this.props;
+    const { read: {ficId, serial}} = this.props;
     if (1 === serial) {
       return;
     }
@@ -200,40 +200,35 @@ class Read extends Component {
   };
 
   render() {
-    const {
-      read: {serial, content, fontSize, readMode, fontModalVisible, readModeModalVisible},
-      handleReadModaModalVisible, handleFontModalVisible, setFontSize, setReadMode
-    } = this.props;
-    return (
-      <main className={styles['read']['main']} style={{backgroundColor: `${readMode2BgColor(readMode)}`}}>
-        <section style={{color: `${readMode2FontColor(readMode)}`}}
-                 className={styles['read']['head-title']}>{'农家甜宠美娇娘'}</section>
-        <article className={styles['read']['main-content']}
-                 style={{fontSize: fontSize, color: `${readMode2FontColor(readMode)}`}} onClick={this.showActionSheet}>
-          {
-            content
-          }
-        </article>
-        <section className={styles['read']['footer']}>
-          <div
-            style={{visibility: `${serial === 1 ? 'hidden' : 'visible'}`, color: `${readMode2FontColor(readMode)}`}}
-            className={styles['read']['footer-text-btn']}
-            onClick={this.lastChapter.bind(null)}
-          >
-            上一章
-          </div>
-          <div className={styles['read']['footer-icon-btn']} onClick={this.showActionSheet}>
-            <img alt="loading" src={menuImg} className={styles['read']['footer-icon-btn-icon']}/>
-          </div>
-          <div
-            style={{color: `${readMode2FontColor(readMode)}`}}
-            className={styles['read']['footer-text-btn']}
-            onClick={this.nextChapter.bind(null)}
-          >
-            下一章
-          </div>
-        </section>
-        <Modal
+    const { read: {serial, content, fontSize, readMode, fontModalVisible, readModeModalVisible},
+      handleReadModaModalVisible, handleFontModalVisible, setFontSize, setReadMode} = this.props;
+    return (<main className={styles['read']['main']} style={{backgroundColor: `${readMode2BgColor(readMode)}`}}>
+      <section style={{color: `${readMode2FontColor(readMode)}`}} className={styles['read']['head-title']}>{'农家甜宠美娇娘'}</section>
+      <article className={styles['read']['main-content']} style={{fontSize: fontSize, color: `${readMode2FontColor(readMode)}`}} onClick={this.showActionSheet}>
+        {
+          content
+        }
+      </article>
+      <section className={styles['read']['footer']}>
+        <div
+          style={{visibility: `${serial === 1 ? 'hidden': 'visible'}`, color: `${readMode2FontColor(readMode)}`}}
+          className={styles['read']['footer-text-btn']}
+          onClick={this.lastChapter.bind(null)}
+        >
+          上一章
+        </div>
+        <div className={styles['read']['footer-icon-btn']} onClick={this.showActionSheet}>
+          <img alt="loading" src={menuImg} className={styles['read']['footer-icon-btn-icon']}/>
+        </div>
+        <div 
+          style={{color: `${readMode2FontColor(readMode)}`}}
+          className={styles['read']['footer-text-btn']}
+          onClick={this.nextChapter.bind(null)}
+        >
+          下一章
+        </div>
+      </section>
+      <Modal
           visible={fontModalVisible}
           transparent
           maskClosable={false}
