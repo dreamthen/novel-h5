@@ -76,7 +76,7 @@ let routestore = (app) => {
       resetInitial(state) {
         return {
           ...state,
-          defaultState
+          ...defaultState
         }
       }
     }
