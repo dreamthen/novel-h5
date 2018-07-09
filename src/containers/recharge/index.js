@@ -33,12 +33,14 @@ import styles from "../../stylesheets";
     /**
      * 充值
      * @param charge_type_id
+     * @param signType
      */
-    payorders(charge_type_id) {
+    payorders(charge_type_id, signType) {
       dispatch({
         type: 'recharge/payorders',
         payload: {
-          charge_type_id
+          charge_type_id,
+          signType
         }
       })
     }
@@ -79,8 +81,10 @@ class RechargeComponent extends Component {
    */
   payordersHandler(e) {
     const {payorders, recharge} = this.props;
-    const {charge_type_id} = recharge;
-    payorders.bind(this)(charge_type_id);
+    const {charge_type_id, signType} = recharge;
+    payorders.bind(this)(charge_type_id, signType);
+    //取消冒泡事件
+    e.nativeEvent.stopImmediatePropagation();
   }
 
   render() {

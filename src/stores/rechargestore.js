@@ -1,3 +1,5 @@
+import weixin from "../public/weixin";
+import _package from "../package";
 import novel_h5_interface from "../configs/interface";
 
 const recharge = (app) => {
@@ -19,7 +21,9 @@ const recharge = (app) => {
       //时间戳
       timeStamp: "",
       //公众号id
-      appId: ""
+      appId: "",
+      //随机字符串
+      nonceStr: ""
     },
     effects: {
       /**
@@ -36,24 +40,29 @@ const recharge = (app) => {
         yield put({type: 'rechargeSelectChange', payload: {charge_type_id: default_charge_type_id}})
       },
       /**
-       * 确认充值
+       * 确认充值并在H5网页中执行JS调起支付
        * @param payload
        * @param call
        * @param put
        * @returns {IterableIterator<*>}
        */* payorders({payload}, {call, put}) {
-        let response = yield call(novel_h5_interface["payorders"], payload);
-        let body = response.body;
-        let timeStamp = (new Date(body["modify_date"]).getTime() / 1000).toString();
-        put({
+        let response = yield call(novel_h5_interface["payorders"], {charge_type_id: payload.charge_type_id});
+        let signType = payload.signType;
+        let body = response.body,
+          timeStamp = (new Date(body["modify_date"]).getTime() / 1000).toString(),
+          nonceStr = _package.getRandom32ToString(),
+          winxinResult = weixin(window.WeixinJSBridge);
+        yield put({
           type: 'rechargePayOrdersForPayRequest',
           payload: {
             paySign: body["key"],
             prepay_id: body["prepay_id"],
-            appId: body["appId"],
-            timeStamp
+            appId: body["appid"],
+            timeStamp,
+            nonceStr
           }
         });
+        yield winxinResult.readyBridge(body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType);
       }
     },
     reducers: {
