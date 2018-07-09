@@ -1,21 +1,25 @@
 import novel_h5_interface from "../configs/interface";
 import { routerRedux } from 'dva/router';
 
+const defaultState = {
+  fontSize: '18px',
+  readMode: 'day',
+  fontModalVisible: false,
+  readModeModalVisible: false,
+  chapId: null,
+  content: '',
+  chapTitle: '',
+  ficTitle: '',
+  avatar: '',
+  serial: null,
+  ficId: null
+};
+
 const readsotre = app => {
   app.model({
     namespace: 'read',
     state: {
-      fontSize: '18px',
-      readMode: 'day',
-      fontModalVisible: false,
-      readModeModalVisible: false,
-      chapId: null,
-      content: '',
-      chapTitle: '',
-      ficTitle: '',
-      avatar: '',
-      serial: null,
-      ficId: null
+      ...defaultState
     },
     effects: {
       *fetchContent({ payload }, { call, put }) {
@@ -24,7 +28,7 @@ const readsotre = app => {
         });
         // 当前章是最后一章
         if (506 === response.errno) {
-          yield put(routerRedux.push('/result'));
+          yield put(routerRedux.push('/result?result=success&title=已是最后一章'));
         }
         const { body } = response;
         yield put({
@@ -42,6 +46,11 @@ const readsotre = app => {
       }
     },
     reducers: {
+      reset() {
+        return {
+          ...defaultState
+        };
+      },
       save(state, { payload }) {
         return {
           ...state,

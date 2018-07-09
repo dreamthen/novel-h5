@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {connect} from "dva";
 import {Link, withRouter} from "dva/router";
-import routeConfig from "../../configs/route";
 import styles from "../../stylesheets";
 
+// 布局路由
 @withRouter
 @connect(function mapStateToProps(state) {
   return {
@@ -13,31 +13,32 @@ import styles from "../../stylesheets";
   return {
   }
 })
-
-// 布局路由
-class RouteComponent extends Component {
-  componentDidMount() {
-
-  }
+class NavComponent extends Component {
 
   render() {
     const {route} = this.props;
     const {innerHeight, bgColor} = route;
-    const navRoute = routeConfig["route"].filter(val => {
-      return val.isNav;
-    });
     return (
       <main style={{height: innerHeight, backgroundColor: bgColor}}>
         <header className={styles["route"]["novel-header"]}>
           <nav>
             <ul>
-              {navRoute.map((routeItem, routeIndex) => {
-                return <li key={routeIndex} className={styles["route"]["novel-header-link"]}>
-                  <Link to={routeItem["path"]}>
-                    {routeItem["text"]}
-                  </Link>
-                </li>
-              })}
+              {/* 改成手动配置 */}
+              <li className={styles["route"]["novel-header-link"]}>
+                <Link to='/'>
+                  首页
+                </Link>
+              </li>
+              <li className={styles["route"]["novel-header-link"]}>
+                <Link to='/bookstore'>
+                  书库
+                </Link>
+              </li>
+              <li className={styles["route"]["novel-header-link"]}>
+                <Link to='/recharge'>
+                  充值页
+                </Link>
+              </li>
             </ul>
           </nav>
           <section className={styles["route"]["novel-header-section"]}>
@@ -58,4 +59,4 @@ class RouteComponent extends Component {
   }
 }
 
-export default RouteComponent;
+export default NavComponent;

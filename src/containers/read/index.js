@@ -66,6 +66,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    reset() {
+      dispatch({
+        type: 'read/reset'
+      });
+    },
     fetchContent(ficId, serial) {
       dispatch({
         type: 'read/fetchContent',
@@ -132,6 +137,10 @@ function closest(el, selector) {
   return null;
 }
 
+/**
+ * @param {number} serial - query string,小说章节数
+ * @param {number} ficId - query string,小说ID
+ */
 @connect(mapStateToProps, mapDispatchToProps)
 class Read extends Component {
   state = {
@@ -153,6 +162,11 @@ class Read extends Component {
     window.location.href = `/read?ficId=${ficId}&serial=${serial - 1}`;
   };
 
+  componentWillUnmount() {
+    const {reset} = this.props;
+    reset();
+  }
+
   componentDidMount() {
     // 加载小说
     const {location} = this.props;
@@ -166,11 +180,16 @@ class Read extends Component {
   }
 
   onCtrlClick = btnIndex => {
-    const {handleReadModaModalVisible, handleFontModalVisible} = this.props;
+    const {handleReadModaModalVisible, handleFontModalVisible, history, location} = this.props;
     if (0 === btnIndex) {
       handleFontModalVisible(true);
     } else if (1 === btnIndex) {
       handleReadModaModalVisible(true);
+    } else if (2 === btnIndex) {
+      const { read: {ficId, ficTitle}} = this.props;
+      history.push(`/chapter?ficId=${ficId}&title=${ficTitle}`);
+    } else if (3 === btnIndex) {
+      history.push('/');
     }
   };
 
@@ -186,7 +205,7 @@ class Read extends Component {
   };
 
   showActionSheet = () => {
-    const buttons = ['字体大小', '背景颜色', '返回目录', '返回首页'];
+    const buttons = ['字体大小', '背景颜色', '返回目录', '返回首页', '取消'];
     ActionSheet.showActionSheetWithOptions({
         options: buttons,
         cancelButtonIndex: buttons.length - 1,
