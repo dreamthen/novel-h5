@@ -50,11 +50,12 @@
         visibility: hidden;
       }
     }
-    .dot {
-      width: 28px;
-      height: 4px;
-      border-radius: 4px;
-      background-color: #f9cc46;
+    :global .dot {
+      width: 28px !important;
+      height: 4px !important;
+      border-radius: 4px !important;
+      background-color: #f9cc46 !important;
+      box-shadow: none !important;
     }
     .control-next.control-arrow:before {
       border-top: 10px solid transparent;
@@ -118,6 +119,9 @@
         color: #000;
         font-size: 16px;
         font-weight: lighter;
+        &:last-child {
+          border-bottom: none;
+        }
       }
     }
   }
@@ -143,9 +147,8 @@
       width: 100%;
       &-item {
         width: 100%;
-        padding: 16px 0;
+        padding: 16px 4px;
         border-bottom: 1px solid #eee;
-        margin: 0 4px;
         display: flex;
         flex-direction: row;
         img {
@@ -193,6 +196,9 @@
         font-size: 16px;
         font-weight: lighter;
         padding: 0 16px;
+        &:last-child {
+          border-bottom: none;
+        }
       }
     }
   }

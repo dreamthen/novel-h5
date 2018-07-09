@@ -34,11 +34,15 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+/**
+ * @param {string} title - 小说标题,query string
+ * @param {number} ficId - 小说ID,query string
+ */
 @connect(mapStateToProps, mapDispatchToProps)
 class Chapter extends Component {
 
   componentDidMount() {
-    this.scrollPagination();
+    this.addScrollListener();
     const {fetchChapters, location, chapter: {pageSize}} = this.props;
     fetchChapters({page_num: 1, page_size: pageSize, fic_id: qs.parse(location.search.substr(1)).ficId});
   }
@@ -68,7 +72,7 @@ class Chapter extends Component {
   /**
    * 添加小说目录页滚动条分页
    */
-  scrollPagination() {
+  addScrollListener() {
     const {scrollChapter} = this;
     window.addEventListener('scroll', scrollChapter.bind(this));
   }

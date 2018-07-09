@@ -2,30 +2,38 @@ import {connect} from 'dva';
 import {Component} from 'react';
 import {Result} from 'antd-mobile';
 import styles from '../../stylesheets';
+import successImg from '../../assets/success.png';
+import qs from 'qs';
 
-// const resultMap = {
-//   last_chapter: {
-//     img:
-//   }
-// };
-
-const myImg = src => <img src={src} className={styles['result']['spe']} alt="" />;
+const resultMap = {
+  success: {
+    img: successImg
+  }
+};
 
 const mapResultToImg = result => {
-  // return resultMap[result];
+  return resultMap[result].img;
 }
+
+const myImg = src => <img src={src} className={styles['result']['spe']} alt="" />;
 
 @connect()
 class ResultPage extends Component {
 
+  onReturnClick = () => {
+    const { history } = this.props;
+    history.push('/');
+  };
+
   render() {
     const { location } = this.props;
+    const params = qs.parse(location.search.substr(1));
     return (<main className={styles['result']['main']}>
       <Result
-        img={myImg('https://gw.alipayobjects.com/zos/rmsportal/pdFARIqkrKEGVVEwotFe.svg')}
-        title="已是最后一章"
+        img={myImg(mapResultToImg(params.result))}
+        title={params.title || '成功'}
       />
-      <div className={styles['result']['read-btn']}>返回首页</div>
+      <div className={styles['result']['read-btn']} onClick={this.onReturnClick}>返回首页</div>
     </main>);
   }
 }
