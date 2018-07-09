@@ -32,7 +32,8 @@ const recharge = (app) => {
        * @param call
        * @param put
        * @returns {IterableIterator<*>}
-       */* rechargeproducts({payload}, {call, put}) {
+       */
+      *rechargeproducts({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["chargeproducts"], payload);
         let body = response.body;
         let default_charge_type_id = body[0]["id"];
@@ -45,7 +46,8 @@ const recharge = (app) => {
        * @param call
        * @param put
        * @returns {IterableIterator<*>}
-       */* payorders({payload}, {call, put}) {
+       */
+      *payorders({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["payorders"], {charge_type_id: payload.charge_type_id});
         let signType = payload.signType;
         let body = response.body,
@@ -62,6 +64,7 @@ const recharge = (app) => {
             nonceStr
           }
         });
+        console.log('payorderRet', response);
         yield winxinResult.readyBridge(body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType);
       }
     },

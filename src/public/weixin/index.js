@@ -108,11 +108,16 @@ const weixin = (function () {
        * @param signType
        */
       readyBridge(paySign, prepay_id, appId, timeStamp, nonceStr, signType) {
+        console.log('readyBridge', '1');
         const {isJsBridge, onBridgeReady, onBridgeNotExist, MD5ToPaySign} = this;
+        console.log('paySign', paySign);
         paySign = MD5ToPaySign.bind(this)(paySign, prepay_id, appId, timeStamp, nonceStr, signType);
+        console.log('paySignAfter', paySign);
         if (isJsBridge.bind(this)()) {
+          console.log('is');
           onBridgeNotExist.bind(this)(paySign, prepay_id, appId, timeStamp, nonceStr, signType);
         } else {
+          console.log('not');
           onBridgeReady.bind(this)(paySign, prepay_id, appId, timeStamp, nonceStr, signType);
         }
       }
