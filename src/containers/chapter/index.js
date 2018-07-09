@@ -41,12 +41,18 @@ const mapDispatchToProps = dispatch => {
 @connect(mapStateToProps, mapDispatchToProps)
 class Chapter extends Component {
 
+  /**
+   * 组件装载完毕之后,拉取小说的章节资源
+   */
   componentDidMount() {
     this.addScrollListener();
     const {fetchChapters, location, chapter: {pageSize}} = this.props;
     fetchChapters({page_num: 1, page_size: pageSize, fic_id: qs.parse(location.search.substr(1)).ficId});
   }
 
+  /**
+   * 在组件卸载完毕之后,重置页面至初始化状态
+   */
   componentWillUnmount() {
     const {reset} = this.props;
     const {scrollChapter} = this;
@@ -54,12 +60,7 @@ class Chapter extends Component {
     window.removeEventListener('scroll', scrollChapter.bind(this));
   }
 
-  /**
-   *
-   * @param nextProps
-   * @param nextState
-   */
-  componentDidUpdate(nextProps, nextState) {
+  componentWillReceiveProps(nextProps, nextState) {
     let chapters = this.props.chapter.chapters,
       nextChapters = nextProps.chapter.chapters,
       nextIsEnd = nextProps.chapter.isEnd;
@@ -81,21 +82,23 @@ class Chapter extends Component {
    * 小说目录页滚动条分页系统
    */
   scrollChapter() {
-    const {changeEnd, fetchChapters, chapter: {pageNum, pageSize, total}, location} = this.props;
+    const {changeEnd, fetchChapters, chapter: {pageNum, pageSize, total, isEnd}, location} = this.props;
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
       documentHeight = document.body.offsetHeight,
       windowHeight = window.innerHeight;
     let max_num = Math.ceil(total / pageSize);
-    if (documentHeight - (windowHeight + scrollTop) < 1) {
-      // 触发加载保护
-      changeEnd(true);
-      if (pageNum < max_num) {
-        // 加载新目录页
-        fetchChapters({
-          page_num: pageNum + 1,
-          page_size: pageSize,
-          fic_id: qs.parse(location.search.substr(1)).ficId
-        });
+    if ((documentHeight - (windowHeight + scrollTop)) / documentHeight <= 0.1) {
+      if (!isEnd) {
+        // 触发加载保护
+        changeEnd(true);
+        if (pageNum < max_num) {
+          // 加载新目录页
+          fetchChapters({
+            page_num: pageNum + 1,
+            page_size: pageSize,
+            fic_id: qs.parse(location.search.substr(1)).ficId
+          });
+        }
       }
     }
   }
