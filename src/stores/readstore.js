@@ -6,13 +6,16 @@ const defaultState = {
   readMode: 'day',
   fontModalVisible: false,
   readModeModalVisible: false,
+  needToChargeVisible: false,
   chapId: null,
   content: '',
   chapTitle: '',
   ficTitle: '',
   avatar: '',
   serial: null,
-  ficId: null
+  ficId: null,
+  costBalance: 0,
+  userBalance: 0
 };
 
 const readsotre = app => {
@@ -30,6 +33,23 @@ const readsotre = app => {
         if (506 === response.errno) {
           yield put(routerRedux.push('/result?result=success&title=已是最后一章'));
         }
+        // 用户余额不足
+        if (501 === response.errno) {
+          const { extra } = response;
+          yield put({
+            type: 'save',
+            payload: {
+              costBalance: extra.cost_balance,
+              userBalance: extra.user_balance,
+              content: extra.abstract,
+              ficTitle: extra.fic_title,
+              chapTitle: extra.chap_title,
+              avatar: extra.avatar,
+              needToChargeVisible: true
+            }
+          });
+          return;
+        }
         const { body } = response;
         yield put({
           type: 'save',
@@ -40,7 +60,8 @@ const readsotre = app => {
             serial: body.serial,
             ficTitle: body.fic_title,
             chapTitle: body.chap_title,
-            avatar: body.avatar
+            avatar: body.avatar,
+            needToChargeVisible: false
           }
         });
       }

@@ -64,7 +64,6 @@ const recharge = (app) => {
             nonceStr
           }
         });
-        console.log('payorderRet', response);
         yield winxinResult.readyBridge(body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType);
       }
     },

@@ -23,6 +23,20 @@ const keyBy = (arr, key) => {
 };
 
 /**
+ * 阅读模式样式分为白天和夜间模式
+ * @type {*[]}
+ */
+const readModes = [{
+  mode: 'day',
+  bgColor: '#fbf9fe',
+  fontColor: '#2c2c2c'
+}, {
+  mode: 'night',
+  bgColor: '#0e1031',
+  fontColor: 'rgb(70,70,70)'
+}];
+
+/**
  * 获取白天或者夜晚模式的背景颜色
  * @param readMode
  * @returns {string|string}
@@ -43,20 +57,6 @@ const readMode2FontColor = readMode => {
   const modeMap = keyBy(readModes, 'mode');
   return modeMap[readMode].fontColor || '#2c2c2c';
 };
-
-/**
- * 阅读模式样式分为白天和夜间模式
- * @type {*[]}
- */
-const readModes = [{
-  mode: 'day',
-  bgColor: '#fbf9fe',
-  fontColor: '#2c2c2c'
-}, {
-  mode: 'night',
-  bgColor: '#0e1031',
-  fontColor: 'rgb(70,70,70)'
-}];
 
 const mapStateToProps = state => {
   return {
@@ -193,6 +193,11 @@ class Read extends Component {
     }
   };
 
+  onChargeClick = () => {
+    const { history } = this.props;
+    history.push('/recharge');
+  };
+
   onWrapTouchStart = e => {
     // fix touch to scroll background page on iOS
     if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
@@ -220,7 +225,7 @@ class Read extends Component {
 
   render() {
     const { read: {chapTitle, ficTitle, avatar, serial, content, fontSize, readMode, fontModalVisible,
-      readModeModalVisible},
+      readModeModalVisible, needToChargeVisible, costBalance, userBalance},
       handleReadModaModalVisible, handleFontModalVisible, setFontSize, setReadMode} = this.props;
     return (<main className={styles['read']['main']} style={{backgroundColor: `${readMode2BgColor(readMode)}`}}>
       <section style={{color: `${readMode2FontColor(readMode)}`}} className={styles['read']['head-title']}>{chapTitle}</section>
@@ -234,23 +239,35 @@ class Read extends Component {
         }
       </article>
       <section className={styles['read']['footer']}>
-        <div
-          style={{visibility: `${serial === 1 ? 'hidden': 'visible'}`, color: `${readMode2FontColor(readMode)}`}}
-          className={styles['read']['footer-text-btn']}
-          onClick={this.lastChapter.bind(null)}
-        >
-          上一章
-        </div>
-        <div className={styles['read']['footer-icon-btn']} onClick={this.showActionSheet}>
-          <img alt="loading" src={menuImg} className={styles['read']['footer-icon-btn-icon']}/>
-        </div>
-        <div 
-          style={{color: `${readMode2FontColor(readMode)}`}}
-          className={styles['read']['footer-text-btn']}
-          onClick={this.nextChapter.bind(null)}
-        >
-          下一章
-        </div>
+        {
+          needToChargeVisible ? (
+            <div className={styles['read']['footer-charge']}>
+              <div className={styles['read']['footer-charge-btn']} onClick={this.onChargeClick}>充值</div>
+              <p className={styles['read']['footer-charge-balance_info']}>本章价格 {costBalance} 书币</p>
+              <p className={styles['read']['footer-charge-balance_info']}>当前余额 {userBalance} 书币</p>
+            </div>
+          ) : (
+            <div className={styles['read']['footer-normal']}>
+              <div
+                style={{visibility: `${serial === 1 ? 'hidden': 'visible'}`, color: `${readMode2FontColor(readMode)}`}}
+                className={styles['read']['footer-normal-text-btn']}
+                onClick={this.lastChapter.bind(null)}
+              >
+                上一章
+              </div>
+              <div className={styles['read']['footer-normal-icon-btn']} onClick={this.showActionSheet}>
+                <img alt="loading" src={menuImg} className={styles['read']['footer-normal-icon-btn-icon']}/>
+              </div>
+              <div 
+                style={{color: `${readMode2FontColor(readMode)}`}}
+                className={styles['read']['footer-normal-text-btn']}
+                onClick={this.nextChapter.bind(null)}
+              >
+                下一章
+              </div>
+            </div>
+          )
+        }
       </section>
       <Modal
           visible={fontModalVisible}
