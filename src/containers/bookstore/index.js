@@ -151,7 +151,7 @@ class BookStoreComponent extends Component {
     let scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
       document_height = document.body.offsetHeight,
       window_height = window.innerHeight;
-    if (document_height - (window_height + scrollTop) < 0) {
+    if ((document_height - (window_height + scrollTop)) / document_height <= 0.05) {
       if (!isEnd) {
         changeEnd.bind(this)(true);
         searchFictionsWithFilter.bind(this)(++pageNum);
