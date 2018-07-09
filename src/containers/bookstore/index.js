@@ -118,11 +118,6 @@ class BookStoreComponent extends Component {
     window.removeEventListener("scroll", scrollBookStore.bind(this));
   }
 
-  /**
-   *
-   * @param nextProps
-   * @param nextState
-   */
   componentWillReceiveProps(nextProps, nextState) {
     let fictions = this.props.bookstore.fictions,
       nextFictions = nextProps.bookstore.fictions,
