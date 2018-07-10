@@ -1,6 +1,7 @@
 import weixin from "../public/weixin";
 import _package from "../package";
 import novel_h5_interface from "../configs/interface";
+import { routerRedux } from 'dva/router';
 
 const recharge = (app) => {
   app.model({
@@ -54,17 +55,11 @@ const recharge = (app) => {
           timeStamp = (new Date(body["modify_date"]).getTime() / 1000).toString(),
           nonceStr = _package.getRandom32ToString(),
           winxinResult = weixin(window.WeixinJSBridge);
-        yield put({
-          type: 'rechargePayOrdersForPayRequest',
-          payload: {
-            paySign: body["key"],
-            prepay_id: body["prepay_id"],
-            appId: body["appid"],
-            timeStamp,
-            nonceStr
-          }
-        });
-        yield winxinResult.readyBridge(body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType);
+        // const payRet = winxinResult.readyBridge(body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType);
+        const payRet = true;
+        if (payRet) {
+          yield put(routerRedux.push('/result?result=success&title=充值成功'));
+        }
       }
     },
     reducers: {

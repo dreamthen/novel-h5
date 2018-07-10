@@ -4,44 +4,46 @@
   width: 100%;
   margin: 10px 0;
   background-color: #fbf9fe;
-  padding: 32px 0 0 0;
+  padding: 16px 0;
   :global .carousel {
-    padding: 0 0 42px 0;
     border-bottom: 1px solid #eee;
     .slide {
       background-color: transparent;
-      *zoom: 1;
-      img {
-        display: inline-block;
-        float: left;
-        padding: 0 30px;
-        width: 38% !important;
-        margin-right: 18px;
-        height: auto;
-      }
-      .home-aside {
-        display: table-cell;
-        width: 2000px;
-        *display: inline-block;
-        *width: auto;
-        text-align: left;
-        &-title {
-          font-weight: normal;
+      .home-slide-item {
+        display: flex;
+        flex-direction: row;
+        padding: 0 10px 20px 10px;
+        .home-slide-item-img-wrap {
+          width: 1px;
+          flex-grow: 2;
+          box-sizing: content-box;
         }
-        &-paragraph {
-          margin: 10px 0 0 0;
-          padding: 0 30px 0 0;
-          font-size: 14px;
-          font-weight: lighter;
-          display: -webkit-box;
-          /* autoprefixer: off */
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-          /* autoprefixer: on */
-          overflow: hidden;
-          text-overflow: ellipsis;
+        .home-slide-item-img {
+          width: 80%;
+        }
+        .home-aside {
+          width: 1px;
+          flex-grow: 3;
+          text-align: left;
+          &-title {
+            margin: 10px 0 0 0;
+            font-weight: normal;
+          }
+          &-paragraph {
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            font-weight: lighter;
+            display: -webkit-box;
+            /* autoprefixer: off */
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            /* autoprefixer: on */
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
       }
+     
       &:after {
         clear: both;
         height: 0;
@@ -51,8 +53,9 @@
       }
     }
     :global .dot {
-      width: 28px !important;
+      width: 20px !important;
       height: 4px !important;
+      margin: 0 4px;
       border-radius: 4px !important;
       background-color: #f9cc46 !important;
       box-shadow: none !important;

@@ -52,7 +52,7 @@ class HomePage extends Component {
         {/*showThumbs: 是否显示缩略图*/}
         {
           banner_fictions.length > 0 &&
-          <Carousel showArrows
+          <Carousel showArrows={false}
                     showStatus={false}
                     showThumbs={false}
                     infiniteLoop
@@ -62,9 +62,13 @@ class HomePage extends Component {
             {
               banner_fictions.map((fictionItem, fictionIndex) => {
                 return (
-                  <div style={{height: '100%'}} key={fictionIndex}
-                       onClick={this.onFictionClick.bind(null, fictionItem["id"])}>
-                    <img src={fictionItem["avatar"]} alt={fictionItem["title"]}/>
+                  <div key={fictionIndex}
+                       onClick={this.onFictionClick.bind(null, fictionItem["id"])}
+                       className="home-slide-item"
+                  >
+                    <div className="home-slide-item-img-wrap">
+                      <img className="home-slide-item-img" src={fictionItem["avatar"]} alt={fictionItem["title"]}/>
+                    </div>
                     <aside className="home-aside">
                       <h3 className="home-aside-title">{fictionItem["title"]}</h3>
                       <p className="home-aside-paragraph">{fictionItem["description"]}</p>
