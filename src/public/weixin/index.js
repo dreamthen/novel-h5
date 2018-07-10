@@ -1,4 +1,5 @@
 import md5 from "MD5";
+import { Promise } from "rsvp";
 /**
  * 微信公共API
  * @type {{}}
@@ -14,41 +15,28 @@ const weixin = (function () {
        * H5网页中执行JS调起支付
        */
       onBridgeReady(paySign, prepay_id, appId, timeStamp, nonceStr, signType) {
-        console.log({
-          //公众号名称，由商户传入
-          "appId": appId,
-          //时间戳，自1970年以来的秒数
-          "timeStamp": timeStamp,
-          //随机串
-          "nonceStr": nonceStr,
-          //订单详情扩展字符串
-          "package": `prepay_id=${prepay_id}`,
-          //微信签名方式：
-          "signType": signType,
-          //微信签名
-          "paySign": paySign
-        });
-        WeixinJSBridge.invoke(
-          'getBrandWCPayRequest', {
-            //公众号名称，由商户传入
-            "appId": appId,
-            //时间戳，自1970年以来的秒数
-            "timeStamp": timeStamp,
-            //随机串
-            "nonceStr": nonceStr,
-            //订单详情扩展字符串
-            "package": `prepay_id=${prepay_id}`,
-            //微信签名方式：
-            "signType": signType,
-            //微信签名
-            "paySign": paySign
-          },
-          function (res) {
-            // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
-            if (res.err_msg === "get_brand_wcpay_request:ok") {
+        return new Promise(function(resolve, reject) {
+          WeixinJSBridge.invoke(
+            'getBrandWCPayRequest', {
+              //公众号名称，由商户传入
+              "appId": appId,
+              //时间戳，自1970年以来的秒数
+              "timeStamp": timeStamp,
+              //随机串
+              "nonceStr": nonceStr,
+              //订单详情扩展字符串
+              "package": `prepay_id=${prepay_id}`,
+              //微信签名方式：
+              "signType": signType,
+              //微信签名
+              "paySign": paySign
+            },
+            function (res) {
+              // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+              resolve(res.err_msg === "get_brand_wcpay_request:ok");
             }
-          }
-        );
+          );
+        });
       },
       /**
        * 假如WeixinJsBridge内置对象不存在,执行监听事件模式
@@ -105,13 +93,13 @@ const weixin = (function () {
        * @param nonceStr
        * @param signType
        */
-      readyBridge(paySign, prepay_id, appId, timeStamp, nonceStr, signType) {
+      async readyBridge(paySign, prepay_id, appId, timeStamp, nonceStr, signType) {
         const {isJsBridge, onBridgeReady, onBridgeNotExist, MD5ToPaySign} = this;
         paySign = MD5ToPaySign.bind(this)(paySign, prepay_id, appId, timeStamp, nonceStr, signType);
         if (isJsBridge.bind(this)()) {
           onBridgeNotExist.bind(this)(paySign, prepay_id, appId, timeStamp, nonceStr, signType);
         } else {
-          onBridgeReady.bind(this)(paySign, prepay_id, appId, timeStamp, nonceStr, signType);
+          return await onBridgeReady.bind(this)(paySign, prepay_id, appId, timeStamp, nonceStr, signType);
         }
       }
     }

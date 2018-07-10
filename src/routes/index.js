@@ -5,7 +5,6 @@ import NavComponent from "../containers/nav";
 
 /**
  * 根据路由静态配置,动态配置子路由
- * @deprecated
  */
 const route = (function routeIIFE(routeConfig) {
   return routeConfig.map((routeItem, routeIndex) => {

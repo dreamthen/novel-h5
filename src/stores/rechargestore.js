@@ -1,6 +1,7 @@
 import weixin from "../public/weixin";
 import _package from "../package";
 import novel_h5_interface from "../configs/interface";
+import { routerRedux } from 'dva/router';
 
 const recharge = (app) => {
   app.model({
@@ -32,7 +33,8 @@ const recharge = (app) => {
        * @param call
        * @param put
        * @returns {IterableIterator<*>}
-       */* rechargeproducts({payload}, {call, put}) {
+       */
+      *rechargeproducts({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["chargeproducts"], payload);
         let body = response.body;
         let default_charge_type_id = body[0]["id"];
@@ -45,24 +47,19 @@ const recharge = (app) => {
        * @param call
        * @param put
        * @returns {IterableIterator<*>}
-       */* payorders({payload}, {call, put}) {
+       */
+      *payorders({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["payorders"], {charge_type_id: payload.charge_type_id});
         let signType = payload.signType;
         let body = response.body,
           timeStamp = (new Date(body["modify_date"]).getTime() / 1000).toString(),
           nonceStr = _package.getRandom32ToString(),
           winxinResult = weixin(window.WeixinJSBridge);
-        yield put({
-          type: 'rechargePayOrdersForPayRequest',
-          payload: {
-            paySign: body["key"],
-            prepay_id: body["prepay_id"],
-            appId: body["appid"],
-            timeStamp,
-            nonceStr
-          }
-        });
-        yield winxinResult.readyBridge(body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType);
+        // const payRet = winxinResult.readyBridge(body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType);
+        const payRet = true;
+        if (payRet) {
+          yield put(routerRedux.push('/result?result=success&title=充值成功'));
+        }
       }
     },
     reducers: {
