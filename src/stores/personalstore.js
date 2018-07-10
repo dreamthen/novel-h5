@@ -1,12 +1,18 @@
 import assets from "../assets";
 
+/**
+ * 默认个人信息数据状态
+ * @type {{id: number, headimgurl: *}}
+ */
+const defaultState = {
+  id: 0,
+  headimgurl: assets["avatar"]
+};
+
 let personal = (app) => {
   app.model({
     namespace: "personal",
-    state: {
-      id: 0,
-      headimgurl: assets["avatar"]
-    },
+    state: defaultState,
     effects: {},
     reducers: {
       /**
@@ -20,6 +26,17 @@ let personal = (app) => {
           ...state,
           id: payload["id"],
           headimgurl: payload["headimgurl"]
+        }
+      },
+      /**
+       * 重置会话用户信息
+       * @param state
+       * @returns {{}}
+       */
+      resetCurrentUser(state) {
+        return {
+          ...state,
+          ...defaultState
         }
       }
     },

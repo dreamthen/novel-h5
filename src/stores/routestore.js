@@ -9,7 +9,9 @@ const defaultState = {
   //页面高度
   innerHeight: undefined,
   //页面背景色
-  bgColor: "#f5f5f9"
+  bgColor: "#f5f5f9",
+  //个人信息昵称
+  nickname: "匿名用户"
 };
 
 let routestore = (app) => {
@@ -48,28 +50,62 @@ let routestore = (app) => {
     },
     effects: {
       /**
-       * 获取当前会话信息
+       * 获取当前会话用户信息并配置会话用户信息
        * @param payload
        * @param call
        * @param put
        * @returns {IterableIterator<*>}
-       */
-      * currentuser({payload}, {call, put}) {
+       */* currentuser({payload}, {call, put}) {
         let response = yield call(noval_h5_interface["currentuser"], payload);
         if (!_package.isEmpty(response.body)) {
           let body = response.body;
           yield put({
             type: 'personal/getCurrentUser',
             payload: body
-          })
+          });
+          yield put({
+            type: 'setCurrentUserNickname',
+            payload: body
+          });
+        } else {
+          yield put({
+            type: 'personal/resetCurrentUser'
+          });
+          yield put({
+            type: 'resetCurrentUserNickname'
+          });
         }
       }
     },
     reducers: {
       /**
+       * 设置会话用户信息昵称
+       * @param state
+       * @param payload
+       * @returns {{nickname: *}}
+       */
+      setCurrentUserNickname(state, {payload}) {
+        return {
+          ...state,
+          nickname: payload.nickname
+        }
+      },
+      /**
+       * 重置会话用户信息昵称
+       * @param state
+       * @returns {{nickname: string}}
+       */
+      resetCurrentUserNickname(state) {
+        return {
+          ...state,
+          nickname: defaultState.nickname
+        }
+      },
+      /**
        * 重置页面高度
        * @param state
        * @param payload
+       * @returns {{innerHeight: *}}
        */
       resetInnerHeight(state, {payload}) {
         return {

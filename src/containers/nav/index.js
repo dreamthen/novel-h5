@@ -42,7 +42,7 @@ class NavComponent extends Component {
 
   render() {
     const {route} = this.props;
-    const {innerHeight, bgColor} = route;
+    const {innerHeight, bgColor, nickname} = route;
     const {toPersonalNav} = this;
     //过滤出isLink为true的数组项
     const isLinkNav = routeConfig["route"].filter(routeItem => routeItem.isLink);
@@ -68,7 +68,7 @@ class NavComponent extends Component {
           </nav>
           <section className={styles["route"]["novel-header-section"]}>
             <main className={styles["route"]["novel-header-section-username"]}>
-              匿名用户
+              {nickname}
             </main>
             <aside
               className={styles["route"]["novel-header-section-userInformation"]}
