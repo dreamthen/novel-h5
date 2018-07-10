@@ -11,12 +11,39 @@ import styles from "../../stylesheets";
     route: state.route
   }
 }, function mapDispatchToProps(dispatch) {
-  return {}
+  return {
+    currentuser() {
+      dispatch({
+        type: 'route/currentuser',
+        payload: {}
+      })
+    }
+  }
 })
+
 class NavComponent extends Component {
+  /**
+   * 当组件挂载时,去获取会话的用户信息
+   */
+  componentDidMount() {
+    const {currentuser} = this.props;
+    currentuser.bind(this)();
+  }
+
+  /**
+   * 跳往个人中心页
+   **/
+  toPersonalNav(e) {
+    const {history} = this.props;
+    history.push("/personal");
+    //取消冒泡事件
+    e.nativeEvent.stopImmediatePropagation();
+  }
+
   render() {
     const {route} = this.props;
     const {innerHeight, bgColor} = route;
+    const {toPersonalNav} = this;
     //过滤出isLink为true的数组项
     const isLinkNav = routeConfig["route"].filter(routeItem => routeItem.isLink);
     return (
@@ -43,7 +70,10 @@ class NavComponent extends Component {
             <main className={styles["route"]["novel-header-section-username"]}>
               匿名用户
             </main>
-            <aside className={styles["route"]["novel-header-section-userInformation"]}>
+            <aside
+              className={styles["route"]["novel-header-section-userInformation"]}
+              onClick={toPersonalNav.bind(this)}
+            >
               个人中心
             </aside>
           </section>

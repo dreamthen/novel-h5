@@ -114,6 +114,20 @@ let payorders = async (params) => {
   })
 };
 
+/**
+ * 获取当前会话的用户信息
+ * @param params
+ * @returns {Promise<*>}
+ */
+let currentuser = async (params) => {
+  return axios({
+    url: api.currentuser,
+    method: "GET",
+    params,
+    headers: {}
+  });
+};
+
 export default {
   indexfictions,
   classifications,
@@ -124,5 +138,6 @@ export default {
   content,
   histories,
   deleteHistory,
-  payorders
+  payorders,
+  currentuser
 }

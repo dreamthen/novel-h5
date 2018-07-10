@@ -1,3 +1,5 @@
+import noval_h5_interface from "../configs/interface";
+
 /**
  * 默认页面状态
  * @type {{innerHeight: undefined, bgColor: string}}
@@ -43,7 +45,19 @@ let routestore = (app) => {
         })
       }
     },
-    effects: {},
+    effects: {
+      /**
+       * 获取当前会话信息
+       * @param payload
+       * @param call
+       * @param put
+       * @returns {IterableIterator<*>}
+       */
+      * currentuser({payload}, {call, put}) {
+        let response = yield call(noval_h5_interface["currentuser"], payload);
+        console.log(response);
+      }
+    },
     reducers: {
       /**
        * 重置页面高度
