@@ -142,7 +142,7 @@ function closest(el, selector) {
  * @param {number} ficId - query string,小说ID
  */
 @connect(mapStateToProps, mapDispatchToProps)
-class Read extends Component {
+class ReadComponent extends Component {
   state = {
     redirect: false,
     ficId: null,
@@ -244,7 +244,7 @@ class Read extends Component {
         <div className={styles['read']['footer-icon-btn']} onClick={this.showActionSheet}>
           <img alt="loading" src={menuImg} className={styles['read']['footer-icon-btn-icon']}/>
         </div>
-        <div 
+        <div
           style={{color: `${readMode2FontColor(readMode)}`}}
           className={styles['read']['footer-text-btn']}
           onClick={this.nextChapter.bind(null)}
@@ -308,4 +308,4 @@ class Read extends Component {
   }
 }
 
-export default Read;
+export default ReadComponent;
