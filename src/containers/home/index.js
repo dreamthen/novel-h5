@@ -52,7 +52,7 @@ class HomePage extends Component {
         {/*showThumbs: 是否显示缩略图*/}
         {
           banner_fictions.length > 0 &&
-          <Carousel showArrows
+          <Carousel showArrows={false}
                     showStatus={false}
                     showThumbs={false}
                     infiniteLoop
@@ -62,9 +62,13 @@ class HomePage extends Component {
             {
               banner_fictions.map((fictionItem, fictionIndex) => {
                 return (
-                  <div style={{height: '100%'}} key={fictionIndex}
-                       onClick={this.onFictionClick.bind(null, fictionItem["id"])}>
-                    <img src={fictionItem["avatar"]} alt={fictionItem["title"]}/>
+                  <div key={fictionIndex}
+                       onClick={this.onFictionClick.bind(null, fictionItem["id"])}
+                       className="home-slide-item"
+                  >
+                    <div className="home-slide-item-img-wrap">
+                      <img className="home-slide-item-img" src={fictionItem["avatar"]} alt={fictionItem["title"]}/>
+                    </div>
                     <aside className="home-aside">
                       <h3 className="home-aside-title">{fictionItem["title"]}</h3>
                       <p className="home-aside-paragraph">{fictionItem["description"]}</p>
@@ -114,7 +118,9 @@ class HomePage extends Component {
                 return (
                   <div key={fantasyIndex} className={styles["home"]["home-hot-other-main-item"]}
                        onClick={this.onFictionClick.bind(null, fantasyItem["id"])}>
-                    <img src={fantasyItem["avatar"]} alt={fantasyItem["title"]}/>
+                    <div className={styles["home"]["home-hot-other-main-item-image"]}>
+                      <img src={fantasyItem["avatar"]} alt={fantasyItem["title"]}/>
+                    </div>
                     <aside className={styles["home"]["home-hot-other-main-item-aside"]}>
                       <h3 className={styles["home"]["home-hot-other-main-item-aside-title"]}>{fantasyItem["title"]}</h3>
                       <p
@@ -150,7 +156,9 @@ class HomePage extends Component {
                 return (
                   <div key={girlIndex} className={styles["home"]["home-hot-other-main-item"]}
                        onClick={this.onFictionClick.bind(null, girlItem["id"])}>
-                    <img src={girlItem["avatar"]} alt={girlItem["title"]}/>
+                    <div className={styles["home"]["home-hot-other-main-item-image"]}>
+                      <img src={girlItem["avatar"]} alt={girlItem["title"]}/>
+                    </div>
                     <aside className={styles["home"]["home-hot-other-main-item-aside"]}>
                       <h3 className={styles["home"]["home-hot-other-main-item-aside-title"]}>{girlItem["title"]}</h3>
                       <p
@@ -186,7 +194,9 @@ class HomePage extends Component {
                 return (
                   <div key={loveIndex} className={styles["home"]["home-hot-other-main-item"]}
                        onClick={this.onFictionClick.bind(null, loveItem["id"])}>
-                    <img src={loveItem["avatar"]} alt={loveItem["title"]}/>
+                    <div className={styles["home"]["home-hot-other-main-item-image"]}>
+                      <img src={loveItem["avatar"]} alt={loveItem["title"]}/>
+                    </div>
                     <aside className={styles["home"]["home-hot-other-main-item-aside"]}>
                       <h3 className={styles["home"]["home-hot-other-main-item-aside-title"]}>{loveItem["title"]}</h3>
                       <p
