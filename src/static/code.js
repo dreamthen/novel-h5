@@ -3,7 +3,8 @@
  * @type {{success: number}}
  */
 const code = {
-  success: 0
+  success: 0,
+  weixin_pay_success: "get_brand_wcpay_request:ok"
 };
 
 /**

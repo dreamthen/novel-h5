@@ -1,5 +1,6 @@
 {
   "private": true,
+  "author": "wenkai.yin",
   "dependencies": {
     "MD5": "^1.3.0",
     "antd-mobile": "^2.2.1",
