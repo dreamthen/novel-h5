@@ -142,7 +142,7 @@ function closest(el, selector) {
  * @param {number} ficId - query string,小说ID
  */
 @connect(mapStateToProps, mapDispatchToProps)
-class Read extends Component {
+class ReadComponent extends Component {
   state = {
     redirect: false,
     ficId: null,
@@ -325,4 +325,4 @@ class Read extends Component {
   }
 }
 
-export default Read;
+export default ReadComponent;

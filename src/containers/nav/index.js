@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "dva";
 import {Link, withRouter} from "dva/router";
+import routeConfig from "../../configs/route";
 import styles from "../../stylesheets";
 
 // 布局路由
@@ -10,35 +11,32 @@ import styles from "../../stylesheets";
     route: state.route
   }
 }, function mapDispatchToProps(dispatch) {
-  return {
-  }
+  return {}
 })
 class NavComponent extends Component {
-
   render() {
     const {route} = this.props;
     const {innerHeight, bgColor} = route;
+    //过滤出isLink为true的数组项
+    const isLinkNav = routeConfig["route"].filter(routeItem => routeItem.isLink);
     return (
       <main style={{height: innerHeight, backgroundColor: bgColor}}>
         <header className={styles["route"]["novel-header"]}>
           <nav>
             <ul>
-              {/* 改成手动配置 */}
-              <li className={styles["route"]["novel-header-link"]}>
-                <Link to='/'>
-                  首页
-                </Link>
-              </li>
-              <li className={styles["route"]["novel-header-link"]}>
-                <Link to='/bookstore'>
-                  书库
-                </Link>
-              </li>
-              <li className={styles["route"]["novel-header-link"]}>
-                <Link to='/recharge'>
-                  充值页
-                </Link>
-              </li>
+              {
+                isLinkNav.map((linkNavItem, linkNavIndex) => {
+                  return (
+                    <li key={linkNavIndex}
+                        className={styles["route"]["novel-header-link"]}
+                    >
+                      <Link to={linkNavItem["path"]}>
+                        {linkNavItem["text"]}
+                      </Link>
+                    </li>
+                  )
+                })
+              }
             </ul>
           </nav>
           <section className={styles["route"]["novel-header-section"]}>
