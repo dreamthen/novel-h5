@@ -36,7 +36,7 @@ const weixin = (function () {
               resolve(res.err_msg === "get_brand_wcpay_request:ok");
             }
           );
-        });
+        }.bind(this));
       },
       /**
        * 假如WeixinJsBridge内置对象不存在,执行监听事件模式
