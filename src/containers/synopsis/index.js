@@ -1,9 +1,7 @@
 import React, {Component} from "react";
 import {connect} from 'dva';
 import styles from '../../stylesheets';
-import bookImg from '../../assets/book.png';
-import descImg from '../../assets/desc.png';
-import costImg from '../../assets/cost.png';
+import assets from '../../assets';
 import qs from 'qs';
 
 @connect(state => {
@@ -61,7 +59,7 @@ class Synopsis extends Component {
       </header>
       <section className={styles['synopsis']['desc']}>
         <div className={styles['synopsis']['desc-title']}>
-          <img alt='loading' className={styles['synopsis']['desc-title-icon']} src={descImg}/>
+          <img alt='loading' className={styles['synopsis']['desc-title-icon']} src={assets["desc"]}/>
           <span>简介</span>
         </div>
         <div className={styles['synopsis']['desc-content']}>
@@ -73,7 +71,7 @@ class Synopsis extends Component {
       </section>
       <section className={styles['synopsis']['catalog']}>
         <div className={styles['synopsis']['catalog-title']}>
-          <img alt='loading' className={styles['synopsis']['catalog-title-icon']} src={bookImg}/>
+          <img alt='loading' className={styles['synopsis']['catalog-title-icon']} src={assets["book"]}/>
           <span>章节</span>
         </div>
         <div className={styles['synopsis']['catalog-chapter']}>
@@ -82,7 +80,7 @@ class Synopsis extends Component {
               return <div key={val.id} className={styles['synopsis']['catalog-chapter-item']} onClick={this.onClickChapter.bind(null, val.serial)}>
                 <div>{`${val.title}`}</div>
                 {
-                  val.costBalance > 0 ? <img alt='loading' className={styles['synopsis']['catalog-chapter-item-icon']} src={costImg}/> : null
+                  val.costBalance > 0 ? <img alt='loading' className={styles['synopsis']['catalog-chapter-item-icon']} src={assets["cost"]}/> : null
                 }
               </div>;
             })

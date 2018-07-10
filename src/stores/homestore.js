@@ -1,4 +1,5 @@
 import novel_h5_interface from "../configs/interface";
+import _package from "../package";
 
 let homestore = (app) => {
   app.model({
@@ -23,8 +24,10 @@ let homestore = (app) => {
        */
       * indexfictions({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["indexfictions"], payload);
-        let body = response.body;
-        yield put({type: 'getIndexFictionsData', payload: body});
+        if (!_package.isEmpty(response.body)) {
+          let body = response.body;
+          yield put({type: 'getIndexFictionsData', payload: body});
+        }
       }
     },
     reducers: {

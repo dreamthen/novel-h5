@@ -1,4 +1,5 @@
 import novel_h5_interface from "../configs/interface";
+import _package from "../package";
 
 /**
  * 初始化页面状态数据
@@ -43,10 +44,12 @@ let bookstore = (app) => {
        */
       * classifications({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["classifications"], payload);
-        let body = response.body;
-        let all = {id: 0, title: '全部'};
-        body.unshift(all);
-        yield put({type: 'getClassifications', payload: body});
+        if (!_package.isEmpty(response.body)) {
+          let body = response.body;
+          let all = {id: 0, title: '全部'};
+          body.unshift(all);
+          yield put({type: 'getClassifications', payload: body});
+        }
       },
       /**
        * 查询书库小说列表
@@ -57,11 +60,13 @@ let bookstore = (app) => {
        */
       * fictions({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["fictions"], payload);
-        let body = response.body;
-        yield put({
-          type: 'getFictions',
-          payload: {data: body, pageNum: payload["page_num"]}
-        });
+        if (!_package.isEmpty(response.body)) {
+          let body = response.body;
+          yield put({
+            type: 'getFictions',
+            payload: {data: body, pageNum: payload["page_num"]}
+          });
+        }
       }
     },
     reducers: {

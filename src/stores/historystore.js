@@ -1,4 +1,6 @@
 import novel_h5_interface from '../configs/interface';
+import _package from "../package";
+
 let historystore = app => {
   app.model({
     namespace: 'readhistory',
@@ -16,13 +18,15 @@ let historystore = app => {
       },
       *fetchHistories(_, { call, put }) {
         const response = yield call(novel_h5_interface['histories'], {});
-        const { rows } = response.body;
-        yield put({
-          type: 'save',
-          payload: {
-            histories: rows
-          }
-        });
+        if (!_package.isEmpty(response.body)) {
+          let body = response.body;
+          yield put({
+            type: 'save',
+            payload: {
+              histories: body["rows"]
+            }
+          });
+        }
       }
     },
     reducers: {

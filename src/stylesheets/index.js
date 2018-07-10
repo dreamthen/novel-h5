@@ -7,6 +7,7 @@ import chapter from "./chapter.less";
 import read from "./read.less";
 import history from "./history.less";
 import result from "./result.less";
+import personal from "./personal.less";
 
 export default {
   route,
@@ -17,6 +18,7 @@ export default {
   chapter,
   read,
   history,
-  result
+  result,
+  personal
 };
 

@@ -1,5 +1,6 @@
 import novel_h5_interface from "../configs/interface";
 import { routerRedux } from 'dva/router';
+import _package from "../package";
 
 const defaultState = {
   fontSize: '18px',
@@ -51,19 +52,21 @@ const readsotre = app => {
           return;
         }
         const { body } = response;
-        yield put({
-          type: 'save',
-          payload: {
-            content: body.content,
-            ficId: body.fic_id,
-            chapId: body.chap_id,
-            serial: body.serial,
-            ficTitle: body.fic_title,
-            chapTitle: body.chap_title,
-            avatar: body.avatar,
-            needToChargeVisible: false
-          }
-        });
+        if (!_package.isEmpty(body)) {
+          yield put({
+            type: 'save',
+            payload: {
+              content: body.content,
+              ficId: body.fic_id,
+              chapId: body.chap_id,
+              serial: body.serial,
+              ficTitle: body.fic_title,
+              chapTitle: body.chap_title,
+              avatar: body.avatar,
+              needToChargeVisible: false
+            }
+          });
+        }
       }
     },
     reducers: {

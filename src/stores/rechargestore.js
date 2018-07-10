@@ -36,10 +36,12 @@ const recharge = (app) => {
        * @returns {IterableIterator<*>}
        */* rechargeproducts({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["chargeproducts"], payload);
-        let body = response.body;
-        let default_charge_type_id = body[0]["id"];
-        yield put({type: 'rechargeproductsAction', payload: body});
-        yield put({type: 'rechargeSelectChange', payload: {charge_type_id: default_charge_type_id}})
+        if (!_package.isEmpty(response.body)) {
+          let body = response.body;
+          let default_charge_type_id = body[0]["id"];
+          yield put({type: 'rechargeproductsAction', payload: body});
+          yield put({type: 'rechargeSelectChange', payload: {charge_type_id: default_charge_type_id}});
+        }
       },
       /**
        * 确认充值并在H5网页中执行JS调起支付
@@ -50,16 +52,18 @@ const recharge = (app) => {
        */* payorders({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["payorders"], {charge_type_id: payload.charge_type_id});
         let signType = payload.signType;
-        let body = response.body,
-          timeStamp = (new Date(body["modify_date"]).getTime() / 1000).toString(),
-          nonceStr = _package.getRandom32ToString(),
-          winxinResult = weixin(window.WeixinJSBridge);
-        const payResult = winxinResult.readyBridge(body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType);
-        //将H5网页中执行JS调起支付结果返回出来
-        switch (payResult.err_msg) {
-          case code["code"]["weixin_pay_success"]:
-            yield put(routerRedux.push('/result?result=success&title=充值成功'));
-            break;
+        if (!_package.isEmpty(response.body)) {
+          let body = response.body,
+            timeStamp = (new Date(body["modify_date"]).getTime() / 1000).toString(),
+            nonceStr = _package.getRandom32ToString(),
+            winxinResult = weixin(window.WeixinJSBridge);
+          const payResult = winxinResult.readyBridge(body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType);
+          //将H5网页中执行JS调起支付结果返回出来
+          switch (payResult.err_msg) {
+            case code["code"]["weixin_pay_success"]:
+              yield put(routerRedux.push('/result?result=success&title=充值成功'));
+              break;
+          }
         }
       }
     },

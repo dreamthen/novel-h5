@@ -1,4 +1,5 @@
 import novel_h5_interface from '../configs/interface';
+import _package from "../package";
 let defaultState = {
   isEnd: false,
   pageNum: 1,
@@ -21,14 +22,16 @@ const chapterstore = app => {
           return state['chapter'];
         });
         const { body } = response;
-        yield put({
-          type: 'save',
-          payload: {
-            chapters: chapters.concat(body["rows"]),
-            total: body["count"],
-            pageNum: payload.page_num
-          }
-        });
+        if (!_package.isEmpty(body)) {
+          yield put({
+            type: 'save',
+            payload: {
+              chapters: chapters.concat(body["rows"]),
+              total: body["count"],
+              pageNum: payload.page_num
+            }
+          });
+        }
       }
     },
     reducers: {

@@ -5,7 +5,7 @@ import { List, SwipeAction } from 'antd-mobile';
 
 const mapStateToProps = state => {
   return {
-    readhistory: state['readhistory']
+    readhistory: state.readhistory
   };
 };
 

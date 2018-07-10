@@ -1,4 +1,5 @@
 import noval_h5_interface from "../configs/interface";
+import _package from "../package";
 
 /**
  * 默认页面状态
@@ -19,7 +20,7 @@ let routestore = (app) => {
       setup({history, dispatch}) {
         history.listen((location) => {
           let innerHeight = window.innerHeight;
-          if (location.pathname === "/recharge") {
+          if (location.pathname === "/recharge" || location.pathname === "/personal") {
             /**
              * 重置页面背景色
              */
@@ -55,7 +56,13 @@ let routestore = (app) => {
        */
       * currentuser({payload}, {call, put}) {
         let response = yield call(noval_h5_interface["currentuser"], payload);
-        console.log(response);
+        if (!_package.isEmpty(response.body)) {
+          let body = response.body;
+          yield put({
+            type: 'personal/getCurrentUser',
+            payload: body
+          })
+        }
       }
     },
     reducers: {

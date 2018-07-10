@@ -32,6 +32,21 @@ const _package = (() => {
       random32ToStringFunc.bind(this)();
       return data_model.get(this)["random32ToString"];
     }
+
+    /**
+     * 判断对象是否为空
+     */
+    isEmpty(obj) {
+      if (typeof obj !== "object") {
+        return true;
+      }
+      for (let [key, value] of Object.entries(obj)) {
+        if (obj.hasOwnProperty(key)) {
+          return false;
+        }
+      }
+      return true;
+    }
   }
 
   return new Package();

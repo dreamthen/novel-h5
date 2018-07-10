@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import {connect} from 'dva';
 import styles from '../../stylesheets';
-import menuImg from '../../assets/menu.png';
+import assets from '../../assets';
 import qs from 'qs';
 import { ActionSheet, Modal, Slider, WingBlank } from 'antd-mobile';
 
@@ -256,9 +256,9 @@ class ReadComponent extends Component {
                 上一章
               </div>
               <div className={styles['read']['footer-normal-icon-btn']} onClick={this.showActionSheet}>
-                <img alt="loading" src={menuImg} className={styles['read']['footer-normal-icon-btn-icon']}/>
+                <img alt="loading" src={assets["menu"]} className={styles['read']['footer-normal-icon-btn-icon']}/>
               </div>
-              <div 
+              <div
                 style={{color: `${readMode2FontColor(readMode)}`}}
                 className={styles['read']['footer-normal-text-btn']}
                 onClick={this.nextChapter.bind(null)}

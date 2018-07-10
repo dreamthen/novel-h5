@@ -2,18 +2,18 @@ import {connect} from 'dva';
 import {Component} from 'react';
 import {Result} from 'antd-mobile';
 import styles from '../../stylesheets';
-import successImg from '../../assets/success.png';
+import assets from '../../assets';
 import qs from 'qs';
 
 const resultMap = {
   success: {
-    img: successImg
+    img: assets["success"]
   }
 };
 
 const mapResultToImg = result => {
   return resultMap[result].img;
-}
+};
 
 const myImg = src => <img src={src} className={styles['result']['spe']} alt="" />;
 

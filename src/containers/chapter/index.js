@@ -2,7 +2,7 @@ import {connect} from 'dva';
 import {Component} from 'react';
 import styles from '../../stylesheets';
 import qs from 'qs';
-import costImg from '../../assets/cost.png';
+import assets from '../../assets';
 
 const mapStateToProps = state => {
   return {
@@ -122,7 +122,7 @@ class Chapter extends Component {
                 <div>{val.title}</div>
                 {
                   val.cost_balance > 0 ?
-                    <img className={styles['chapter']['chapter-item-icon']} alt='loading' src={costImg}/> : null
+                    <img className={styles['chapter']['chapter-item-icon']} alt='loading' src={assets["cost"]}/> : null
                 }
               </div>;
             })
