@@ -18,7 +18,7 @@ class NavComponent extends Component {
     const {route} = this.props;
     const {innerHeight, bgColor} = route;
     //过滤出isLink为true的数组项
-    const isLinkNav = routeConfig.filter(routeItem => routeItem.isLink);
+    const isLinkNav = routeConfig["route"].filter(routeItem => routeItem.isLink);
     return (
       <main style={{height: innerHeight, backgroundColor: bgColor}}>
         <header className={styles["route"]["novel-header"]}>
