@@ -25,7 +25,7 @@ let personal = (app) => {
         return {
           ...state,
           id: payload["id"],
-          headimgurl: payload["headimgurl"]
+          headimgurl: payload["headimgurl"] ? payload["headimgurl"] : assets["avatar"]
         }
       },
       /**
