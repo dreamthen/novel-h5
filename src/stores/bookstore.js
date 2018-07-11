@@ -3,7 +3,7 @@ import _package from "../package";
 
 /**
  * 初始化页面状态数据
- * @type {{classifications: Array, search: string, categories: number, categoriesId: number, update: number, updateString: string, fictions: Array, total: number, pageNum: number, pageSize: number, isEnd: boolean}}
+ * @type {{classifications: Array, search: string, categories: number, categoriesId: number, update: number, updateString: string, fictions: Array, total: number, pageNum: number, pageSize: number}}
  */
 const defaultState = {
   //分类列表
@@ -25,15 +25,16 @@ const defaultState = {
   //书库小说列表当前页
   pageNum: 1,
   //书库小说列表每页的数量
-  pageSize: 10,
-  //书库小说列表分页是否到底部
-  isEnd: false
+  pageSize: 10
 };
 
 let bookstore = (app) => {
   app.model({
     namespace: 'bookstore',
-    state: defaultState,
+    state: Object.assign({}, defaultState, {
+      //书库小说列表分页是否到底部
+      isEnd: false
+    }),
     effects: {
       /**
        * 拉取所有小说分类列表
@@ -41,8 +42,7 @@ let bookstore = (app) => {
        * @param call
        * @param put
        * @returns {IterableIterator<*>}
-       */
-      * classifications({payload}, {call, put}) {
+       */* classifications({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["classifications"], payload);
         if (!_package.isEmpty(response.body)) {
           let body = response.body;
@@ -57,8 +57,7 @@ let bookstore = (app) => {
        * @param call
        * @param put
        * @returns {IterableIterator<*>}
-       */
-      * fictions({payload}, {call, put}) {
+       */* fictions({payload}, {call, put}) {
         let response = yield call(novel_h5_interface["fictions"], payload);
         if (!_package.isEmpty(response.body)) {
           let body = response.body;

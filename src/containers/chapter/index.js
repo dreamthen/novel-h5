@@ -56,7 +56,7 @@ class Chapter extends Component {
   componentWillUnmount() {
     const {reset} = this.props;
     const {scrollChapter} = this;
-    reset();
+    reset.bind(this)();
     window.removeEventListener('scroll', scrollChapter.bind(this));
   }
 

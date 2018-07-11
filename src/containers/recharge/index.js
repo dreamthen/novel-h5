@@ -122,9 +122,12 @@ class RechargeComponent extends Component {
                             className={styles["recharge"]["recharge-main-container-categories-aside-balance"]}>
                             {rechargeproductItem["balance"]}书币
                           </p>
-                          <dfn className={styles["recharge"]["recharge-main-container-categories-aside-bonusPrice"]}>
-                            多送{rechargeproductItem["bonus_price"]}元
-                          </dfn>
+                          {
+                            rechargeproductItem["bonus_price"] !== undefined &&
+                            <dfn className={styles["recharge"]["recharge-main-container-categories-aside-bonusPrice"]}>
+                              多送{rechargeproductItem["bonus_price"]}元
+                            </dfn>
+                          }
                           <dfn className={styles["recharge"]["recharge-main-container-categories-aside-description"]}>
                             {rechargeproductItem["remark"]}
                           </dfn>

@@ -128,6 +128,20 @@ let currentuser = async (params) => {
   });
 };
 
+/**
+ * 获取消费记录
+ * @param params
+ * @returns {Promise<*>}
+ */
+let consumptions = async (params) => {
+  return axios({
+    url: api.consumptions,
+    method: "GET",
+    params,
+    headers: {}
+  });
+};
+
 export default {
   indexfictions,
   classifications,
@@ -139,5 +153,6 @@ export default {
   histories,
   deleteHistory,
   payorders,
-  currentuser
+  currentuser,
+  consumptions
 }

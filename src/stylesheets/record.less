@@ -1,0 +1,51 @@
+@charset "utf-8";
+@import "./util";
+
+.record {
+  &-header {
+    text-align: center;
+    &-title {
+      font-size: 16px;
+      font-weight: normal;
+      padding: 16px 0;
+      border-top: 1px solid @light-grey-color;
+      background-color: #fafafa;
+      color: @theme-color;
+    }
+  }
+  &-main {
+    text-align: center;
+    border-bottom: 1px solid @light-grey-color;
+    &-consumptionsItem {
+      padding: 7px 10px;
+      border-top: 1px solid @light-grey-color;
+      background-color: #fff;
+      box-sizing: border-box;
+      &-paragraph {
+        text-align: left;
+        line-height: 1.7;
+        font-size: 16px;
+        &:after{
+          content: ".";
+          display: block;
+          visibility: hidden;
+          clear: both;
+          height: 0;
+        }
+      }
+      &-description {
+        font-weight: bolder;
+      }
+      &-costBalance {
+        color: #cf745d;
+      }
+      &-time{
+        float: right;
+        color: @grey-color;
+      }
+    }
+    &-emptyConsumptions {
+      padding: 12px 0;
+    }
+  }
+}

@@ -21,7 +21,9 @@ if (!isMock) {
     //充值接口地址
     payorders: `${novel_h5_modelPath}/payorders`,
     //获取当前会话的用户信息接口地址
-    currentuser: `${novel_h5_modelPath}/sessions/currentuser`
+    currentuser: `${novel_h5_modelPath}/sessions/currentuser`,
+    //获取消费记录接口地址
+    consumptions: `${novel_h5_modelPath}/consumptions`
   };
 
 } else {

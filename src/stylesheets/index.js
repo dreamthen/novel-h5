@@ -8,6 +8,7 @@ import read from "./read.less";
 import history from "./history.less";
 import result from "./result.less";
 import personal from "./personal.less";
+import record from "./record.less";
 
 export default {
   route,
@@ -19,6 +20,7 @@ export default {
   read,
   history,
   result,
-  personal
+  personal,
+  record
 };
 

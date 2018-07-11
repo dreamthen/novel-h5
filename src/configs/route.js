@@ -7,6 +7,7 @@ import ReadComponent from "../containers/read";
 import HistoryComponent from "../containers/history";
 import ResultComponent from "../containers/result";
 import PersonalComponent from "../containers/personal";
+import RecordComponent from "../containers/record";
 
 
 /**
@@ -22,7 +23,8 @@ const route = [
   {path: "/read", component: ReadComponent, isLink: false, isNav: false},
   {path: "/history", component: HistoryComponent, isLink: false, isNav: true},
   {path: "/result", component: ResultComponent, isLink: false, isNav: false},
-  {path: "/personal", component: PersonalComponent, isLink: false, isNav: true}
+  {path: "/personal", component: PersonalComponent, isLink: false, isNav: true},
+  {path: "/record", component: RecordComponent, isLink: false, isNav: true}
 ];
 
 export default {

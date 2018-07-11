@@ -1,7 +1,7 @@
 import novel_h5_interface from '../configs/interface';
 import _package from "../package";
+
 let defaultState = {
-  isEnd: false,
   pageNum: 1,
   pageSize: 20,
   chapters: []
@@ -10,18 +10,18 @@ let defaultState = {
 const chapterstore = app => {
   app.model({
     namespace: 'chapter',
-    state: {
-      ...defaultState
-    },
+    state: Object.assign({}, defaultState, {
+      isEnd: false
+    }),
     effects: {
-      *fetchChapters({ payload }, { call, put, select }) {
+      * fetchChapters({payload}, {call, put, select}) {
         const response = yield call(novel_h5_interface['chapters'], {
           ...payload
         });
-        const { chapters } = yield select(state => {
+        const {chapters} = yield select(state => {
           return state['chapter'];
         });
-        const { body } = response;
+        const {body} = response;
         if (!_package.isEmpty(body)) {
           yield put({
             type: 'save',
@@ -35,12 +35,13 @@ const chapterstore = app => {
       }
     },
     reducers: {
-      reset() {
+      reset(state) {
         return {
+          ...state,
           ...defaultState
         };
       },
-      save(state, { payload }) {
+      save(state, {payload}) {
         return {
           ...state,
           ...payload

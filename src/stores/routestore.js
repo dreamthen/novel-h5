@@ -21,8 +21,9 @@ let routestore = (app) => {
     subscriptions: {
       setup({history, dispatch}) {
         history.listen((location) => {
-          let innerHeight = window.innerHeight;
-          if (location.pathname === "/recharge" || location.pathname === "/personal") {
+          let innerHeight = window.innerHeight,
+            pathname = location.pathname;
+          if (pathname === "/recharge" || pathname === "/personal" || pathname === "/record") {
             /**
              * 重置页面背景色
              */
