@@ -16,7 +16,7 @@ import PersonalComponent from "../containers/personal";
 const route = [
   {path: "/", component: HomeComponent, text: "首页", isLink: true, isNav: true},
   {path: "/bookstore", component: BookStoreComponent, text: "书库", isLink: true, isNav: true},
-  {path: "/recharge", component: RechargeComponent, text: "充值页", isLink: true, isNav: true},
+  {path: "/recharge", component: RechargeComponent, text: "充值", isLink: true, isNav: true},
   {path: "/synopsis", component: SynopsisComponent, isLink: false, isNav: true},
   {path: "/chapter", component: ChapterComponent, isLink: false, isNav: true},
   {path: "/read", component: ReadComponent, isLink: false, isNav: false},

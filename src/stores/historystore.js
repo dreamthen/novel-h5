@@ -1,6 +1,6 @@
 import novel_h5_interface from '../configs/interface';
 import _package from "../package";
-
+import { Toast } from 'antd-mobile';
 let historystore = app => {
   app.model({
     namespace: 'readhistory',
@@ -12,9 +12,12 @@ let historystore = app => {
         const response = yield call(novel_h5_interface['deleteHistory'], {
           id: payload.id
         });
-        yield put({
-          type: 'fetchHistories'
-        });
+        if (response.errno === 0) {
+          Toast.success('删除成功', 1);
+          yield put({
+            type: 'fetchHistories'
+          });
+        }
       },
       *fetchHistories(_, { call, put }) {
         const response = yield call(novel_h5_interface['histories'], {});
