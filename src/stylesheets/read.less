@@ -70,7 +70,7 @@
   }
 
   &-charge {
-    padding: 0 15px;
+    padding: 0 15px 30px 15px;;
     &-btn {
       font-size: 18px;
       letter-spacing: 10px;
@@ -81,6 +81,13 @@
       border-radius: 5px;
       text-align: center;
       color: @theme-color;
+      &.night {
+        background-color: #21234a;
+
+        &:hover {
+          background-color: #21234a8c;
+        }
+      }
     }
     &-balance_info {
       color: #888888;

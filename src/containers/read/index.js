@@ -242,7 +242,7 @@ class ReadComponent extends Component {
         {
           needToChargeVisible ? (
             <div className={styles['read']['footer-charge']}>
-              <div className={styles['read']['footer-charge-btn']} onClick={this.onChargeClick}>充值</div>
+              <div className={`${styles['read']['footer-charge-btn']} ${readMode === 'night' ? styles['read']['night'] : null}`} onClick={this.onChargeClick}>充值</div>
               <p className={styles['read']['footer-charge-balance_info']}>本章价格 {costBalance} 书币</p>
               <p className={styles['read']['footer-charge-balance_info']}>当前余额 {userBalance} 书币</p>
             </div>
@@ -269,6 +269,7 @@ class ReadComponent extends Component {
           )
         }
       </section>
+      {/* 字体大小模态框 */}
       <Modal
           visible={fontModalVisible}
           transparent
