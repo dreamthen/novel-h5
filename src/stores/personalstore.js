@@ -5,8 +5,12 @@ import assets from "../assets";
  * @type {{id: number, headimgurl: *}}
  */
 const defaultState = {
+  //用户ID
   id: 0,
-  headimgurl: assets["avatar"]
+  //用户头像
+  headimgurl: assets["avatar"],
+  //用户书币
+  balance: 0
 };
 
 let personal = (app) => {
@@ -25,7 +29,8 @@ let personal = (app) => {
         return {
           ...state,
           id: payload["id"],
-          headimgurl: payload["headimgurl"] ? payload["headimgurl"] : assets["avatar"]
+          headimgurl: payload["headimgurl"] ? payload["headimgurl"] : assets["avatar"],
+          balance: payload["balance"]
         }
       },
       /**

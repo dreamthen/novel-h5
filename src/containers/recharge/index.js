@@ -6,7 +6,8 @@ import styles from "../../stylesheets";
 
 @connect(function mapStateToProps(state) {
   return {
-    recharge: state.recharge
+    recharge: state.recharge,
+    personal: state.personal
   }
 }, function mapDispatchToProps(dispatch) {
   return {
@@ -89,8 +90,9 @@ class RechargeComponent extends Component {
 
   render() {
     const {changeRechargeSelect, payordersHandler} = this;
-    const {recharge} = this.props;
+    const {recharge, personal} = this.props;
     const {rechargeproductsList, rechargeSelect} = recharge;
+    const {balance} = personal;
     return (
       <section className={styles["recharge"]["recharge"]}>
         <header className={styles["recharge"]["recharge-header"]}>
@@ -98,7 +100,7 @@ class RechargeComponent extends Component {
         </header>
         <main className={styles["recharge"]["recharge-main"]}>
           <section className={styles["recharge"]["recharge-main-balance"]}>
-            您的余额: <span className={styles["recharge"]["recharge-main-balance-price"]}>200</span> 书币
+            您的余额: <span className={styles["recharge"]["recharge-main-balance-price"]}>{balance}</span> 书币
           </section>
           <section className={styles["recharge"]["recharge-main-description"]}>
             选择充值金额 <span className={styles["recharge"]["recharge-main-description-change"]}>(1元=100书币)</span>
