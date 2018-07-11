@@ -7,9 +7,11 @@ import styles from "../../stylesheets";
 @connect(function mapStateToProps(state) {
   return {
     personal: state.personal
-  }
+  };
 }, function mapDispatchToProps(dispatch) {
-  return {}
+  return {
+
+  };
 })
 
 class PersonalComponent extends Component {
@@ -31,14 +33,14 @@ class PersonalComponent extends Component {
 
   render() {
     const {personal} = this.props;
-    const {id, headimgurl} = personal;
+    const {id, headimgurl, balance} = personal;
     const {historyToFuncModule} = this;
     return (
       <section className={styles["personal"]["personal"]}>
         <header className={styles["personal"]["personal-header"]}>
           <img src={headimgurl} className={styles["personal"]["personal-header-avatar"]} alt="头像"/>
           <aside className={styles["personal"]["personal-header-aside"]}>
-            <dfn className={styles["personal"]["personal-header-aside-id"]}>ID: {id}</dfn> <span>书币: 200</span>
+            <dfn className={styles["personal"]["personal-header-aside-id"]}>ID: {id}</dfn> <span>书币: {balance}书币</span>
           </aside>
         </header>
         <main className={styles["personal"]["personal-main"]}>

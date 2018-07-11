@@ -8,7 +8,8 @@ import styles from "../../stylesheets";
 @withRouter
 @connect(function mapStateToProps(state) {
   return {
-    route: state.route
+    route: state.route,
+    personal: state.personal
   }
 }, function mapDispatchToProps(dispatch) {
   return {
@@ -41,8 +42,9 @@ class NavComponent extends Component {
   }
 
   render() {
-    const {route} = this.props;
+    const {route, personal} = this.props;
     const {innerHeight, bgColor, nickname} = route;
+    const {headimgurl} = personal;
     const {toPersonalNav} = this;
     //过滤出isLink为true的数组项
     const isLinkNav = routeConfig["route"].filter(routeItem => routeItem.isLink);
@@ -68,6 +70,7 @@ class NavComponent extends Component {
           </nav>
           <section className={styles["route"]["novel-header-section"]}>
             <main className={styles["route"]["novel-header-section-username"]}>
+              <img className={styles["route"]["novel-header-section-avatar"]} src={headimgurl} alt="头像"/>
               {nickname}
             </main>
             <aside
