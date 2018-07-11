@@ -226,10 +226,10 @@ class BookStoreComponent extends Component {
               placeholder="请输入书名"
               onChange={searchChangeHandler.bind(this, "search")}
             />
-            <button className={styles["bookstore"]["bookstore-header-nav-button"]}
+            <span className={styles["bookstore"]["bookstore-header-nav-button"]}
                     onClick={searchFictionsWithFilter.bind(this)}>
               搜索
-            </button>
+            </span>
           </nav>
           <section className={styles["bookstore"]["bookstore-header-categories"]}>
             <div className={styles["bookstore"]["bookstore-header-categories-item"]}>

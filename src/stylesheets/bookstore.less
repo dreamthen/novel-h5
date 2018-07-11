@@ -1,29 +1,24 @@
 @charset "utf-8";
-
+@import "./util.less";
 .bookstore {
   width: 100%;
   &-header {
     &-nav {
-      background-color: #efeff4;
       margin-top: 10px;
-      padding: 10px;
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
       text-align: center;
       &-search {
         width: 78%;
-        padding: 6px 10px;
+        padding: 9px 10px;
         border-radius: 4px;
         box-shadow: none;
-        border: 1px solid #ddd;
+        border: none;
         font-size: 16px;
         outline: none;
       }
       &-button {
         margin: 0 0 0 8px;
-        padding: 3px 12px 4px 12px;
+        padding: 6px 12px;
         box-shadow: none;
-        border: 1px solid #ddd;
         border-radius: 4px;
         font-size: 16px;
         word-spacing: 2px;
@@ -31,7 +26,7 @@
       }
     }
     &-categories {
-      background-color: #fbf9fe;
+      background-color: white;
       margin-top: 10px;
       padding: 10px;
       font-size: 16px;
@@ -81,7 +76,6 @@
         width: 30%;
         height: auto;
         padding: 0 6px;
-        margin-right: 18px;
       }
       &-aside {
         display: table-cell;
@@ -94,7 +88,9 @@
         }
         &-paragraph {
           margin: 10px 0 0 0;
+          line-height: 1.8em;
           font-size: 14px;
+          color: @grey-color;
           font-weight: lighter;
           display: -webkit-box;
           /* autoprefixer: off */
