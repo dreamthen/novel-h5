@@ -88,7 +88,7 @@ let routestore = (app) => {
       setCurrentUserNickname(state, {payload}) {
         return {
           ...state,
-          nickname: payload.nickname
+          nickname: payload.nickname ? payload.nickname : defaultState.nickname
         }
       },
       /**
