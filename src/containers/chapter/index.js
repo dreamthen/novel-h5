@@ -91,7 +91,7 @@ class Chapter extends Component {
   /**
    * 小说目录页滚动条分页系统
    */
-  scrollChapter = () => {
+  scrollChapter() {
     const {changeEnd, fetchChapters, chapter: {pageNum, pageSize, total, isEnd}, location} = this.props;
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
       documentHeight = document.body.offsetHeight,
