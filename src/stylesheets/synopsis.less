@@ -26,6 +26,7 @@
     &-title {
       color: @vice-color;
       font-size: 20px;
+      font-weight: bold;
       overflow: hidden;
       display: -webkit-box;
       /* autoprefixer: off */
@@ -38,6 +39,7 @@
       &.first-item {
         padding-top: 20px;
       }
+      line-height: 1.4em;
       font-size: 18px;
       color: #888888
     }
@@ -62,7 +64,9 @@
   &-content {
     padding-top: 20px;
     font-size: 15px;
-    color: #888888;
+    font-weight: lighter;
+    line-height: 1.6em;
+    color: @grey-color;
     overflow: hidden;
     display: -webkit-box;
     // autoprefixer会默认删除-webkit-box-orient属性
@@ -76,7 +80,8 @@
     background-color: @theme-color;
     border-radius: 5px;
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: lighter;
     box-sizing: border-box;
     margin: 20px auto;
     padding: 10px 0;

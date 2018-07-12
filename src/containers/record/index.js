@@ -47,7 +47,9 @@ class RecordComponent extends Component {
 
   constructor(props) {
     super(props);
+    const {scrollRecordStore} = this;
     this.state = {};
+    this.scrollRecordStoreHandler = scrollRecordStore.bind(this);
   }
 
   /**
@@ -87,17 +89,17 @@ class RecordComponent extends Component {
    */
   componentWillUnmount() {
     const {reset} = this.props;
-    const {scrollRecordStore} = this;
+    const {scrollRecordStoreHandler} = this;
     reset.bind(this)();
-    window.removeEventListener("scroll", scrollRecordStore.bind(this));
+    window.removeEventListener("scroll", scrollRecordStoreHandler);
   }
 
   /**
    * 添加消费记录滚动条分页的监听
    */
   scrollPagination() {
-    const {scrollRecordStore} = this;
-    window.addEventListener("scroll", scrollRecordStore.bind(this));
+    const {scrollRecordStoreHandler} = this;
+    window.addEventListener("scroll", scrollRecordStoreHandler);
   }
 
   /**

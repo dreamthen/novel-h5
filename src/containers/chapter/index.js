@@ -1,5 +1,6 @@
 import {connect} from 'dva';
 import {Component} from 'react';
+import PropTypes from "prop-types";
 import styles from '../../stylesheets';
 import qs from 'qs';
 import assets from '../../assets';
@@ -40,6 +41,15 @@ const mapDispatchToProps = dispatch => {
  */
 @connect(mapStateToProps, mapDispatchToProps)
 class Chapter extends Component {
+  static propTypes = {
+    chapter: PropTypes.object
+  };
+
+  constructor(props) {
+    super(props);
+    const {scrollChapter} = this;
+    this.scrollChapterHandler = scrollChapter.bind(this);
+  }
 
   /**
    * 组件装载完毕之后,拉取小说的章节资源
@@ -55,9 +65,9 @@ class Chapter extends Component {
    */
   componentWillUnmount() {
     const {reset} = this.props;
-    const {scrollChapter} = this;
+    const {scrollChapterHandler} = this;
     reset.bind(this)();
-    window.removeEventListener('scroll', this.scrollChapter);
+    window.removeEventListener('scroll', scrollChapterHandler);
   }
 
   componentWillReceiveProps(nextProps, nextState) {
@@ -73,9 +83,9 @@ class Chapter extends Component {
   /**
    * 添加小说目录页滚动条分页
    */
-  addScrollListener = () => {
-    const {scrollChapter} = this;
-    window.addEventListener('scroll', this.scrollChapter);
+  addScrollListener() {
+    const {scrollChapterHandler} = this;
+    window.addEventListener('scroll', scrollChapterHandler);
   }
 
   /**

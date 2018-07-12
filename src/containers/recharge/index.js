@@ -11,6 +11,11 @@ import styles from "../../stylesheets";
   }
 }, function mapDispatchToProps(dispatch) {
   return {
+    reset() {
+      dispatch({
+        type: 'recharge/reset'
+      });
+    },
     /**
      * 搜索充值产品列表
      */
@@ -61,6 +66,11 @@ class RechargeComponent extends Component {
   componentDidMount() {
     const {rechargeproductsDispatch} = this.props;
     rechargeproductsDispatch.bind(this)();
+  }
+
+  componentWillUnmount() {
+    const {reset} = this.props;
+    reset.bind(this)();
   }
 
   /**
@@ -130,9 +140,12 @@ class RechargeComponent extends Component {
                               多送{rechargeproductItem["bonus_price"]}元
                             </dfn>
                           }
-                          <dfn className={styles["recharge"]["recharge-main-container-categories-aside-description"]}>
-                            {rechargeproductItem["remark"]}
-                          </dfn>
+                          {
+                            rechargeproductItem["remark"] &&
+                            <dfn className={styles["recharge"]["recharge-main-container-categories-aside-description"]}>
+                              {rechargeproductItem["remark"]}
+                            </dfn>
+                          }
                         </aside> :
                         <dfn className={styles["recharge"]["recharge-main-container-categories-description"]}>
                           {rechargeproductItem["remark"]}

@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "dva";
 import {Link, withRouter} from "dva/router";
+import _package from "../../package";
+import {routerRedux} from "dva/router";
 import routeConfig from "../../configs/route";
 import styles from "../../stylesheets";
 
@@ -18,6 +20,12 @@ import styles from "../../stylesheets";
         type: 'route/currentuser',
         payload: {}
       })
+    },
+    /**
+     * 前往结果页面
+     */
+    putToResult() {
+      dispatch(routerRedux.push("/result?result=success&title=请在微信客户端打开"));
     }
   }
 })
@@ -27,8 +35,16 @@ class NavComponent extends Component {
    * 当组件挂载时,去获取会话的用户信息
    */
   componentDidMount() {
-    const {currentuser} = this.props;
+    const {currentuser, putToResult} = this.props;
     currentuser.bind(this)();
+    let isWeixin = _package.isWeixin();
+    isWeixin.then((isWeixinResult) => {
+      if (!isWeixinResult) {
+        putToResult.bind(this)();
+      }
+    }, () => {
+
+    });
   }
 
   /**
@@ -68,6 +84,7 @@ class NavComponent extends Component {
               }
             </ul>
           </nav>
+          {/* 用户身份栏 */}
           <section className={styles["route"]["novel-header-section"]}>
             <main className={styles["route"]["novel-header-section-username"]}>
               <img className={styles["route"]["novel-header-section-avatar"]} src={headimgurl} alt="头像"/>

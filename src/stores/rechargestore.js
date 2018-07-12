@@ -3,30 +3,33 @@ import code from "../static/code";
 import _package from "../package";
 import novel_h5_interface from "../configs/interface";
 import {routerRedux} from 'dva/router';
+import {Toast} from 'antd-mobile';
+
+const defaultState = {
+  //充值产品列表
+  rechargeproductsList: [],
+  //充值产品列表选择item
+  rechargeSelect: 0,
+  //充值产品ID
+  charge_type_id: 0,
+  //签名
+  paySign: "",
+  //签名方式
+  signType: "MD5",
+  //订单详情扩展字符串
+  prepay_id: "",
+  //时间戳
+  timeStamp: "",
+  //公众号id
+  appId: "",
+  //随机字符串
+  nonceStr: ""
+};
 
 const recharge = (app) => {
   app.model({
     namespace: "recharge",
-    state: {
-      //充值产品列表
-      rechargeproductsList: [],
-      //充值产品列表选择item
-      rechargeSelect: 0,
-      //充值产品ID
-      charge_type_id: 0,
-      //签名
-      paySign: "",
-      //签名方式
-      signType: "MD5",
-      //订单详情扩展字符串
-      prepay_id: "",
-      //时间戳
-      timeStamp: "",
-      //公众号id
-      appId: "",
-      //随机字符串
-      nonceStr: ""
-    },
+    state: defaultState,
     effects: {
       /**
        * 搜索充值产品列表
@@ -50,15 +53,16 @@ const recharge = (app) => {
        * @param put
        * @returns {IterableIterator<*>}
        */* payorders({payload}, {call, put}) {
+        Toast.loading('支付中...', 0);
         let response = yield call(novel_h5_interface["payorders"], {charge_type_id: payload.charge_type_id});
         let signType = payload.signType;
+        Toast.hide();
         if (!_package.isEmpty(response.body)) {
           let body = response.body,
             timeStamp = (new Date(body["modify_date"]).getTime() / 1000).toString(),
             nonceStr = _package.getRandom32ToString(),
             winxinResult = weixin(window.WeixinJSBridge);
-          const payResult = winxinResult.readyBridge(body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType);
-          //将H5网页中执行JS调起支付结果返回出来
+          const payResult = yield call(winxinResult.readyBridge.bind(winxinResult, body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType));
           switch (payResult.err_msg) {
             case code["code"]["weixin_pay_success"]:
               yield put(routerRedux.push('/result?result=success&title=充值成功'));
@@ -68,6 +72,12 @@ const recharge = (app) => {
       }
     },
     reducers: {
+      reset(state) {
+        return {
+          ...state,
+          ...defaultState
+        };
+      },
       /**
        * 搜索充值产品列表Action
        * @param state
