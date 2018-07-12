@@ -1,0 +1,39 @@
+@import "./util";
+
+.main {
+  background-color: white;
+  min-height: 100vh;
+}
+
+.head-title {
+  text-align: center;
+  font-size: 24px;
+  color: @vice-color;
+  padding: 20px 0;
+}
+
+.chapter {
+  margin-top: 20px;
+  border-top: .75px solid @light-grey-color;
+  border-bottom: .75px solid @light-grey-color;
+  color: @grey-color;
+  font-weight: lighter;
+
+  &-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: .75px solid @light-grey-color;
+    font-size: 18px;
+    padding: 15px 10px;
+    &:last-child {
+      border-bottom: none;
+    }
+    &-icon {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+

@@ -1,0 +1,6 @@
+//vscode自带的JS Support配置
+{
+  "compilerOptions": {
+      "experimentalDecorators": true
+  }
+}

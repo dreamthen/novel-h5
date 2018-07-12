@@ -1,0 +1,134 @@
+@import "./util";
+.main {
+  min-height: 100vh;
+}
+
+.sub-title {
+  padding: 15px 15px;
+  font-size: 15px;
+  color: @theme-color;
+  display: flex;
+  float: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  &-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-right: 10px;
+  }
+}
+
+.head-title {
+  font-size: 24px;
+  color: @vice-color;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.main-content {
+  font-size: 18px;
+  color: @vice-color;
+  width: 100%;
+  line-height: 170%;
+  padding: 20px 15px;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+}
+
+.footer {
+
+  &-normal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+
+    &-text-btn {
+      width: 1px;
+      flex-grow: 4;
+    }
+
+    &-icon-btn {
+      width: 1px;
+      height: 100%;
+      flex-grow: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &-icon {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  &-charge {
+    padding: 0 15px 30px 15px;;
+    &-btn {
+      font-size: 18px;
+      letter-spacing: 10px;
+      width: 100%;
+      margin: 0 auto;
+      background-color: #ece7f3;
+      padding: 10px 0;
+      border-radius: 5px;
+      text-align: center;
+      color: @theme-color;
+      &.night {
+        background-color: #21234a;
+
+        &:hover {
+          background-color: #21234a8c;
+        }
+      }
+    }
+    &-balance_info {
+      color: #888888;
+      font-size: 18px;
+      text-align: center;
+      margin-top: 7px;
+    }
+  }
+}
+
+
+.font {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &-slider {
+    width: 1px;
+    flex-grow: 1;
+    width: 100%;
+  }
+}
+.read {
+  &-mode {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 10px 0;
+
+    &-option {
+      width: 32%;
+      height: 20px;
+
+      &.selected {
+        border: 2px solid @theme-color;
+      }
+    }
+  }
+}

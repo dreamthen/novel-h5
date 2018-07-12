@@ -1,0 +1,125 @@
+@import "./util";
+
+.head {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 15px 20px;
+
+  &-avatar {
+    width: 35%;
+
+    &-img {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  &-info {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+
+    &-title {
+      color: @vice-color;
+      font-size: 20px;
+      font-weight: bold;
+      overflow: hidden;
+      display: -webkit-box;
+      /* autoprefixer: off */
+      -webkit-box-orient: vertical;
+      /* autoprefixer: on */
+      -webkit-line-clamp: 2;
+    }
+
+    &-item {
+      &.first-item {
+        padding-top: 20px;
+      }
+      line-height: 1.4em;
+      font-size: 18px;
+      color: #888888
+    }
+  }
+}
+
+.desc {
+  width: 100%;
+  padding: 10px 20px;
+  &-title {
+    height: 24px;
+    line-height: 24px;
+    font-size: 18px;
+    font-weight: 400;
+
+    &-icon {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+    }
+  }
+  &-content {
+    padding-top: 20px;
+    font-size: 15px;
+    font-weight: lighter;
+    line-height: 1.6em;
+    color: @grey-color;
+    overflow: hidden;
+    display: -webkit-box;
+    // autoprefixer会默认删除-webkit-box-orient属性
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    -webkit-line-clamp: 5;
+  }
+  &-read-btn {
+    color: @vice-color;
+    background-color: @theme-color;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: lighter;
+    box-sizing: border-box;
+    margin: 20px auto;
+    padding: 10px 0;
+    text-align: center;
+  }
+}
+
+.catalog {
+  font-size: 18px;
+  &-title {
+    padding: 10px 20px;
+    font-weight: 400;
+    border-bottom: .75px solid #eee;
+    &-icon {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+    }
+  }
+  &-chapter {
+    color: #888888;
+    &-item {
+      display: flex;
+      flex-direction: row;
+      padding: 15px 20px;
+      border-bottom: .75px solid #eee;
+      align-items: center;
+      justify-content: space-between;
+
+      &-icon {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+  &-all-btn {
+    text-align: center;
+    color: @theme-color;
+    padding: 18px 0;
+  }
+}

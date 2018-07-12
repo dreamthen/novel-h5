@@ -1,0 +1,35 @@
+@import "./util";
+
+.main {
+  min-height: 100vh;
+  background-color: white;
+}
+
+.head {
+  text-align: center;
+  font-size: 24px;
+  color: @vice-color;
+  padding: 20px 0;
+}
+
+.history {
+
+  &-item {
+    border-bottom: .75px solid #eee;
+    color: @grey-color;
+    font-weight: lighter;
+
+    &-title {
+      font-size: 18px;
+    }
+
+    &-serial {
+      font-size: 14px;
+      margin-left: 10px;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

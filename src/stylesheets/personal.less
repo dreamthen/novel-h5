@@ -1,0 +1,64 @@
+@charset "utf-8";
+@import "./util";
+.personal {
+  &-header {
+    text-align: center;
+    padding: 30px 0;
+    &-avatar {
+      display: inline-block;
+      width: 22%;
+      border-radius: 50%;
+    }
+    &-aside {
+      margin-top: 12px;
+      font-size: 15px;
+      font-weight: bolder;
+      &-id {
+        font-style: normal;
+      }
+    }
+  }
+  &-main {
+    margin-top: 12px;
+    width: 100%;
+    border-top: 1px solid @light-grey-color;
+    border-bottom: 1px solid @light-grey-color;
+    &-funcModule {
+      float: left;
+      box-sizing: border-box;
+      width: 33.3%;
+      text-align: center;
+      padding: 22px 0;
+      border-right: 1px solid @light-grey-color;
+      font-size: 15px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      display: flex;
+      flex-flow: column nowrap;
+      cursor: pointer;
+
+      &:hover {
+        background-color: @light-grey-color;
+      }
+
+      :global i {
+        display: inline-block;
+        font-size: 18px;
+        color: #ff8c00;
+        margin-bottom: 6px;
+      }
+      :global i.icon_novelH5-history {
+        font-size: 17px;
+        margin-bottom: 7px;
+      }
+    }
+    &:after {
+      clear: both;
+      content: ".";
+      display: block;
+      visibility: hidden;
+      height: 0;
+    }
+  }
+}

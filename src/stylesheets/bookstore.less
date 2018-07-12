@@ -1,0 +1,113 @@
+@charset "utf-8";
+@import "./util";
+.bookstore {
+  width: 100%;
+  &-header {
+    &-nav {
+      margin-top: 10px;
+      text-align: center;
+      &-search {
+        width: 78%;
+        padding: 9px 10px;
+        border-radius: 4px;
+        box-shadow: none;
+        border: none;
+        font-size: 16px;
+        outline: none;
+      }
+      &-button {
+        margin: 0 0 0 8px;
+        padding: 6px 12px;
+        box-shadow: none;
+        border-radius: 4px;
+        font-size: 16px;
+        word-spacing: 2px;
+        background-color: #f9cc46;
+      }
+    }
+    &-categories {
+      background-color: white;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: normal;
+      &-item {
+        margin: 8px 0;
+        *zoom: 1;
+        dfn {
+          font-style: normal;
+          float: left;
+          margin-right: 12px;
+        }
+        &-aside {
+          display: table-cell;
+          width: 2000px;
+          *display: inline-block;
+          *width: auto;
+          span {
+            position: relative;
+            display: inline-block;
+            padding: 4px 10px;
+            margin: 0 16px 4px 0;
+            bottom: 4px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all .3s linear 0s;
+          }
+          &-selected {
+            background-color: #f9cc46 !important;
+          }
+        }
+      }
+      &-item:last-child {
+        margin: 0;
+      }
+    }
+  }
+  &-main {
+    background-color: #fff;
+    margin-top: 10px;
+    &-module {
+      padding: 16px 0;
+      border-bottom: 1px solid #eee;
+      *zoom: 1;
+      img {
+        float: left;
+        width: 30%;
+        height: auto;
+        padding: 0 6px;
+      }
+      &-aside {
+        display: table-cell;
+        width: 2000px;
+        *display: inline-block;
+        *width: auto;
+        padding: 0 6px 0 0;
+        &-title {
+          font-weight: normal;
+        }
+        &-paragraph {
+          margin: 10px 0 0 0;
+          line-height: 1.8em;
+          font-size: 14px;
+          color: @grey-color;
+          font-weight: lighter;
+          display: -webkit-box;
+          /* autoprefixer: off */
+          -webkit-box-orient: vertical;
+          /* autoprefixer: on */
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 3;
+        }
+      }
+      &:after {
+        content: ".";
+        clear: both;
+        display: block;
+        visibility: hidden;
+        height: 0;
+      }
+    }
+  }
+}
