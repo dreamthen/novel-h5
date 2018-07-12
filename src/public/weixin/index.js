@@ -1,5 +1,4 @@
 import md5 from "MD5";
-import {Promise} from "rsvp";
 
 /**
  * 微信公共API
