@@ -6,7 +6,9 @@ const _package = (() => {
 
   class Package {
     constructor() {
-      data_model.set(this, {});
+      data_model.set(this, {
+        weixinBrowserRegExp: /MicroMessenger/
+      });
     }
 
     /**
@@ -46,6 +48,19 @@ const _package = (() => {
         }
       }
       return true;
+    }
+
+    /**
+     * 判断是否为微信浏览器内核
+     */
+    async isWeixin() {
+      return await (function isWeixinPromise() {
+        return new Promise((resolve, reject) => {
+          let userAgent = window.navigator.userAgent,
+            weixinBrowserRegExp = data_model.get(this)["weixinBrowserRegExp"];
+          resolve(weixinBrowserRegExp.test(userAgent));
+        });
+      }.bind(this))();
     }
   }
 

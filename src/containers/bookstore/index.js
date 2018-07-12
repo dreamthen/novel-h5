@@ -95,6 +95,12 @@ class BookStoreComponent extends Component {
     bookstore: PropTypes.object
   };
 
+  constructor(props) {
+    super(props);
+    const {scrollBookStore} = this;
+    this.scrollBookStoreHandler = scrollBookStore.bind(this);
+  }
+
   /**
    * 组件装载完毕之后,拉取所有小说分类列表
    */
@@ -113,9 +119,9 @@ class BookStoreComponent extends Component {
    */
   componentWillUnmount() {
     const {reset} = this.props;
-    const {scrollBookStore} = this;
+    const {scrollBookStoreHandler} = this;
     reset.bind(this)();
-    window.removeEventListener("scroll", scrollBookStore.bind(this));
+    window.removeEventListener("scroll", scrollBookStoreHandler);
   }
 
   componentWillReceiveProps(nextProps, nextState) {
@@ -132,8 +138,8 @@ class BookStoreComponent extends Component {
    * 添加书库滚动条分页
    */
   scrollPagination() {
-    const {scrollBookStore} = this;
-    window.addEventListener("scroll", scrollBookStore.bind(this));
+    const {scrollBookStoreHandler} = this;
+    window.addEventListener("scroll", scrollBookStoreHandler);
   }
 
   /**
