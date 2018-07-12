@@ -14,10 +14,9 @@
 
 .chapter {
   margin-top: 20px;
-  border-top: .75px solid #eee;
-  border-bottom: .75px solid #eee;
-  padding-left: 10px;
-  color: #888888;
+  border-top: .75px solid @light-grey-color;
+  border-bottom: .75px solid @light-grey-color;
+  color: @grey-color;
   font-weight: lighter;
 
   &-item {
@@ -25,9 +24,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: .75px solid #eee;
+    border-bottom: .75px solid @light-grey-color;
     font-size: 18px;
     padding: 15px 10px;
+    &:hover {
+      background-color: @light-grey-color;
+    }
     &:last-child {
       border-bottom: none;
     }

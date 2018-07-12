@@ -66,27 +66,28 @@
       height: 4px !important;
       margin: 0 4px;
       border-radius: 4px !important;
-      background-color: #f9cc46 !important;
+      background-color: @theme-color !important;
       box-shadow: none !important;
     }
     .control-next.control-arrow:before {
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
-      border-left: 10px solid #f9cc46;
+      border-left: 10px solid @theme-color;
     }
     .control-prev.control-arrow:before {
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
-      border-right: 10px solid #f9cc46;
+      border-right: 10px solid @theme-color;
     }
   }
   &-hot-recommend {
     color: #ff8c00;
     background-color: #fff;
     &-title {
+      font-weight: lighter;
       font-size: 16px;
       padding: 10px 0 10px 6px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid @light-grey-color;
     }
     &-main {
       display: -webkit-box;
@@ -101,7 +102,7 @@
       justify-content: center;
       align-items: center;
       margin: 0 4px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid @light-grey-color;
       &-item {
         flex: 1;
         margin: 5px 4px;
@@ -115,7 +116,7 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          color: #000;
+          color: @vice-color;
           font-size: 14px;
           font-weight: normal;
         }
@@ -124,10 +125,10 @@
     &-aside {
       margin: 0 4px;
       &-other {
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid @light-grey-color;
         line-height: 45px;
         height: 45px;
-        color: #000;
+        color: @vice-color;
         font-size: 16px;
         font-weight: lighter;
         &:last-child {
@@ -149,12 +150,13 @@
       color: #cf745d;
     }
     &-title {
+      font-weight: lighter;
       font-size: 16px;
       padding: 10px 0 10px 6px;
       border-bottom: 1px solid #eee;
     }
     &-main {
-      color: #000;
+      color: @vice-color;
       width: 100%;
       &-item {
         width: 100%;
