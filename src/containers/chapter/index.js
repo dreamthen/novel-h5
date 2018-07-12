@@ -57,7 +57,7 @@ class Chapter extends Component {
     const {reset} = this.props;
     const {scrollChapter} = this;
     reset.bind(this)();
-    window.removeEventListener('scroll', scrollChapter.bind(this));
+    window.removeEventListener('scroll', this.scrollChapter);
   }
 
   componentWillReceiveProps(nextProps, nextState) {
@@ -73,15 +73,15 @@ class Chapter extends Component {
   /**
    * 添加小说目录页滚动条分页
    */
-  addScrollListener() {
+  addScrollListener = () => {
     const {scrollChapter} = this;
-    window.addEventListener('scroll', scrollChapter.bind(this));
+    window.addEventListener('scroll', this.scrollChapter);
   }
 
   /**
    * 小说目录页滚动条分页系统
    */
-  scrollChapter() {
+  scrollChapter = () => {
     const {changeEnd, fetchChapters, chapter: {pageNum, pageSize, total, isEnd}, location} = this.props;
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
       documentHeight = document.body.offsetHeight,
