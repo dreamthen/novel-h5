@@ -68,6 +68,7 @@ class NavComponent extends Component {
               }
             </ul>
           </nav>
+          {/* 用户身份栏 */}
           <section className={styles["route"]["novel-header-section"]}>
             <main className={styles["route"]["novel-header-section-username"]}>
               <img className={styles["route"]["novel-header-section-avatar"]} src={headimgurl} alt="头像"/>

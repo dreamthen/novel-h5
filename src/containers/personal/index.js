@@ -40,7 +40,7 @@ class PersonalComponent extends Component {
         <header className={styles["personal"]["personal-header"]}>
           <img src={headimgurl} className={styles["personal"]["personal-header-avatar"]} alt="头像"/>
           <aside className={styles["personal"]["personal-header-aside"]}>
-            <dfn className={styles["personal"]["personal-header-aside-id"]}>ID: {id}</dfn> <span>书币: {balance}书币</span>
+            <dfn className={styles["personal"]["personal-header-aside-id"]}>ID: {id}</dfn> <span>书币: {balance}</span>
           </aside>
         </header>
         <main className={styles["personal"]["personal-main"]}>
