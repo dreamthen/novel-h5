@@ -140,9 +140,12 @@ class RechargeComponent extends Component {
                               多送{rechargeproductItem["bonus_price"]}元
                             </dfn>
                           }
-                          <dfn className={styles["recharge"]["recharge-main-container-categories-aside-description"]}>
-                            {rechargeproductItem["remark"]}
-                          </dfn>
+                          {
+                            rechargeproductItem["remark"] &&
+                            <dfn className={styles["recharge"]["recharge-main-container-categories-aside-description"]}>
+                              {rechargeproductItem["remark"]}
+                            </dfn>
+                          }
                         </aside> :
                         <dfn className={styles["recharge"]["recharge-main-container-categories-description"]}>
                           {rechargeproductItem["remark"]}
