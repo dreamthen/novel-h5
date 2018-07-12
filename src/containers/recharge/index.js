@@ -70,7 +70,7 @@ class RechargeComponent extends Component {
 
   componentWillUnmount() {
     const {reset} = this.props;
-    reset();
+    reset.bind(this)();
   }
 
   /**

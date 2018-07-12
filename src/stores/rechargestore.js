@@ -29,9 +29,7 @@ const defaultState = {
 const recharge = (app) => {
   app.model({
     namespace: "recharge",
-    state: {
-      ...defaultState
-    },
+    state: defaultState,
     effects: {
       /**
        * 搜索充值产品列表
@@ -74,8 +72,9 @@ const recharge = (app) => {
       }
     },
     reducers: {
-      reset() {
+      reset(state) {
         return {
+          ...state,
           ...defaultState
         };
       },
