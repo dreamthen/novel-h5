@@ -20,7 +20,7 @@ const axiosConfig = ({url, method, params, headers}) => {
   }, (response) => {
     return response;
   }).catch((error) => {
-
+    // ！上方的reject回调覆盖了这里的catch，不会到达这里
   });
 };
 
@@ -36,14 +36,18 @@ axios_config.interceptors.response.use((response) => {
   //获取响应的data数据对象
   let data = response.data,
       errno = data.errno;
-  //当后台返回正常code码时,直接返回响应的data数据对象
-  if(code["code"] === errno) {
-    return data;
+  //当后台返回正常code码时,添加一个业务请求成功标记位
+  data.success = code["code"]["success"] === errno;
+  //直接返回异常响应的data数据对象
+  return data;
+}, (err) => {
+  switch(err.response.status) {
+    case 401:
+    default:
+      window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx29f60d0cb70a72b0&redirect_uri=http%3a%2f%2fpublic.1jtec.com%2fnovel_h5%2fsessions%2fnew%3ftarget_url%3dhttp%3a%2f%2fpublic.1jtec.com%26share_date%3d2018-07-11+20%3a14%3a00%26from_openid%3dokACP0ZTkyvV1asJBk___g8YREDk%26ref_app_name%3d%e6%8b%89%e6%97%a6%e6%9c%a8&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+      break;
   }
-  //遇到其他异常情况,直接返回异常响应的data数据对象
-  return Promise.reject(data);
-}, () => {
-
+  return Promise.reject(err);
 });
 
 export default axiosConfig;
