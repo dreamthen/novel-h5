@@ -190,6 +190,8 @@ class ReadComponent extends Component {
       history.push(`/chapter?ficId=${ficId}&title=${ficTitle}`);
     } else if (3 === btnIndex) {
       history.push('/');
+    } else if (4 === btnIndex) {
+      this.nextChapter();
     }
   };
 
@@ -210,7 +212,7 @@ class ReadComponent extends Component {
   };
 
   showActionSheet = () => {
-    const buttons = ['字体大小', '背景颜色', '返回目录', '返回首页', '取消'];
+    const buttons = ['字体大小', '背景颜色', '返回目录', '返回首页', '下一章', '取消'];
     ActionSheet.showActionSheetWithOptions({
         options: buttons,
         cancelButtonIndex: buttons.length - 1,
@@ -227,6 +229,7 @@ class ReadComponent extends Component {
     const { read: {chapTitle, ficTitle, avatar, serial, content, fontSize, readMode, fontModalVisible,
       readModeModalVisible, needToChargeVisible, costBalance, userBalance},
       handleReadModaModalVisible, handleFontModalVisible, setFontSize, setReadMode} = this.props;
+      const fontSlider = parseInt(fontSize.replace('px', ''), 10) - 10;
     return (<main className={styles['read']['main']} style={{backgroundColor: `${readMode2BgColor(readMode)}`}}>
       <section style={{color: `${readMode2FontColor(readMode)}`}} className={styles['read']['head-title']}>{chapTitle}</section>
       <section className={styles['read']['sub-title']}>
@@ -287,7 +290,7 @@ class ReadComponent extends Component {
             <span style={{fontSize: '14px'}}>A</span>
             <WingBlank className={styles['read']['font-slider']}>
               <Slider
-                defaultValue={8}
+                defaultValue={fontSlider}
                 min={0}
                 max={20}
                 onAfterChange={setFontSize}
