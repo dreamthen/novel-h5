@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "dva";
 import PropTypes from "prop-types";
+import assets from "../../assets";
 import history from "../../static/history";
 import styles from "../../stylesheets";
 
@@ -9,9 +10,7 @@ import styles from "../../stylesheets";
     personal: state.personal
   };
 }, function mapDispatchToProps(dispatch) {
-  return {
-
-  };
+  return {};
 })
 
 class PersonalComponent extends Component {
@@ -33,7 +32,7 @@ class PersonalComponent extends Component {
 
   render() {
     const {personal} = this.props;
-    const {id, headimgurl, balance} = personal;
+    const {id, headimgurl, balance, isVip, valid_date_to} = personal;
     const {historyToFuncModule} = this;
     return (
       <section className={styles["personal"]["personal"]}>
@@ -41,6 +40,22 @@ class PersonalComponent extends Component {
           <img src={headimgurl} className={styles["personal"]["personal-header-avatar"]} alt="头像"/>
           <aside className={styles["personal"]["personal-header-aside"]}>
             <dfn className={styles["personal"]["personal-header-aside-id"]}>ID: {id}</dfn> <span>书币: {balance}</span>
+            {
+              isVip &&
+              <sup>
+                <img className={styles["personal"]["personal-header-aside-vip"]}
+                     src={assets["superu"]}
+                     alt="VIP"/>
+              </sup>
+            }
+            {
+              isVip &&
+              <p className={styles["personal"]["personal-header-aside-paragraph"]}>VIP有效期至</p>
+            }
+            {
+              isVip &&
+              <p className={styles["personal"]["personal-header-aside-to"]}>{valid_date_to}</p>
+            }
           </aside>
         </header>
         <main className={styles["personal"]["personal-main"]}>
@@ -48,8 +63,8 @@ class PersonalComponent extends Component {
             history["history"].map((historyItem, historyIndex) => {
               return (
                 <section key={historyIndex}
-                  className={styles["personal"]["personal-main-funcModule"]}
-                  onClick={historyToFuncModule.bind(this, historyItem["to"])}
+                         className={styles["personal"]["personal-main-funcModule"]}
+                         onClick={historyToFuncModule.bind(this, historyItem["to"])}
                 >
                   <i className={historyItem["icon"]}>
 

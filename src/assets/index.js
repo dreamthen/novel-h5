@@ -4,6 +4,9 @@ import cost from "./cost.png";
 import desc from "./desc.png";
 import menu from "./menu.png";
 import success from "./success.png";
+import superu from "./superu.png";
+import home from "./home.png";
+import diamond from "./diamond.png";
 
 export default {
   avatar,
@@ -11,6 +14,9 @@ export default {
   cost,
   desc,
   menu,
-  success
+  success,
+  superu,
+  home,
+  diamond
 };
 

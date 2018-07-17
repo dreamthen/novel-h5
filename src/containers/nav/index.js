@@ -2,11 +2,10 @@ import React, {Component} from "react";
 import {connect} from "dva";
 import {Link, withRouter} from "dva/router";
 import _package from "../../package";
+import assets from "../../assets";
 import {routerRedux} from "dva/router";
 import routeConfig from "../../configs/route";
 import styles from "../../stylesheets";
-import homeIcon from "../../assets/home.png";
-import diamondIcon from "../../assets/diamond.png";
 
 // 布局路由
 @withRouter
@@ -62,7 +61,7 @@ class NavComponent extends Component {
   render() {
     const {route, personal} = this.props;
     const {innerHeight, bgColor, nickname} = route;
-    const {headimgurl} = personal;
+    const {headimgurl, isVip} = personal;
     const {toPersonalNav} = this;
     //过滤出isLink为true的数组项
     const isLinkNav = routeConfig["route"].filter(routeItem => routeItem.isLink);
@@ -78,8 +77,9 @@ class NavComponent extends Component {
                         className={styles["route"]["novel-header-link"]}
                     >
                       {
-                        linkNavItem.hasIcon && (linkNavIndex === 0 ? <img className={styles["route"]["novel-header-link-icon"]} src={homeIcon}/>
-                        : <img className={styles["route"]["novel-header-link-icon"]} src={diamondIcon}/>)
+                        linkNavItem.hasIcon && (linkNavIndex === 0 ?
+                          <img className={styles["route"]["novel-header-link-icon"]} src={assets["home"]}/>
+                          : <img className={styles["route"]["novel-header-link-icon"]} src={assets["diamond"]}/>)
                       }
                       <Link to={linkNavItem["path"]}>
                         {linkNavItem["text"]}
@@ -95,6 +95,7 @@ class NavComponent extends Component {
             <main className={styles["route"]["novel-header-section-username"]}>
               <img className={styles["route"]["novel-header-section-avatar"]} src={headimgurl} alt="头像"/>
               {nickname}
+              {isVip && <img className={styles["route"]["novel-header-section-superu"]} src={assets["superu"]} alt="VIP" />}
             </main>
             <aside
               className={styles["route"]["novel-header-section-userInformation"]}

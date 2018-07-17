@@ -10,7 +10,11 @@ const defaultState = {
   //用户头像
   headimgurl: assets["avatar"],
   //用户书币
-  balance: 0
+  balance: 0,
+  //是否是VIP
+  isVip: false,
+  //VIP有效期至
+  valid_date_to: ""
 };
 
 let personal = (app) => {
@@ -30,7 +34,9 @@ let personal = (app) => {
           ...state,
           id: payload["id"],
           headimgurl: payload["headimgurl"] ? payload["headimgurl"] : assets["avatar"],
-          balance: payload["balance"]
+          balance: payload["balance"],
+          isVip: payload["isVip"],
+          valid_date_to: payload["valid_date_to"]
         }
       },
       /**
