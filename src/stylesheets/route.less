@@ -26,18 +26,25 @@ a {
     justify-content: center;
     align-items: center;
     .novel-header-link {
-      position: relative;
-      display: block;
       flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
       font-size: 18px;
       line-height: 1.5em;
       padding: 10px 0;
       text-align: center;
       background-color: @theme-color;
+      &-icon {
+        width: 18px;
+        height: 18px;
+        margin-right: 4px;
+      }
       a {
         color: @vice-color;
         display: block;
-        border-right: 1px solid @vice-color;
       }
       &:last-child a {
         border-right: none;

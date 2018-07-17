@@ -15,9 +15,9 @@ import RecordComponent from "../containers/record";
  * @type {*[]}
  */
 const route = [
-  {path: "/", component: HomeComponent, text: "首页", isLink: true, isNav: true},
-  {path: "/bookstore", component: BookStoreComponent, text: "书库", isLink: true, isNav: true},
-  {path: "/recharge", component: RechargeComponent, text: "充值", isLink: true, isNav: true},
+  {path: "/", component: HomeComponent, text: "首页", isLink: true, isNav: true, hasIcon: true},
+  {path: "/bookstore", component: BookStoreComponent, text: "书库", isLink: true, isNav: true, hasIcon: false},
+  {path: "/recharge", component: RechargeComponent, text: "充值", isLink: true, isNav: true, hasIcon: true},
   {path: "/synopsis", component: SynopsisComponent, isLink: false, isNav: true},
   {path: "/chapter", component: ChapterComponent, isLink: false, isNav: true},
   {path: "/read", component: ReadComponent, isLink: false, isNav: false},

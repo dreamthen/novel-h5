@@ -5,6 +5,8 @@ import _package from "../../package";
 import {routerRedux} from "dva/router";
 import routeConfig from "../../configs/route";
 import styles from "../../stylesheets";
+import homeIcon from "../../assets/home.png";
+import diamondIcon from "../../assets/diamond.png";
 
 // 布局路由
 @withRouter
@@ -75,6 +77,10 @@ class NavComponent extends Component {
                     <li key={linkNavIndex}
                         className={styles["route"]["novel-header-link"]}
                     >
+                      {
+                        linkNavItem.hasIcon && (linkNavIndex === 0 ? <img className={styles["route"]["novel-header-link-icon"]} src={homeIcon}/>
+                        : <img className={styles["route"]["novel-header-link-icon"]} src={diamondIcon}/>)
+                      }
                       <Link to={linkNavItem["path"]}>
                         {linkNavItem["text"]}
                       </Link>

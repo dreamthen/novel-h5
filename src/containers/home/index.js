@@ -88,7 +88,9 @@ class HomePage extends Component {
                 return (
                   <div key={recommendIndex} className={styles["home"]["home-hot-recommend-main-item"]}
                        onClick={this.onFictionClick.bind(null, recommendItem["id"])}>
-                    <img src={recommendItem["avatar"]} alt={recommendItem["title"]}/>
+                    <div className={styles["home"]["home-hot-recommend-main-item-image"]}>
+                      <img src={recommendItem["avatar"]} alt={recommendItem["title"]}/>
+                    </div>
                     <p className={styles["home"]["home-hot-recommend-main-item-paragraph"]}>{recommendItem["title"]}</p>
                   </div>
                 )
@@ -110,7 +112,10 @@ class HomePage extends Component {
           </aside>
         </section>
         <div className={`${styles["home"]["home-hot-other"]} ${styles["home"]["home-hot-other-fantasy"]}`}>
-          <h3 className={styles["home"]["home-hot-other-title"]}>玄幻精品</h3>
+          <div className={styles["home"]["home-hot-other-title"]}>
+            <h3 className={styles["home"]["home-hot-other-title-main"]}>男生精选</h3>
+            <h5 className={`${styles["home"]["home-hot-other-title-sub"]} ${styles["home"]["fantasy"]}`}>热血爽文</h5>
+          </div>
           <main className={styles["home"]["home-hot-other-main"]}>
             {
               fantasy_fictions.length > 0 &&
@@ -148,7 +153,10 @@ class HomePage extends Component {
           </aside>
         </div>
         <section className={`${styles["home"]["home-hot-other"]} ${styles["home"]["home-hot-other-girl"]}`}>
-          <h3 className={styles["home"]["home-hot-other-title"]}>女生频道</h3>
+          <div className={styles["home"]["home-hot-other-title"]}>
+            <h3 className={styles["home"]["home-hot-other-title-main"]}>女生精选</h3>
+            <h5 className={`${styles["home"]["home-hot-other-title-sub"]} ${styles["home"]["girl"]}`}>火热强推</h5>
+          </div>
           <main className={styles["home"]["home-hot-other-main"]}>
             {
               girl_fictions.length > 0 &&
@@ -186,7 +194,10 @@ class HomePage extends Component {
           </aside>
         </section>
         <section className={`${styles["home"]["home-hot-other"]} ${styles["home"]["home-hot-other-love"]}`}>
-          <h3 className={styles["home"]["home-hot-other-title"]}>言情小说</h3>
+          <div className={styles["home"]["home-hot-other-title"]}>
+            <h3 className={styles["home"]["home-hot-other-title-main"]}>言情精选</h3>
+            <h5 className={`${styles["home"]["home-hot-other-title-sub"]} ${styles["home"]["love"]}`}>分类精选</h5>
+          </div>
           <main className={styles["home"]["home-hot-other-main"]}>
             {
               love_fictions.length > 0 &&
