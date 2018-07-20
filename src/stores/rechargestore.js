@@ -54,7 +54,11 @@ const recharge = (app) => {
        * @returns {IterableIterator<*>}
        */* payorders({payload}, {call, put}) {
         Toast.loading('支付中...', 0);
-        let response = yield call(novel_h5_interface["payorders"], {charge_type_id: payload.charge_type_id});
+        const appId = localStorage.getItem('appId');
+        let response = yield call(novel_h5_interface["payorders"], {
+          charge_type_id: payload.charge_type_id,
+          app_id: appId
+        });
         let signType = payload.signType;
         Toast.hide();
         if (!_package.isEmpty(response.body)) {

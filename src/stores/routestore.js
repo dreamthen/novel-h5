@@ -60,6 +60,7 @@ let routestore = (app) => {
         let response = yield call(noval_h5_interface["currentuser"], payload);
         if (!_package.isEmpty(response.body)) {
           let body = response.body;
+          localStorage.setItem('appId', body.app_id);
           yield put({
             type: 'personal/getCurrentUser',
             payload: body
