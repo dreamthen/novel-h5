@@ -38,6 +38,7 @@ class NavComponent extends Component {
   componentDidMount() {
     const {currentuser, putToResult} = this.props;
     currentuser.bind(this)();
+    // 前端运行环境判断：强制微信内环境
     let isWeixin = _package.isWeixin();
     isWeixin.then((isWeixinResult) => {
       if (!isWeixinResult) {
