@@ -23,7 +23,9 @@ if (!isMock) {
     //获取当前会话的用户信息接口地址
     currentuser: `${novel_h5_modelPath}/sessions/currentuser`,
     //获取消费记录接口地址
-    consumptions: `${novel_h5_modelPath}/consumptions`
+    consumptions: `${novel_h5_modelPath}/consumptions`,
+    //发起首充接口地址
+    firstpay: `${novel_h5_modelPath}/payorders/firstpay`
   };
 
 } else {

@@ -61,8 +61,8 @@ const recharge = (app) => {
           let body = response.body,
             timeStamp = (new Date(body["modify_date"]).getTime() / 1000).toString(),
             nonceStr = _package.getRandom32ToString(),
-            winxinResult = weixin(window.WeixinJSBridge);
-          const payResult = yield call(winxinResult.readyBridge.bind(winxinResult, body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType));
+            weixinResult = weixin(window.WeixinJSBridge);
+          const payResult = yield call(weixinResult.readyBridge.bind(weixinResult, body["key"], body["prepay_id"], body["appid"], timeStamp, nonceStr, signType));
           switch (payResult.err_msg) {
             case code["code"]["weixin_pay_success"]:
               yield put(routerRedux.push('/result?result=success&title=充值成功'));

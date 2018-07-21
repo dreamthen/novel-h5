@@ -8,6 +8,7 @@ import HistoryComponent from "../containers/history";
 import ResultComponent from "../containers/result";
 import PersonalComponent from "../containers/personal";
 import RecordComponent from "../containers/record";
+import FirstRechargeComponent from "../containers/firstRecharge";
 
 
 /**
@@ -18,6 +19,7 @@ const route = [
   {path: "/", component: HomeComponent, text: "首页", isLink: true, isNav: true, hasIcon: true},
   {path: "/bookstore", component: BookStoreComponent, text: "书库", isLink: true, isNav: true, hasIcon: false},
   {path: "/recharge", component: RechargeComponent, text: "充值", isLink: true, isNav: true, hasIcon: true},
+  {path: "/firstRecharge", component: FirstRechargeComponent,isLink:false, isNav: false},
   {path: "/synopsis", component: SynopsisComponent, isLink: false, isNav: true},
   {path: "/chapter", component: ChapterComponent, isLink: false, isNav: true},
   {path: "/read", component: ReadComponent, isLink: false, isNav: false},

@@ -7,6 +7,9 @@ import success from "./success.png";
 import superu from "./superu.png";
 import home from "./home.png";
 import diamond from "./diamond.png";
+import rechargeBg from "./recharge-bg.png";
+import rechargeBanner from "./recharge-banner.png";
+import rechargeDescribe from "./recharge-describe.png";
 
 export default {
   avatar,
@@ -17,6 +20,9 @@ export default {
   success,
   superu,
   home,
-  diamond
+  diamond,
+  rechargeBg,
+  rechargeBanner,
+  rechargeDescribe
 };
 

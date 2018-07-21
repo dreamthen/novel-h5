@@ -3,9 +3,9 @@
  * @type {*[]}
  */
 const history = [{
-  text: "充值",
+  text: "首充",
   icon: "iconfont_novelH5 icon_novelH5-diamond",
-  to: "/recharge"
+  to: "/firstRecharge"
 }, {
   text: "阅读历史",
   icon: "iconfont_novelH5 icon_novelH5-history",

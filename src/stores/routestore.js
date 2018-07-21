@@ -65,12 +65,19 @@ let routestore = (app) => {
             payload: body
           });
           yield put({
+            type: 'firstRecharge/getCurrentUser',
+            payload: body
+          });
+          yield put({
             type: 'setCurrentUserNickname',
             payload: body
           });
         } else {
           yield put({
             type: 'personal/resetCurrentUser'
+          });
+          yield put({
+            type: 'firstRecharge/resetCurrentUser'
           });
           yield put({
             type: 'resetCurrentUserNickname'

@@ -9,6 +9,7 @@ import history from "./history.less";
 import result from "./result.less";
 import personal from "./personal.less";
 import record from "./record.less";
+import firstRecharge from "./firstRecharge.less";
 
 export default {
   route,
@@ -21,6 +22,7 @@ export default {
   history,
   result,
   personal,
-  record
+  record,
+  firstRecharge
 };
 

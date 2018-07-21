@@ -233,7 +233,11 @@ class BookStoreComponent extends Component {
               onChange={searchChangeHandler.bind(this, "search")}
             />
             <span className={styles["bookstore"]["bookstore-header-nav-button"]}
-                    onClick={searchFictionsWithFilter.bind(this)}>
+                    onClick={(e)=>{
+                      searchFictionsWithFilter.bind(this)();
+                      //清除冒泡事件
+                      e.nativeEvent.stopImmediatePropagation();
+                    }}>
               搜索
             </span>
           </nav>

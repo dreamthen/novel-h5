@@ -8,6 +8,7 @@ import readstore from "./readstore";
 import historystore from "./historystore";
 import personalstore from "./personalstore";
 import recordstore from "./recordstore";
+import firstRechargestore from "./firstRechargestore";
 /**
  * 规整的页面所有功能的store
  * @param app
@@ -23,6 +24,7 @@ let stores = (app) => {
   historystore(app);
   personalstore(app);
   recordstore(app);
+  firstRechargestore(app);
 };
 
 export default stores;

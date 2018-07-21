@@ -142,6 +142,20 @@ let consumptions = async (params) => {
   });
 };
 
+/**
+ * 发起首充
+ * @param params
+ * @returns {Promise<*>}
+ */
+let firstpay = async (params) => {
+  return axios({
+    url: api.firstpay,
+    method: "POST",
+    params,
+    headers: {}
+  });
+};
+
 export default {
   indexfictions,
   classifications,
@@ -154,5 +168,6 @@ export default {
   deleteHistory,
   payorders,
   currentuser,
-  consumptions
+  consumptions,
+  firstpay
 }
