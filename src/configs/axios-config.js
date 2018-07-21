@@ -44,8 +44,7 @@ axios_config.interceptors.response.use((response) => {
   switch(err.response.status) {
     case 401:
     default:
-      const appId = localStorage.getItem('appId');
-      window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appId}&redirect_uri=http%3a%2f%2fpublic.1jtec.com%2fnovel_h5%2fsessions%2fnew%3ftarget_url%3dhttp%3a%2f%2fpublic.1jtec.com%26share_date%3d2018-07-11+20%3a14%3a00%26from_openid%3dokACP0ZTkyvV1asJBk___g8YREDk%26ref_app_name%3d%e4%bc%9a%e8%af%9d%e8%bf%87%e6%9c%9f%e8%b7%b3%e8%bd%ac%26app_id%3d${appId}&response_type=code&scope=snsapi_base&state=123#wechat_redirect`;
+      window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx29f60d0cb70a72b0&redirect_uri=http%3a%2f%2fpublic.1jtec.com%2fnovel_h5%2fsessions%2fnew%3ftarget_url%3dhttp%3a%2f%2fpublic.1jtec.com%26share_date%3d2018-07-11+20%3a14%3a00%26from_openid%3dokACP0ZTkyvV1asJBk___g8YREDk%26ref_app_name%3d%e6%8b%89%e6%97%a6%e6%9c%a8&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
       break;
   }
   return Promise.reject(err);
